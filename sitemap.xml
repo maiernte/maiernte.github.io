@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maiernte.github.io/gitbook_with_typora_gh-pages.html</loc>
+    
+    <lastmod>2019-08-14T19:57:23.960Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maiernte.github.io/helpfull-shell-command.html</loc>
     
     <lastmod>2019-08-14T13:12:36.000Z</lastmod>
@@ -135,13 +142,6 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/funny-things-collection.html</loc>
-    
-    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maiernte.github.io/prominaent-slogen-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
@@ -149,7 +149,7 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/brief-notions-collection.html</loc>
+    <loc>http://maiernte.github.io/funny-things-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
@@ -170,6 +170,13 @@
   </url>
   
   <url>
+    <loc>http://maiernte.github.io/brief-notions-collection.html</loc>
+    
+    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maiernte.github.io/next-collapse-block.html</loc>
     
     <lastmod>2019-07-31T03:51:34.000Z</lastmod>
@@ -177,14 +184,14 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/mac-using-tags.html</loc>
+    <loc>http://maiernte.github.io/use-github-in-wiki.html</loc>
     
     <lastmod>2019-07-31T03:51:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/use-github-in-wiki.html</loc>
+    <loc>http://maiernte.github.io/mac-using-tags.html</loc>
     
     <lastmod>2019-07-31T03:51:34.000Z</lastmod>
     
