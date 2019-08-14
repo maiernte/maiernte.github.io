@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://maiernte.github.io/still-using-qiniu.html</loc>
+    <loc>http://maiernte.github.io/gitbook_with_typora_gh-pages.html</loc>
     
-    <lastmod>2019-08-14T20:56:47.614Z</lastmod>
+    <lastmod>2019-08-14T22:24:37.536Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/gitbook_with_typora_gh-pages.html</loc>
+    <loc>http://maiernte.github.io/about-jianguoyu.html</loc>
     
-    <lastmod>2019-08-14T20:30:25.917Z</lastmod>
+    <lastmod>2019-08-14T22:10:30.358Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maiernte.github.io/still-using-qiniu.html</loc>
+    
+    <lastmod>2019-08-14T20:56:47.614Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://maiernte.github.io/ubuntu-reset-root-pw.html</loc>
     
     <lastmod>2019-08-14T06:34:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maiernte.github.io/about-jianguoyu.html</loc>
-    
-    <lastmod>2019-08-14T06:33:33.000Z</lastmod>
     
   </url>
   

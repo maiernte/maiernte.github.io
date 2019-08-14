@@ -88,7 +88,7 @@
 <meta property="og:description" content="本文为你介绍如何使用利用 Typora + gitbook-cli + Github Pages  书写Gitbook. 在本地用 Typora 书写 md 文件, 用 gitbook-cli  编译, 最后发布到 Github Pages 上.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/maiernte/img/raw/master/Tech/gitbook%E7%9B%AE%E5%BD%95%E7%9A%84%E5%86%99%E6%B3%95.png">
-<meta property="og:updated_time" content="2019-08-14T20:30:25.917Z">
+<meta property="og:updated_time" content="2019-08-14T22:24:37.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gitbook攻略">
 <meta name="twitter:description" content="本文为你介绍如何使用利用 Typora + gitbook-cli + Github Pages  书写Gitbook. 在本地用 Typora 书写 md 文件, 用 gitbook-cli  编译, 最后发布到 Github Pages 上.">
@@ -460,6 +460,13 @@ GitBook version: 3.2.3</p>
 <blockquote>
 <p><a href="https://maiernte.github.io/gitbook_python_finance/">https://maiernte.github.io/gitbook_python_finance/</a></p>
 </blockquote>
+<h1 id="个性化配置"><a class="markdownIt-Anchor" href="#个性化配置"></a> 个性化配置</h1>
+<p>在项目的根目录上添加一个 <code>book.json</code> 文件, 用来更全面的配置项目. 比如头文件, 插件等等.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"title"</span>: <span class="string">"使用Python处理金融数据"</span>,</span><br><span class="line">    <span class="attr">"author"</span>: <span class="string">"鎏金天涯 &lt;mai.yongfeng@gmail.com&gt;"</span>,</span><br><span class="line">    <span class="attr">"description"</span>: <span class="string">"使用Python处理金融数据的各种技术"</span>,</span><br><span class="line">    <span class="attr">"generator"</span>: <span class="string">"site"</span>,</span><br><span class="line">    <span class="attr">"plugins"</span>: [<span class="string">"mathjax"</span>],</span><br><span class="line">    <span class="attr">"links"</span>: &#123;</span><br><span class="line">        <span class="attr">"sidebar"</span>: &#123;</span><br><span class="line">            <span class="attr">"鎏金天涯个人博客"</span>: <span class="string">"http://goldentianya.pub"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数学插件"><a class="markdownIt-Anchor" href="#数学插件"></a> 数学插件</h2>
+<p>在上述文件添加了 <code>&quot;plugins&quot;: [&quot;mathjax&quot;]</code>,  并执行命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook install ./ <span class="comment"># 会添加一堆 node_modules 包</span></span><br></pre></td></tr></table></figure>
+<p>更详细的配置请参阅<a href="https://chrisniael.gitbooks.io/gitbook-documentation/content/" target="_blank" rel="noopener">官方文档</a>.</p>
 <p>参考文章:</p>
 <hr>
 <p><a href="https://beihaionline.com/11523.html" target="_blank" rel="noopener">使用GitBook和Typora写知识库</a></p>
@@ -679,7 +686,7 @@ GitBook version: 3.2.3</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text"> 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建书籍"><span class="nav-number">2.</span> <span class="nav-text"> 新建书籍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布到github-pages"><span class="nav-number">3.</span> <span class="nav-text"> 发布到Github Pages</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text"> 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建书籍"><span class="nav-number">2.</span> <span class="nav-text"> 新建书籍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布到github-pages"><span class="nav-number">3.</span> <span class="nav-text"> 发布到Github Pages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个性化配置"><span class="nav-number">4.</span> <span class="nav-text"> 个性化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数学插件"><span class="nav-number">4.1.</span> <span class="nav-text"> 数学插件</span></a></li></ol></li></ol></div>
             
 
           </div>
