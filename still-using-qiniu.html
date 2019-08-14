@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta name="description" content="自从七牛换了服务条款, 每个空间就只分配测试域名, 30到期. 想省钱的用户必须每30天倒腾一次. 不想费那个劲, 就绑定自己的域名. 不当增加费用, 还要考虑到域名备案. 反正十分麻烦.">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="配置服务器端MySQL">
-<meta property="og:url" content="http://maiernte.github.io/config-mysql-access-privileges-on-vps.html">
+<meta property="og:title" content="还在用七牛?">
+<meta property="og:url" content="http://maiernte.github.io/still-using-qiniu.html">
 <meta property="og:site_name" content="天涯的知府">
-<meta property="og:description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta property="og:description" content="自从七牛换了服务条款, 每个空间就只分配测试域名, 30到期. 想省钱的用户必须每30天倒腾一次. 不想费那个劲, 就绑定自己的域名. 不当增加费用, 还要考虑到域名备案. 反正十分麻烦.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T13:10:45.000Z">
+<meta property="og:updated_time" content="2019-08-14T20:56:47.614Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="配置服务器端MySQL">
-<meta name="twitter:description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta name="twitter:title" content="还在用七牛?">
+<meta name="twitter:description" content="自从七牛换了服务条款, 每个空间就只分配测试域名, 30到期. 想省钱的用户必须每30天倒腾一次. 不想费那个劲, 就绑定自己的域名. 不当增加费用, 还要考虑到域名备案. 反正十分麻烦.">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://maiernte.github.io/config-mysql-access-privileges-on-vps.html">
+  <link rel="canonical" href="http://maiernte.github.io/still-using-qiniu.html">
 
 
 
 
 
-  <title>配置服务器端MySQL | 天涯的知府</title>
+  <title>还在用七牛? | 天涯的知府</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maiernte.github.io/config-mysql-access-privileges-on-vps.html">
+    <link itemprop="mainEntityOfPage" href="http://maiernte.github.io/still-using-qiniu.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鎏金天涯">
@@ -322,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">配置服务器端MySQL</h1>
+          <h1 class="post-title" itemprop="name headline">还在用七牛?</h1>
         
 
         <div class="post-meta">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-06T17:26:28+02:00">
-                2019-08-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:41:28+02:00">
+                2019-08-14
               </time>
             
 
@@ -368,8 +368,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
+                  <a href="/categories/IT/skill/" itemprop="url" rel="index">
+                    <span itemprop="name">skill</span>
                   </a>
                 </span>
 
@@ -386,8 +386,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/config-mysql-access-privileges-on-vps.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="config-mysql-access-privileges-on-vps.html" itemprop="commentCount"></span>
+                <a href="/still-using-qiniu.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="still-using-qiniu.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -415,50 +415,27 @@
       
 
       
-        <p><a href="https://blog.csdn.net/bird3014/article/details/78481104" target="_blank" rel="noopener">文章</a></p>
-<h6 id="问题一端口状态"><a class="markdownIt-Anchor" href="#问题一端口状态"></a> 问题一：端口状态</h6>
-<ol>
-<li>查看 3306 端口状态 <code>sudo netstat -an | grep 3306</code></li>
-</ol>
+        <p>自从七牛换了服务条款, 每个空间就只分配测试域名, 30到期. 想省钱的用户必须每30天倒腾一次. 不想费那个劲, 就绑定自己的域名. 不当增加费用, 还要考虑到域名备案. 反正十分麻烦.</p>
+<a id="more"></a>
+<p>上面是我弃用七牛的主要原因. 第二个原因就是——慢! 可能我人在国外的原因吧, 每次打开七牛的后台, 刷好几遍都显示不了对象存储的页面. 只能用第三方软件进行上传下载, 会相对好一些.</p>
+<p>第三个原因是七牛的图床不能分目录存储. 当图越积越多的时候, 管理和查找起来非常麻烦. 比如我昨天用Typora的Pandoc功能将一个Word技术文档转换成MD文件, 一个文件就有100来张图. 放在七牛得分好几页显示了. 再找别的图, 那得多费劲.</p>
+<p>后来还是把心思放在了伟大的Github上. 在自己的账号下新开一个仓库, 然后在自己的本地电脑专建立一个文件夹, 用来存放MD文档或者博客的图片. 把这个专门的文件夹推送到新的仓库就完了! 相比七牛, 还有不少优势:</p>
+<ul>
+<li>可以分多级目录存储 !</li>
+<li>传输速度快 ! (<em>可能国内慢吧, 但国内可以同样的思路, 放到 Coding 或者 CSDN 上</em> )</li>
+<li>免费 !</li>
+<li>不限流量 !</li>
+</ul>
+<p>还要我说啥?</p>
+<p>但引用Github图片, 要做一个小小的改动. 比如Github上一个图片的原始地址是:</p>
 <blockquote>
-<p>tcp  0 0 127.0.0.1:3306 0.0.0.0:*</p>
+<p><a href="https://github.com/maiernte/img/blob/master/books/ng-book2-71/image100.png" target="_blank" rel="noopener">https://github.com/maiernte/img/blob/master/books/ng-book2-71/image100.png</a></p>
 </blockquote>
-<p>3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。<br>
-打开MySQL的配置文件：<code>sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
-<ol start="2">
-<li>找到如下内容的一行并注释掉：</li>
-</ol>
+<p>需要把其中的 <code>blob</code> 改成 <code>raw</code>, 变成</p>
 <blockquote>
-<p>bind-address          = 127.0.0.1</p>
+<p><a href="https://github.com/maiernte/img/raw/master/books/ng-book2-71/image100.png" target="_blank" rel="noopener">https://github.com/maiernte/img/raw/master/books/ng-book2-71/image100.png</a></p>
 </blockquote>
-<ol start="3">
-<li>重启MySQL服务</li>
-</ol>
-<blockquote>
-<p>sudo systemctl restart mysql</p>
-</blockquote>
-<p>然后使用如下命令查看端口绑定状态</p>
-<blockquote>
-<p><code>sudo netstat -an | grep 3306</code></p>
-</blockquote>
-<hr>
-<h6 id="问题二用户权限"><a class="markdownIt-Anchor" href="#问题二用户权限"></a> 问题二：用户权限</h6>
-<p>查看用户权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -uroot -p[你的密码]</span><br><span class="line">use mysql</span><br><span class="line">select user,host from user</span><br></pre></td></tr></table></figure>
-<p>当显示如下，表示用户root只允许内网访问</p>
-<blockquote>
-<p>root  localhost</p>
-</blockquote>
-<p>给用户授权</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;[允许的ip]&apos; identified by &apos;[密码]&apos; with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-<p>其中*<code>[允许的ip]</code><em>如果设置为</em>*%**的话则表示所有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ip</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">p</span></span></span></span>都可以访问，*<code>[密码]</code>*表示外网访问的密码是什么。比如我设置成所有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ip</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">p</span></span></span></span>都可访问，密码是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>o</mi><mi>o</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">root</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span></span></span></span>，则命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;</span><br><span class="line">flush privileges;</span><br><span class="line">select user,host from user;</span><br></pre></td></tr></table></figure>
-<p>重新查看，会显示</p>
-<blockquote>
-<p>root %</p>
-<p>root localhost</p>
-</blockquote>
-<h6 id="安装-phpmyadmin"><a class="markdownIt-Anchor" href="#安装-phpmyadmin"></a> 安装 phpMyAdmin</h6>
+<p>自打有了Github这个神器, 可以跟七牛说再见! 再也不见!</p>
 
       
     </div>
@@ -502,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/storic-summary.html" rel="next" title="斯多葛主义手册">
-                <i class="fa fa-chevron-left"></i> 斯多葛主义手册
+              <a href="/gitbook_with_typora_gh-pages.html" rel="next" title="Gitbook攻略">
+                <i class="fa fa-chevron-left"></i> Gitbook攻略
               </a>
             
           </div>
@@ -511,10 +488,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/gitbook_with_typora_gh-pages.html" rel="prev" title="Gitbook攻略">
-                Gitbook攻略 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -576,17 +549,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -662,22 +626,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#问题一端口状态"><span class="nav-number">1.</span> <span class="nav-text"> 问题一：端口状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#问题二用户权限"><span class="nav-number">2.</span> <span class="nav-text"> 问题二：用户权限</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#安装-phpmyadmin"><span class="nav-number">3.</span> <span class="nav-text"> 安装 phpMyAdmin</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -842,9 +790,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://maiernte.github.io/config-mysql-access-privileges-on-vps.html';
-          this.page.identifier = 'config-mysql-access-privileges-on-vps.html';
-          this.page.title = '配置服务器端MySQL';
+          this.page.url = 'http://maiernte.github.io/still-using-qiniu.html';
+          this.page.identifier = 'still-using-qiniu.html';
+          this.page.title = '还在用七牛?';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://tian-ya-de-zhi-fu.disqus.com/embed.js';

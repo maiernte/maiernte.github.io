@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maiernte.github.io/"/>
-  <updated>2019-08-14T19:57:23.960Z</updated>
+  <updated>2019-08-14T20:56:47.614Z</updated>
   <id>http://maiernte.github.io/</id>
   
   <author>
@@ -17,13 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>还在用七牛?</title>
+    <link href="http://maiernte.github.io/still-using-qiniu.html"/>
+    <id>http://maiernte.github.io/still-using-qiniu.html</id>
+    <published>2019-08-14T21:41:28.000Z</published>
+    <updated>2019-08-14T20:56:47.614Z</updated>
+    
+    <content type="html"><![CDATA[<p>自从七牛换了服务条款, 每个空间就只分配测试域名, 30到期. 想省钱的用户必须每30天倒腾一次. 不想费那个劲, 就绑定自己的域名. 不当增加费用, 还要考虑到域名备案. 反正十分麻烦.</p><a id="more"></a><p>上面是我弃用七牛的主要原因. 第二个原因就是——慢! 可能我人在国外的原因吧, 每次打开七牛的后台, 刷好几遍都显示不了对象存储的页面. 只能用第三方软件进行上传下载, 会相对好一些.</p><p>第三个原因是七牛的图床不能分目录存储. 当图越积越多的时候, 管理和查找起来非常麻烦. 比如我昨天用Typora的Pandoc功能将一个Word技术文档转换成MD文件, 一个文件就有100来张图. 放在七牛得分好几页显示了. 再找别的图, 那得多费劲.</p><p>后来还是把心思放在了伟大的Github上. 在自己的账号下新开一个仓库, 然后在自己的本地电脑专建立一个文件夹, 用来存放MD文档或者博客的图片. 把这个专门的文件夹推送到新的仓库就完了! 相比七牛, 还有不少优势:</p><ul><li>可以分多级目录存储 !</li><li>传输速度快 ! (<em>可能国内慢吧, 但国内可以同样的思路, 放到 Coding 或者 CSDN 上</em> )</li><li>免费 !</li><li>不限流量 !</li></ul><p>还要我说啥?</p><p>但引用Github图片, 要做一个小小的改动. 比如Github上一个图片的原始地址是:</p><blockquote><p><a href="https://github.com/maiernte/img/blob/master/books/ng-book2-71/image100.png" target="_blank" rel="noopener">https://github.com/maiernte/img/blob/master/books/ng-book2-71/image100.png</a></p></blockquote><p>需要把其中的 <code>blob</code> 改成 <code>raw</code>, 变成</p><blockquote><p><a href="https://github.com/maiernte/img/raw/master/books/ng-book2-71/image100.png" target="_blank" rel="noopener">https://github.com/maiernte/img/raw/master/books/ng-book2-71/image100.png</a></p></blockquote><p>自打有了Github这个神器, 可以跟七牛说再见! 再也不见!</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自从七牛换了服务条款, 每个空间就只分配测试域名, 30到期. 想省钱的用户必须每30天倒腾一次. 不想费那个劲, 就绑定自己的域名. 不当增加费用, 还要考虑到域名备案. 反正十分麻烦.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://maiernte.github.io/categories/IT/"/>
+    
+      <category term="skill" scheme="http://maiernte.github.io/categories/IT/skill/"/>
+    
+    
+      <category term="工具" scheme="http://maiernte.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Gitbook攻略</title>
     <link href="http://maiernte.github.io/gitbook_with_typora_gh-pages.html"/>
     <id>http://maiernte.github.io/gitbook_with_typora_gh-pages.html</id>
     <published>2019-08-14T21:02:14.000Z</published>
-    <updated>2019-08-14T19:57:23.960Z</updated>
+    <updated>2019-08-14T20:30:25.917Z</updated>
     
-    <content type="html"><![CDATA[<p>本文为你介绍如何使用利用 <strong>Typora + gitbook-cli + Github Pages</strong>  书写Gitbook. 在本地用 Typora 书写 md 文件, 用 gitbook-cli  编译, 最后发布到 Github Pages 上.</p><a id="more"></a><h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1><p>前提是已经安装了Node, 直接用npm包管理工具安装:</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g gitbook-cli</span><br><span class="line">gitbook -V <span class="comment"># 注意是大写V</span></span><br></pre></td></tr></table></figure><blockquote><p>CLI version: 2.3.2<br>GitBook version: 3.2.3</p></blockquote><h1 id="新建书籍"><a class="markdownIt-Anchor" href="#新建书籍"></a> 新建书籍</h1><ol><li><p>为新书建立一个根目录 <code>mkdir pytho_finance</code></p></li><li><p>在该目录下执行（命令行下）：<code>gitbook init</code>，之后会在该目录下产生2个文件，<a href="http://xn--README-9i3jrj930n.md" target="_blank" rel="noopener">分别是README.md</a>（书籍的介绍）<a href="http://xn--SUMMARY-7r4l.md" target="_blank" rel="noopener">和SUMMARY.md</a>（书籍的目录结构）。</p></li></ol><p><img src="/Users/mai/Pictures/img_github/Tech/gitbook%E7%9B%AE%E5%BD%95%E7%9A%84%E5%86%99%E6%B3%95.png" alt="gitbook目录的写法"></p><ol start="3"><li><p>按照上图格式填写目录和文件, 然后再次执行 <code>gitbook init</code> , GitBook 会查找 <a href="http://SUMMARY.md" target="_blank" rel="noopener">SUMMARY.md</a> 文件中描述的目录和文件，如果没有则会将其创建.</p></li><li><p>然后就可以预览书籍了 <code>gitbook serve</code>. 执行命令后会对 Markdown 格式的文档进行转换，默认转换为 html 格式，提示Serving book on <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>，打开网址即可查看.</p></li><li><p>构建书籍</p></li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook build</span><br></pre></td></tr></table></figure><p>默认将生成的静态网站输出到 _book 目录。实际上，这一步也包含在 gitbook serve 里面，因为它们是 HTML，所以 GitBook 通过 Node.js 给你提供服务了。</p><p>build 命令可以指定路径, 或者指定端口, 或者生产 pdf , epub, mobi 等格式. <a href="https://www.cnblogs.com/eveblog/p/10003217.html" target="_blank" rel="noopener">具体参考文章</a>.</p><h1 id="发布到github-pages"><a class="markdownIt-Anchor" href="#发布到github-pages"></a> 发布到Github Pages</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin https://github.com/maiernte/gitbook_python_finance.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"new book"</span></span><br><span class="line">git push -u origin master <span class="comment"># 将源代码推送到master</span></span><br></pre></td></tr></table></figure><p>在GitHub的仓库中新添一个 <strong>gh-pages</strong> 的Branch.</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mkdir new_fold</span><br><span class="line"><span class="built_in">cd</span> new_fold</span><br><span class="line">rm -rf . <span class="comment"># 删除这个目录下所有文件, 注意那  .git 文件夹不能删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在源代码目录中,也就是md文件的目录</span></span><br><span class="line">gitbook build </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将会产生一个 _book 目录</span></span><br><span class="line"><span class="comment"># 添加忽略, 以免下次推送的时候 _book  目录被推送.</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"*~"</span> &gt; .gitignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"_book"</span> &gt;&gt; .gitignore</span><br><span class="line"></span><br><span class="line">cp -r _book/* path_to/new_fold</span><br></pre></td></tr></table></figure><p>进入新目录, 推送编译后的html 和 js 文件到 gh-pages 的分支中去.</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> path_to/new_fold</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"to gh-pages"</span></span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure><p>如此实现了将源代码保存到master, 将静态网站推送到gh-pages, 一个仓库搞定! 在浏览器输入仓库地址, 就可以看到自己的Gitbook. 比如我新书地址</p><blockquote><p><a href="https://maiernte.github.io/gitbook_python_finance/">https://maiernte.github.io/gitbook_python_finance/</a></p></blockquote><p>参考文章:</p><hr><p><a href="https://beihaionline.com/11523.html" target="_blank" rel="noopener">使用GitBook和Typora写知识库</a></p><p><a href="https://www.cnblogs.com/eveblog/p/10003217.html" target="_blank" rel="noopener">gitbook+git+typora 的使用过程</a></p><p><a href="https://www.jianshu.com/p/02caaaaa97ef" target="_blank" rel="noopener">GitBook + Typora + Git 编写电子文档</a></p><p><a href="http://www.chengweiyang.cn/gitbook/github-pages/README.html" target="_blank" rel="noopener">Gitbook 发布到 Github Pages</a></p>]]></content>
+    <content type="html"><![CDATA[<p>本文为你介绍如何使用利用 <strong>Typora + gitbook-cli + Github Pages</strong>  书写Gitbook. 在本地用 Typora 书写 md 文件, 用 gitbook-cli  编译, 最后发布到 Github Pages 上.</p><a id="more"></a><h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1><p>前提是已经安装了Node, 直接用npm包管理工具安装:</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g gitbook-cli</span><br><span class="line">gitbook -V <span class="comment"># 注意是大写V</span></span><br></pre></td></tr></table></figure><blockquote><p>CLI version: 2.3.2<br>GitBook version: 3.2.3</p></blockquote><h1 id="新建书籍"><a class="markdownIt-Anchor" href="#新建书籍"></a> 新建书籍</h1><ol><li><p>为新书建立一个根目录 <code>mkdir pytho_finance</code></p></li><li><p>在该目录下执行（命令行下）：<code>gitbook init</code>，之后会在该目录下产生2个文件，<a href="http://xn--README-9i3jrj930n.md" target="_blank" rel="noopener">分别是README.md</a>（书籍的介绍）<a href="http://xn--SUMMARY-7r4l.md" target="_blank" rel="noopener">和SUMMARY.md</a>（书籍的目录结构）。</p></li></ol><p><img src="https://github.com/maiernte/img/raw/master/Tech/gitbook%E7%9B%AE%E5%BD%95%E7%9A%84%E5%86%99%E6%B3%95.png" alt="gitbook目录的写法"></p><ol start="3"><li><p>按照上图格式填写目录和文件, 然后再次执行 <code>gitbook init</code> , GitBook 会查找 <a href="http://SUMMARY.md" target="_blank" rel="noopener">SUMMARY.md</a> 文件中描述的目录和文件，如果没有则会将其创建.</p></li><li><p>然后就可以预览书籍了 <code>gitbook serve</code>. 执行命令后会对 Markdown 格式的文档进行转换，默认转换为 html 格式，提示Serving book on <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>，打开网址即可查看.</p></li><li><p>构建书籍</p></li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook build</span><br></pre></td></tr></table></figure><p>默认将生成的静态网站输出到 _book 目录。实际上，这一步也包含在 gitbook serve 里面，因为它们是 HTML，所以 GitBook 通过 Node.js 给你提供服务了。</p><p>build 命令可以指定路径, 或者指定端口, 或者生产 pdf , epub, mobi 等格式. <a href="https://www.cnblogs.com/eveblog/p/10003217.html" target="_blank" rel="noopener">具体参考文章</a>.</p><h1 id="发布到github-pages"><a class="markdownIt-Anchor" href="#发布到github-pages"></a> 发布到Github Pages</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin https://github.com/maiernte/gitbook_python_finance.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"new book"</span></span><br><span class="line">git push -u origin master <span class="comment"># 将源代码推送到master</span></span><br></pre></td></tr></table></figure><p>在GitHub的仓库中新添一个 <strong>gh-pages</strong> 的Branch.</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mkdir new_fold</span><br><span class="line"><span class="built_in">cd</span> new_fold</span><br><span class="line">rm -rf . <span class="comment"># 删除这个目录下所有文件, 注意那  .git 文件夹不能删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在源代码目录中,也就是md文件的目录</span></span><br><span class="line">gitbook build </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将会产生一个 _book 目录</span></span><br><span class="line"><span class="comment"># 添加忽略, 以免下次推送的时候 _book  目录被推送.</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"*~"</span> &gt; .gitignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"_book"</span> &gt;&gt; .gitignore</span><br><span class="line"></span><br><span class="line">cp -r _book/* path_to/new_fold</span><br></pre></td></tr></table></figure><p>进入新目录, 推送编译后的html 和 js 文件到 gh-pages 的分支中去.</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> path_to/new_fold</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"to gh-pages"</span></span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure><p>如此实现了将源代码保存到master, 将静态网站推送到gh-pages, 一个仓库搞定! 在浏览器输入仓库地址, 就可以看到自己的Gitbook. 比如我新书地址</p><blockquote><p><a href="https://maiernte.github.io/gitbook_python_finance/">https://maiernte.github.io/gitbook_python_finance/</a></p></blockquote><p>参考文章:</p><hr><p><a href="https://beihaionline.com/11523.html" target="_blank" rel="noopener">使用GitBook和Typora写知识库</a></p><p><a href="https://www.cnblogs.com/eveblog/p/10003217.html" target="_blank" rel="noopener">gitbook+git+typora 的使用过程</a></p><p><a href="https://www.jianshu.com/p/02caaaaa97ef" target="_blank" rel="noopener">GitBook + Typora + Git 编写电子文档</a></p><p><a href="http://www.chengweiyang.cn/gitbook/github-pages/README.html" target="_blank" rel="noopener">Gitbook 发布到 Github Pages</a></p>]]></content>
     
     <summary type="html">
     
@@ -285,35 +309,6 @@
   </entry>
   
   <entry>
-    <title>缠中说禅</title>
-    <link href="http://maiernte.github.io/funny-things-collection.html"/>
-    <id>http://maiernte.github.io/funny-things-collection.html</id>
-    <published>2019-07-29T06:40:50.000Z</published>
-    <updated>2019-07-31T03:51:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>[TOC]</p><h5 id="诗词"><a class="markdownIt-Anchor" href="#诗词"></a> 诗词</h5><h6 id="满江红"><a class="markdownIt-Anchor" href="#满江红"></a> 满江红</h6><p>万古长空，今犹昔，一朝风月。何处住？<br>春花夏雨，秋鸿冬雪。<br>百代浮华皆作土，千江吸尽无堪说。<br>问世间，多少梦消磨、英雄血。<br>星旋轨，天补裂，山崩柱，河倾缺。<br>捣神宫鬼府，凤巢龙穴。<br>怒剑穿云惊浩宇，狂涛卷日横孤筏。<br>纵生死，劫火洗乾坤，齐欢悦。</p><h6 id="临江仙"><a class="markdownIt-Anchor" href="#临江仙"></a> 临江仙</h6><p>浊水倾波三万里，愀然独坐孤峰。<br>龙潜狮睡侯飙风。<br>无情皆竖子，有泪亦英雄。<br>长剑倚天星斗烂，古今过眼成空。<br>乾坤俯仰任穷痛。<br>半轮沧海上，一苇大江东。</p><h6 id="卜算子"><a class="markdownIt-Anchor" href="#卜算子"></a> 卜算子</h6><p>本是后山人，偶做堂前客。<br>醉舞经阁半卷书，坐井说天阔。<br>大志戏功名，海斗量祸福。<br>论到囊中羞涩时，怒指乾坤错。</p><p>—— 丁元英</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h5 id=&quot;诗词&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#诗词&quot;&gt;&lt;/a&gt; 诗词&lt;/h5&gt;
-&lt;h6 id=&quot;满江红&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#满江红&quot;&gt;&lt;/a&gt; 满江红
-      
-    
-    </summary>
-    
-      <category term="摘录" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/"/>
-    
-      <category term="片段" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/%E7%89%87%E6%AE%B5/"/>
-    
-    
-      <category term="文学" scheme="http://maiernte.github.io/tags/%E6%96%87%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
     <title>搞笑段子</title>
     <link href="http://maiernte.github.io/funny-things-collection.html"/>
     <id>http://maiernte.github.io/funny-things-collection.html</id>
@@ -355,6 +350,35 @@
 &lt;ul&gt;
 &lt;li&gt;上帝，请赐予我平静让我可以接受我所不能改变的，赐予我勇气让我可以改变我能够改变的，赐予我智慧以分辨这二者的不同。&lt;/li&gt;
 &lt;
+      
+    
+    </summary>
+    
+      <category term="摘录" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/"/>
+    
+      <category term="片段" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/%E7%89%87%E6%AE%B5/"/>
+    
+    
+      <category term="文学" scheme="http://maiernte.github.io/tags/%E6%96%87%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>缠中说禅</title>
+    <link href="http://maiernte.github.io/funny-things-collection.html"/>
+    <id>http://maiernte.github.io/funny-things-collection.html</id>
+    <published>2019-07-29T06:40:50.000Z</published>
+    <updated>2019-07-31T03:51:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><h5 id="诗词"><a class="markdownIt-Anchor" href="#诗词"></a> 诗词</h5><h6 id="满江红"><a class="markdownIt-Anchor" href="#满江红"></a> 满江红</h6><p>万古长空，今犹昔，一朝风月。何处住？<br>春花夏雨，秋鸿冬雪。<br>百代浮华皆作土，千江吸尽无堪说。<br>问世间，多少梦消磨、英雄血。<br>星旋轨，天补裂，山崩柱，河倾缺。<br>捣神宫鬼府，凤巢龙穴。<br>怒剑穿云惊浩宇，狂涛卷日横孤筏。<br>纵生死，劫火洗乾坤，齐欢悦。</p><h6 id="临江仙"><a class="markdownIt-Anchor" href="#临江仙"></a> 临江仙</h6><p>浊水倾波三万里，愀然独坐孤峰。<br>龙潜狮睡侯飙风。<br>无情皆竖子，有泪亦英雄。<br>长剑倚天星斗烂，古今过眼成空。<br>乾坤俯仰任穷痛。<br>半轮沧海上，一苇大江东。</p><h6 id="卜算子"><a class="markdownIt-Anchor" href="#卜算子"></a> 卜算子</h6><p>本是后山人，偶做堂前客。<br>醉舞经阁半卷书，坐井说天阔。<br>大志戏功名，海斗量祸福。<br>论到囊中羞涩时，怒指乾坤错。</p><p>—— 丁元英</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h5 id=&quot;诗词&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#诗词&quot;&gt;&lt;/a&gt; 诗词&lt;/h5&gt;
+&lt;h6 id=&quot;满江红&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#满江红&quot;&gt;&lt;/a&gt; 满江红
       
     
     </summary>
@@ -517,48 +541,6 @@
 &lt;blockquote&gt;
 &lt;p&gt;在 Windows 和 Mac 下面目录可能不一样。&lt;/p&gt;
 &lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="IT" scheme="http://maiernte.github.io/categories/IT/"/>
-    
-      <category term="Tools" scheme="http://maiernte.github.io/categories/IT/Tools/"/>
-    
-    
-      <category term="工具" scheme="http://maiernte.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Github维护知识库</title>
-    <link href="http://maiernte.github.io/use-github-in-wiki.html"/>
-    <id>http://maiernte.github.io/use-github-in-wiki.html</id>
-    <published>2019-07-24T21:02:14.000Z</published>
-    <updated>2019-07-31T03:51:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="部署以及更新"><a class="markdownIt-Anchor" href="#部署以及更新"></a> 部署以及更新</h3><ul><li><p><strong>初建</strong>：将文件夹设置为仓库。只是第一次需要，以后就基本不用。<br><code>git init</code></p></li><li><p><strong>更新</strong>：更新所有的文件。<br><code>git add .</code></p></li><li><p><strong>描述</strong>：更新描述(optional 不是必须的)<br><code>git commit -m &quot;my command...&quot;</code></p></li><li><p><strong>推送</strong>：上传到云仓库<br><code>git push -u origin master</code></p></li></ul><a id="more"></a><h4 id="详细指令"><a class="markdownIt-Anchor" href="#详细指令"></a> 详细指令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/maiernte/NewAngular.git</span><br><span class="line"></span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># For the next commit</span></span><br><span class="line">$ git add .   <span class="comment"># add to index only files created/modified and not those deleted</span></span><br><span class="line">$ git add -u  <span class="comment"># add to index only files deleted/modified and not those created</span></span><br><span class="line">$ git add -A  <span class="comment"># do both operation at once, add to index all files</span></span><br></pre></td></tr></table></figure><p>下载及更新</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载整个项目</span></span><br><span class="line">git <span class="built_in">clone</span> XXXXX</span><br><span class="line"></span><br><span class="line"><span class="comment">#从服务器更新</span></span><br><span class="line">git pull [xxxxxx]</span><br><span class="line"></span><br><span class="line"><span class="comment">#Help</span></span><br><span class="line">git hepl VERB</span><br><span class="line">git VERB -h</span><br></pre></td></tr></table></figure><h3 id="设置git身份信息"><a class="markdownIt-Anchor" href="#设置git身份信息"></a> 设置git身份信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"你的用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"你的邮箱"</span></span><br></pre></td></tr></table></figure><h3 id="密码和凭证"><a class="markdownIt-Anchor" href="#密码和凭证"></a> 密码和凭证</h3><h4 id="保存-github-用户名和密码"><a class="markdownIt-Anchor" href="#保存-github-用户名和密码"></a> 保存 Github 用户名和密码</h4><p>Mac 下面每次 <code>push</code>  都要询问用户名和密码，很麻烦。而且将来不利于用脚本控制部署。有个解决的办法：进入项目根目录，执行一下命令</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>然后推送一次，输入账号和密码后，第二次推送就不需要了!</p><h4 id="ssh-key-凭证"><a class="markdownIt-Anchor" href="#ssh-key-凭证"></a> SSH Key 凭证</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加入 SSH Agent</span></span><br><span class="line">ssh-agent -s</span><br></pre></td></tr></table></figure><p>如果出现类似<code>Agent pid XXXX</code>这样的字样，则跳过下一步，否则输入：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> `ssh-agent -s`</span><br></pre></td></tr></table></figure><p>直到出现<code>Agent pid XXXX</code>这样的提示之后，输入：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure><p>这样，你成功的在本地生成了一个可用的SSH key。</p><p>下面将这个key添加到github网站。 打开https://github.com/settings/ssh，点击<code>Add SSH Key</code>，复制<code>id_rsa.pub</code>中的所有内容到<code>Key</code>框中，在<code>Title</code>框中输入方便自己记忆的名字（建议输入能让自己明白是哪台电脑的名字，方便以后管理）。 当网页显示添加成功后，就已经完成了全部的操作。 下面进行一些测试，同样是打开Git Bash，输入：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure><p>bash中会显示如下字样：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;github.com (207.97.227.239)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)?</span><br></pre></td></tr></table></figure><p>输入yes之后，计算机会自动将<code>github.com</code>列入已知的host，然后会出现如下提示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You&apos;ve successfully authenticated, but GitHub does not</span><br><span class="line">provide shell access.</span><br></pre></td></tr></table></figure><p>如果成功看见，说明你已经配置好了，快去享受爽快的hexo一键部署吧； 如果出现任何错误提示，请仔细检查自己的操作，或者将错误信息发给我。</p><p><a href="%5Bhttps://gavinlee1.github.io/2017/02/25/%E5%8D%81%E6%AD%A5%E4%B9%8B%E5%86%85%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A-Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%5D(https://gavinlee1.github.io/2017/02/25/%E5%8D%81%E6%AD%A5%E4%B9%8B%E5%86%85%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A-Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/)">参阅：十步轻松搞定Hexo</a></p><p>如果要多台电脑共同使用同一个SSH-Key，先在第二台电脑上用这个key的相同邮件生成一个新的key</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;username@gmail.com&quot;</span><br></pre></td></tr></table></figure><p>用第一台电脑上的两个key文件 <code>id_rsa, id_rsa.pub</code> 覆盖第二台电脑的文件（<em>注意备份</em>）。确保NEW上的两个文件的权限是正确的，id_rsa是600，id_rsa.pub是644，比如：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-rw------- 1 fancy fancy 1675 2013-03-19 12:55 id_rsa</span><br><span class="line">-rw-r--r-- 1 fancy fancy 406 2013-03-19 12:55 id_rsa.pub</span><br><span class="line"><span class="comment"># 查看权限命令是 </span></span><br><span class="line">ls -l</span><br><span class="line"><span class="comment"># 更改权限命令是</span></span><br><span class="line">chmod 600 ~/.ssh/id_rsa</span><br><span class="line">chmod 644 ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure><h3 id="删除仓库"><a class="markdownIt-Anchor" href="#删除仓库"></a> 删除仓库</h3><ol><li>点开仓库</li><li>点击右上角的 <code>Settings</code></li><li>滚动到最下面 <code>Done Zone</code>， 选择 <code>Delete this repository</code>。</li></ol><h3 id="恢复所有修改"><a class="markdownIt-Anchor" href="#恢复所有修改"></a> 恢复所有修改</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git checkout . <span class="comment">#本地所有修改的。没有的提交的，都返回到原来的状态</span></span><br><span class="line">git stash <span class="comment">#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</span></span><br><span class="line">git reset --hard HASH <span class="comment">#返回到HASH点，不保留修改。</span></span><br><span class="line">git reset --soft HASH <span class="comment">#同上，保留修改。HASH 是节点号，z.B. 7d593c5</span></span><br><span class="line"></span><br><span class="line">git clean -df <span class="comment">#返回到某个节点</span></span><br><span class="line">git clean 参数</span><br><span class="line">    -n 显示 将要 删除的 文件 和  目录</span><br><span class="line">    -f 删除 文件</span><br><span class="line">    -df 删除 文件 和 目录</span><br><span class="line">--------------------- </span><br><span class="line">git describe --always <span class="comment"># 查看当前节点号</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment"># 查看所有HEAD号和Commit描述</span></span><br></pre></td></tr></table></figure><p>更加暴力的方式是</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">it checkout . &amp;&amp; git clean -xdf</span><br></pre></td></tr></table></figure><h4 id="清除历史记录"><a class="markdownIt-Anchor" href="#清除历史记录"></a> 清除历史记录</h4><div><div class="fold_hider"><div class="close hider_title">代码</div></div><div class="fold"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1. Checkout</span><br><span class="line">   git checkout --orphan latest_branch</span><br><span class="line"></span><br><span class="line">2. Add all the files</span><br><span class="line">   git add -A</span><br><span class="line"></span><br><span class="line">3. Commit the changes</span><br><span class="line">   git commit -am &quot;commit message&quot;</span><br><span class="line"></span><br><span class="line">4. Delete the branch</span><br><span class="line">   git branch -D master</span><br><span class="line"></span><br><span class="line">5. Rename the current branch to master</span><br><span class="line">   git branch -m master</span><br><span class="line"></span><br><span class="line">6. Finally, force update your repository</span><br><span class="line"></span><br><span class="line">   git push -f origin master</span><br></pre></td></tr></table></figure></div></div><h3 id="私人仓库"><a class="markdownIt-Anchor" href="#私人仓库"></a> 私人仓库</h3><p>作为个人笔记，不应该设为public，这样别人可以浏览。<mark>2019</mark> 年Github更新了<a href="https://www.infoq.cn/article/aKm94Aw1RmDL_9Gysm8D" target="_blank" rel="noopener">新的政策</a>：</p><blockquote><p>GitHub Free：包含无限制的私人存储库。有了 GitHub Free，开发人员可以将 GitHub 用于私有项目，每个存储库最多可以有三个协作者。许多开发人员希望使用私人仓库申请工作，做一些 side project，或者在公开发布之前先私下尝试一些东西。从今天开始，这些场景在 GitHub 上可以免费实现（未来可能有更多场景）。 公共存储库仍然是免费的，并包括无限合作者。</p></blockquote><ol><li>点开仓库</li><li>点击右上角的 <code>Settings</code></li><li>滚动到最下面 <code>Done Zone</code>， 选择 <code>Make this repository private</code>。</li></ol><h2 id="文摘资源"><a class="markdownIt-Anchor" href="#文摘资源"></a> 文摘资源</h2><p><a href="https://www.jianshu.com/p/9000cd49822c" target="_blank" rel="noopener">Git submodule 子模块的管理和使用</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;部署以及更新&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#部署以及更新&quot;&gt;&lt;/a&gt; 部署以及更新&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;初建&lt;/strong&gt;：将文件夹设置为仓库。只是第一次需要，以后就基本不用。&lt;br&gt;
-&lt;code&gt;git init&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;更新&lt;/strong&gt;：更新所有的文件。&lt;br&gt;
-&lt;code&gt;git add .&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;描述&lt;/strong&gt;：更新描述(optional 不是必须的)&lt;br&gt;
-&lt;code&gt;git commit -m &amp;quot;my command...&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;推送&lt;/strong&gt;：上传到云仓库&lt;br&gt;
-&lt;code&gt;git push -u origin master&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
     
     </summary>
     
