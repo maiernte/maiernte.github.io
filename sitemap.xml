@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maiernte.github.io/budahlisisch-poeim-collection.html</loc>
+    
+    <lastmod>2019-08-15T21:43:54.541Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maiernte.github.io/how-build-my-hexo-blog.html</loc>
     
     <lastmod>2019-08-15T10:44:25.000Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://maiernte.github.io/ubuntu-reset-root-pw.html</loc>
     
     <lastmod>2019-08-14T06:34:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maiernte.github.io/budahlisisch-poeim-collection.html</loc>
-    
-    <lastmod>2019-08-14T06:32:45.000Z</lastmod>
     
   </url>
   
@@ -163,7 +163,7 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/old-stories-collection.html</loc>
+    <loc>http://maiernte.github.io/funny-things-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
@@ -177,14 +177,14 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/funny-things-collection.html</loc>
+    <loc>http://maiernte.github.io/hellow-world.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/hellow-world.html</loc>
+    <loc>http://maiernte.github.io/old-stories-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
