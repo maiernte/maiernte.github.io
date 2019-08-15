@@ -88,7 +88,8 @@
 <meta property="og:description" content="本文为你介绍如何使用利用 Typora + gitbook-cli + Github Pages  书写Gitbook. 在本地用 Typora 书写 md 文件, 用 gitbook-cli  编译, 最后发布到 Github Pages 上.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/maiernte/img/raw/master/Tech/gitbook%E7%9B%AE%E5%BD%95%E7%9A%84%E5%86%99%E6%B3%95.png">
-<meta property="og:updated_time" content="2019-08-14T22:24:37.536Z">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/623717/201808/623717-20180815170921683-2030924288.png">
+<meta property="og:updated_time" content="2019-08-15T09:46:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gitbook攻略">
 <meta name="twitter:description" content="本文为你介绍如何使用利用 Typora + gitbook-cli + Github Pages  书写Gitbook. 在本地用 Typora 书写 md 文件, 用 gitbook-cli  编译, 最后发布到 Github Pages 上.">
@@ -453,13 +454,17 @@ GitBook version: 3.2.3</p>
 <h1 id="发布到github-pages"><a class="markdownIt-Anchor" href="#发布到github-pages"></a> 发布到Github Pages</h1>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin https://github.com/maiernte/gitbook_python_finance.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"new book"</span></span><br><span class="line">git push -u origin master <span class="comment"># 将源代码推送到master</span></span><br></pre></td></tr></table></figure>
 <p>在GitHub的仓库中新添一个 <strong>gh-pages</strong> 的Branch.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mkdir new_fold</span><br><span class="line"><span class="built_in">cd</span> new_fold</span><br><span class="line">rm -rf . <span class="comment"># 删除这个目录下所有文件, 注意那  .git 文件夹不能删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在源代码目录中,也就是md文件的目录</span></span><br><span class="line">gitbook build </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将会产生一个 _book 目录</span></span><br><span class="line"><span class="comment"># 添加忽略, 以免下次推送的时候 _book  目录被推送.</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"*~"</span> &gt; .gitignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"_book"</span> &gt;&gt; .gitignore</span><br><span class="line"></span><br><span class="line">cp -r _book/* path_to/new_fold</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mkdir new_fold</span><br><span class="line"><span class="built_in">cd</span> new_fold</span><br><span class="line">rm -rf . <span class="comment"># 删除这个目录下所有文件, 注意那  .git 文件夹不能删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在源代码目录中,也就是md文件的目录</span></span><br><span class="line">gitbook build </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将会产生一个 _book 目录</span></span><br><span class="line"><span class="comment"># 添加忽略, 以免下次推送的时候 _book  目录被推送.</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"*~"</span> &gt; .gitignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"_book"</span> &gt;&gt; .gitignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/node_modules"</span> &gt;&gt; .gitignore</span><br><span class="line"></span><br><span class="line">cp -r _book/* path_to/new_fold</span><br></pre></td></tr></table></figure>
+<p>🖊 忽略文件夹，windows下的测试是 <code>/node_modules</code>， 不加双引号。</p>
 <p>进入新目录, 推送编译后的html 和 js 文件到 gh-pages 的分支中去.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> path_to/new_fold</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"to gh-pages"</span></span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure>
 <p>如此实现了将源代码保存到master, 将静态网站推送到gh-pages, 一个仓库搞定! 在浏览器输入仓库地址, 就可以看到自己的Gitbook. 比如我新书地址</p>
 <blockquote>
 <p><a href="https://maiernte.github.io/gitbook_python_finance/">https://maiernte.github.io/gitbook_python_finance/</a></p>
 </blockquote>
+<h2 id="更新和维护"><a class="markdownIt-Anchor" href="#更新和维护"></a> 更新和维护</h2>
+<p>因为master 和 gh-pages 上存放的是不同的文档，所以拉取的时候也有指定 branch</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取源代码</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/maiernte/gitbook_python_finance.git --branch master new_fold</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取静态网站</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/maiernte/gitbook_python_finance.git --branch gh-pages new_fold</span><br></pre></td></tr></table></figure>
 <h1 id="个性化配置"><a class="markdownIt-Anchor" href="#个性化配置"></a> 个性化配置</h1>
 <p>在项目的根目录上添加一个 <code>book.json</code> 文件, 用来更全面的配置项目. 比如头文件, 插件等等.</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"title"</span>: <span class="string">"使用Python处理金融数据"</span>,</span><br><span class="line">    <span class="attr">"author"</span>: <span class="string">"鎏金天涯 &lt;mai.yongfeng@gmail.com&gt;"</span>,</span><br><span class="line">    <span class="attr">"description"</span>: <span class="string">"使用Python处理金融数据的各种技术"</span>,</span><br><span class="line">    <span class="attr">"generator"</span>: <span class="string">"site"</span>,</span><br><span class="line">    <span class="attr">"plugins"</span>: [<span class="string">"mathjax"</span>],</span><br><span class="line">    <span class="attr">"links"</span>: &#123;</span><br><span class="line">        <span class="attr">"sidebar"</span>: &#123;</span><br><span class="line">            <span class="attr">"鎏金天涯个人博客"</span>: <span class="string">"http://goldentianya.pub"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -467,6 +472,31 @@ GitBook version: 3.2.3</p>
 <p>在上述文件添加了 <code>&quot;plugins&quot;: [&quot;mathjax&quot;]</code>,  并执行命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitbook install ./ <span class="comment"># 会添加一堆 node_modules 包</span></span><br></pre></td></tr></table></figure>
 <p>更详细的配置请参阅<a href="https://chrisniael.gitbooks.io/gitbook-documentation/content/" target="_blank" rel="noopener">官方文档</a>.</p>
+<h2 id="目录插件"><a class="markdownIt-Anchor" href="#目录插件"></a> 目录插件</h2>
+<p><a href="https://www.npmjs.com/package/gitbook-plugin-page-toc" target="_blank" rel="noopener">项目地址和文档</a></p>
+<p>将 <em><strong>book.json</strong></em> 文件修改为  <code>&quot;plugins&quot;: [&quot;mathjax&quot;, &quot;page-toc&quot; ], ​</code> 每一页的目录就会出现在右上角。</p>
+<h1 id="编译错误列表"><a class="markdownIt-Anchor" href="#编译错误列表"></a> 编译错误列表</h1>
+<p>版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CLI version: 2.3.2</span><br><span class="line">GitBook version: 3.2.3</span><br></pre></td></tr></table></figure>
+<h2 id="sharing-插件出错"><a class="markdownIt-Anchor" href="#sharing-插件出错"></a> sharing 插件出错</h2>
+<p>添加了 <code>page-toc</code> 插件后，<code>gitbook serve</code> 的时候总是出现错误。就算把文章改回原来的样子也无补于事。</p>
+<blockquote>
+<p>info: 7 plugins are installed<br>
+info: loading plugin “livereload”… OK<br>
+info: loading plugin “highlight”… OK<br>
+info: loading plugin “search”… OK<br>
+info: loading plugin “lunr”… OK<br>
+info: loading plugin “sharing”… OK<br>
+info: loading plugin “fontsettings”… OK<br>
+info: loading plugin “theme-default”… OK<br>
+info: found 1 pages<br>
+info: found 0 asset files</p>
+<p>Error: ENOENT: no such file or directory, stat ‘D:\f040371\git_book\plattform_finance_book\gitbook\gitbook-plugin-sharing\buttons.js’</p>
+</blockquote>
+<h3 id="解决方法"><a class="markdownIt-Anchor" href="#解决方法"></a> 解决方法</h3>
+<p>修改 <code>C:\Users\f040371\.gitbook\versions\3.2.3\lib\output\website\copyPluginAssets.js</code> 文件中的 112 行</p>
+<p><img src="https://images2018.cnblogs.com/blog/623717/201808/623717-20180815170921683-2030924288.png" alt="copyPluginAssets.js"></p>
+<p>将 <code>confirm: true</code> 改为 <code>confirm: false</code></p>
 <p>参考文章:</p>
 <hr>
 <p><a href="https://beihaionline.com/11523.html" target="_blank" rel="noopener">使用GitBook和Typora写知识库</a></p>
@@ -686,7 +716,7 @@ GitBook version: 3.2.3</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text"> 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建书籍"><span class="nav-number">2.</span> <span class="nav-text"> 新建书籍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布到github-pages"><span class="nav-number">3.</span> <span class="nav-text"> 发布到Github Pages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个性化配置"><span class="nav-number">4.</span> <span class="nav-text"> 个性化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数学插件"><span class="nav-number">4.1.</span> <span class="nav-text"> 数学插件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text"> 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建书籍"><span class="nav-number">2.</span> <span class="nav-text"> 新建书籍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布到github-pages"><span class="nav-number">3.</span> <span class="nav-text"> 发布到Github Pages</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新和维护"><span class="nav-number">3.1.</span> <span class="nav-text"> 更新和维护</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个性化配置"><span class="nav-number">4.</span> <span class="nav-text"> 个性化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数学插件"><span class="nav-number">4.1.</span> <span class="nav-text"> 数学插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录插件"><span class="nav-number">4.2.</span> <span class="nav-text"> 目录插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译错误列表"><span class="nav-number">5.</span> <span class="nav-text"> 编译错误列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sharing-插件出错"><span class="nav-number">5.1.</span> <span class="nav-text"> sharing 插件出错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">5.1.1.</span> <span class="nav-text"> 解决方法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
