@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maiernte.github.io/"/>
-  <updated>2019-08-15T06:54:53.000Z</updated>
+  <updated>2019-08-16T21:19:47.742Z</updated>
   <id>http://maiernte.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用TypeScript编写JS函数库</title>
+    <link href="http://maiernte.github.io/TypeScript-build-JS-Package.html"/>
+    <id>http://maiernte.github.io/TypeScript-build-JS-Package.html</id>
+    <published>2019-08-16T20:15:28.000Z</published>
+    <updated>2019-08-16T21:19:47.742Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖</p><ul><li><a href="http://imzc.me/dev/2016/11/22/getting-start-with-typescript/" target="_blank" rel="noopener">TypeScript第一步</a></li><li><a href="https://www.gowhich.com/blog/869" target="_blank" rel="noopener">如何使用Gulp构建TypeScript</a></li><li><a href="https://zhongsp.gitbooks.io/typescript-handbook/doc/handbook/tutorials/Migrating%20from%20JavaScript.html" target="_blank" rel="noopener">从Javascript迁移到Typescript</a> <em>只看相关的那一章就可以</em></li></ul><a id="more"></a><h1 id="安装-typescript"><a class="markdownIt-Anchor" href="#安装-typescript"></a> 安装 TypeScript</h1><p>终端执行 <code>npm install typescript -g</code></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tsc --version</span><br><span class="line">Version 3.5.3</span><br></pre></td></tr></table></figure><h1 id="创建工程"><a class="markdownIt-Anchor" href="#创建工程"></a> 创建工程</h1><ol><li>初始化项目</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir typescript_demo &amp;&amp; <span class="built_in">cd</span> typescript_demo</span><br><span class="line">npm init -y <span class="comment"># 初始化项目，会生成 package.json 文件</span></span><br></pre></td></tr></table></figure><ol start="2"><li>安装Gulp， 并在项目根目录下新建 <code>gulpfile.js</code> 文件</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-cli gulp typescript gulp-typescript --save-dev</span><br></pre></td></tr></table></figure><ol start="3"><li><p>在命令行中执行 <code>tsc --init</code> 可以在当前目录中快速创建一个 tsconfig.json 文件。</p></li><li><p>安装 Browserify ：目的是把所有<strong>ts</strong>文件打包成一个单一的<strong>js</strong>文件。</p></li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install browserify tsify vinyl-source-stream --save-dev</span><br></pre></td></tr></table></figure><ol start="5"><li>Watchify、Babel和Uglify ：目的是让编译器保持运行，无需每次修改手动编译。</li></ol><p>npm install watchify gulp-util --save-dev</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install watchify gulp-util --save-dev</span><br></pre></td></tr></table></figure><ol start="6"><li>安装 Uglify ： 将输出文件 bundle.js 压缩</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-uglify vinyl-buffer gulp-sourcemaps --save-dev</span><br></pre></td></tr></table></figure><ol start="7"><li>Babel ：允许按新标准<strong>ES6</strong>编写代码，而最终会编译<strong>es05</strong>标准，兼容低版本浏览器。</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babelify babel-core babel-preset-env vinyl-buffer gulp-sourcemaps --save-dev</span><br></pre></td></tr></table></figure><ol start="8"><li><p>编写主文件 <code>src/main.ts</code> (<em>名字随便起</em>)，在 <code>package.json</code> 中改为 $ “main”: “./dist/main.js”, $。创建两文件夹 <code>src</code> 和 <code>dist</code>，分别放置原文件和编译后的文件。为演示调用，再新建一个 <code>src/greet.ts</code> 文件</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># src/greet.ts</span><br><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path: <span class="built_in">string</span></span>): <span class="title">any</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">name: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ln)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hallo von <span class="subst">$&#123;name&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># src/main.ts</span><br><span class="line"><span class="keyword">import</span> &#123; sayHello &#125; <span class="keyword">from</span> <span class="string">"./greet"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showHello</span>(<span class="params">idName: <span class="built_in">string</span>, name: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> elt = <span class="built_in">document</span>.getElementById(idName);</span><br><span class="line">    elt.innerText = sayHello(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showHello(<span class="string">"greeting"</span>, <span class="string">"TypeScript"</span>);</span><br></pre></td></tr></table></figure></li><li><p>新建 <code>src/index.html</code></p></li></ol><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"greeting"</span>&gt;</span>Loading ...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure><ol start="10"><li>修改 <code>gulpfile.js</code></li></ol><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</span><br><span class="line"><span class="keyword">const</span> browserify = <span class="built_in">require</span>(<span class="string">"browserify"</span>);</span><br><span class="line"><span class="keyword">const</span> source = <span class="built_in">require</span>(<span class="string">'vinyl-source-stream'</span>);</span><br><span class="line"><span class="keyword">const</span> tsify = <span class="built_in">require</span>(<span class="string">"tsify"</span>);</span><br><span class="line"><span class="keyword">const</span> watchify = <span class="built_in">require</span>(<span class="string">"watchify"</span>);</span><br><span class="line"><span class="keyword">const</span> gutil = <span class="built_in">require</span>(<span class="string">"gulp-util"</span>);</span><br><span class="line"><span class="keyword">const</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"><span class="keyword">const</span> sourcemaps = <span class="built_in">require</span>(<span class="string">'gulp-sourcemaps'</span>);</span><br><span class="line"><span class="keyword">const</span> buffer = <span class="built_in">require</span>(<span class="string">'vinyl-buffer'</span>);</span><br><span class="line"><span class="keyword">const</span> paths = &#123;</span><br><span class="line">  pages: [<span class="string">'src/*.html'</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> watchedBrowserify = watchify(browserify(&#123;</span><br><span class="line">  basedir: <span class="string">'.'</span>,</span><br><span class="line">  debug: <span class="literal">true</span>,</span><br><span class="line">  entries: [<span class="string">'src/main.ts'</span>],</span><br><span class="line">  cache: &#123;&#125;,</span><br><span class="line">  packageCache: &#123;&#125;</span><br><span class="line">&#125;).plugin(tsify));</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"copy-html"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(paths.pages)</span><br><span class="line">    .pipe(gulp.dest(<span class="string">"dist"</span>));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">browserifyBundle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> watchedBrowserify</span><br><span class="line">    .transform(<span class="string">'babelify'</span>, &#123;</span><br><span class="line">      presets: [<span class="string">'env'</span>],</span><br><span class="line">      extensions: [<span class="string">'.ts'</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">    .bundle()</span><br><span class="line">    .pipe(source(<span class="string">'bundle.js'</span>))</span><br><span class="line">    .pipe(buffer())</span><br><span class="line">    .pipe(sourcemaps.init(&#123;</span><br><span class="line">      loadMaps: <span class="literal">true</span></span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(sourcemaps.write(<span class="string">'./'</span>))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">"dist"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"browserify"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> browserifyBundle();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"default"</span>, gulp.series(<span class="string">'copy-html'</span>, <span class="string">'browserify'</span>));</span><br><span class="line">watchedBrowserify.on(<span class="string">"update"</span>, browserifyBundle);</span><br><span class="line">watchedBrowserify.on(<span class="string">"log"</span>, gutil.log);</span><br></pre></td></tr></table></figure><ol start="11"><li><p>修改 tsconfig.json</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"files"</span>: [</span><br><span class="line">        <span class="string">"src/*.ts"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">        <span class="attr">"noImplicitAny"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"target"</span>: <span class="string">"es2015"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>编译并在浏览器打开 <code>dist/index.html</code></p></li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过gulp编译代码</span></span><br><span class="line">npx gulp</span><br></pre></td></tr></table></figure><blockquote><p>显示器中会显示 “Hello from TypeScript” 字样。</p></blockquote><p>我们看到 main.ts 调用了 greet.ts 的函数, 并生成一个 bundle.js 文件, 在 index.html 中被加载使用.</p><h1 id="调用javascript文件"><a class="markdownIt-Anchor" href="#调用javascript文件"></a> 调用JavaScript文件</h1><p>为了使用以前已经存在的JavaScript库文件, 在 src 下新建一个文件夹 libs 用来存放第三方JavaScript.</p><blockquote><p>projectRoot<br>├── src/<br>│     ├── libs/<br>│            ├── lunar.js<br>│     ├── main.ts<br>│     └── greet.ts<br>│<br>├── dist/<br>└── tsconfig.json</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># src/libs/lunar.js</span><br><span class="line"></span><br><span class="line">Lunar = &#123;</span><br><span class="line">    Name: <span class="string">"Dick"</span>,</span><br><span class="line">    sayHallo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'i am Lunar'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ab</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">Ab.prototype.seta = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = num</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">Ab.prototype.geta = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">exports.Ab = Ab</span><br><span class="line">exports.Lunar = Lunar;</span><br></pre></td></tr></table></figure><p>修改 <code>greet.ts</code> 文件, 调用 <code>src/libs/lunar.js</code> 中的函数和对象</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path: <span class="built_in">string</span></span>): <span class="title">any</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ln = <span class="built_in">require</span>(<span class="string">"./libs/lunar"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">name: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">  ln.Ab = <span class="number">10</span></span><br><span class="line">    <span class="built_in">console</span>.log(ln.Ab)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hallo von <span class="subst">$&#123;name&#125;</span>, <span class="subst">$&#123;ln.Lunar.Name&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们看到网页显示 <em>Hallo von TypeScript, Dick</em>,  打开chrome的开发者工具, 看到console 中写出 <code>10</code>.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://imzc.me/dev/2016/11/22/getting-start-with-typescript/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TypeScript第一步&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gowhich.com/blog/869&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;如何使用Gulp构建TypeScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://zhongsp.gitbooks.io/typescript-handbook/doc/handbook/tutorials/Migrating%20from%20JavaScript.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;从Javascript迁移到Typescript&lt;/a&gt; &lt;em&gt;只看相关的那一章就可以&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://maiernte.github.io/categories/IT/"/>
+    
+      <category term="skill" scheme="http://maiernte.github.io/categories/IT/skill/"/>
+    
+    
+      <category term="工具" scheme="http://maiernte.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>还在用七牛?</title>
@@ -334,6 +363,35 @@
   </entry>
   
   <entry>
+    <title>缠中说禅</title>
+    <link href="http://maiernte.github.io/funny-things-collection.html"/>
+    <id>http://maiernte.github.io/funny-things-collection.html</id>
+    <published>2019-07-29T06:40:50.000Z</published>
+    <updated>2019-07-31T03:51:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><h5 id="诗词"><a class="markdownIt-Anchor" href="#诗词"></a> 诗词</h5><h6 id="满江红"><a class="markdownIt-Anchor" href="#满江红"></a> 满江红</h6><p>万古长空，今犹昔，一朝风月。何处住？<br>春花夏雨，秋鸿冬雪。<br>百代浮华皆作土，千江吸尽无堪说。<br>问世间，多少梦消磨、英雄血。<br>星旋轨，天补裂，山崩柱，河倾缺。<br>捣神宫鬼府，凤巢龙穴。<br>怒剑穿云惊浩宇，狂涛卷日横孤筏。<br>纵生死，劫火洗乾坤，齐欢悦。</p><h6 id="临江仙"><a class="markdownIt-Anchor" href="#临江仙"></a> 临江仙</h6><p>浊水倾波三万里，愀然独坐孤峰。<br>龙潜狮睡侯飙风。<br>无情皆竖子，有泪亦英雄。<br>长剑倚天星斗烂，古今过眼成空。<br>乾坤俯仰任穷痛。<br>半轮沧海上，一苇大江东。</p><h6 id="卜算子"><a class="markdownIt-Anchor" href="#卜算子"></a> 卜算子</h6><p>本是后山人，偶做堂前客。<br>醉舞经阁半卷书，坐井说天阔。<br>大志戏功名，海斗量祸福。<br>论到囊中羞涩时，怒指乾坤错。</p><p>—— 丁元英</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h5 id=&quot;诗词&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#诗词&quot;&gt;&lt;/a&gt; 诗词&lt;/h5&gt;
+&lt;h6 id=&quot;满江红&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#满江红&quot;&gt;&lt;/a&gt; 满江红
+      
+    
+    </summary>
+    
+      <category term="摘录" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/"/>
+    
+      <category term="片段" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/%E7%89%87%E6%AE%B5/"/>
+    
+    
+      <category term="文学" scheme="http://maiernte.github.io/tags/%E6%96%87%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>名人语录</title>
     <link href="http://maiernte.github.io/prominaent-slogen-collection.html"/>
     <id>http://maiernte.github.io/prominaent-slogen-collection.html</id>
@@ -350,35 +408,6 @@
 &lt;ul&gt;
 &lt;li&gt;上帝，请赐予我平静让我可以接受我所不能改变的，赐予我勇气让我可以改变我能够改变的，赐予我智慧以分辨这二者的不同。&lt;/li&gt;
 &lt;
-      
-    
-    </summary>
-    
-      <category term="摘录" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/"/>
-    
-      <category term="片段" scheme="http://maiernte.github.io/categories/%E6%91%98%E5%BD%95/%E7%89%87%E6%AE%B5/"/>
-    
-    
-      <category term="文学" scheme="http://maiernte.github.io/tags/%E6%96%87%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>缠中说禅</title>
-    <link href="http://maiernte.github.io/funny-things-collection.html"/>
-    <id>http://maiernte.github.io/funny-things-collection.html</id>
-    <published>2019-07-29T06:40:50.000Z</published>
-    <updated>2019-07-31T03:51:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>[TOC]</p><h5 id="诗词"><a class="markdownIt-Anchor" href="#诗词"></a> 诗词</h5><h6 id="满江红"><a class="markdownIt-Anchor" href="#满江红"></a> 满江红</h6><p>万古长空，今犹昔，一朝风月。何处住？<br>春花夏雨，秋鸿冬雪。<br>百代浮华皆作土，千江吸尽无堪说。<br>问世间，多少梦消磨、英雄血。<br>星旋轨，天补裂，山崩柱，河倾缺。<br>捣神宫鬼府，凤巢龙穴。<br>怒剑穿云惊浩宇，狂涛卷日横孤筏。<br>纵生死，劫火洗乾坤，齐欢悦。</p><h6 id="临江仙"><a class="markdownIt-Anchor" href="#临江仙"></a> 临江仙</h6><p>浊水倾波三万里，愀然独坐孤峰。<br>龙潜狮睡侯飙风。<br>无情皆竖子，有泪亦英雄。<br>长剑倚天星斗烂，古今过眼成空。<br>乾坤俯仰任穷痛。<br>半轮沧海上，一苇大江东。</p><h6 id="卜算子"><a class="markdownIt-Anchor" href="#卜算子"></a> 卜算子</h6><p>本是后山人，偶做堂前客。<br>醉舞经阁半卷书，坐井说天阔。<br>大志戏功名，海斗量祸福。<br>论到囊中羞涩时，怒指乾坤错。</p><p>—— 丁元英</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h5 id=&quot;诗词&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#诗词&quot;&gt;&lt;/a&gt; 诗词&lt;/h5&gt;
-&lt;h6 id=&quot;满江红&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#满江红&quot;&gt;&lt;/a&gt; 满江红
       
     
     </summary>
@@ -522,34 +551,6 @@
     
     
       <category term="Hexo" scheme="http://maiernte.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>坚果云有关</title>
-    <link href="http://maiernte.github.io/about-jianguoyu.html"/>
-    <id>http://maiernte.github.io/about-jianguoyu.html</id>
-    <published>2019-07-25T03:41:28.000Z</published>
-    <updated>2019-08-14T22:10:30.358Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="忽略文件"><a class="markdownIt-Anchor" href="#忽略文件"></a> 忽略文件</h5><p>配置文件 <code>customExtRules.conf</code>。在 Window 版可以在软件直接打开，在 Mac App 里面没有这个选项，要自行查找这个配置文件。<sup><a href="http://www.jianguoyun.com/s/content/2219.html" target="_blank" rel="noopener">官方说明</a><sup></sup></sup></p><blockquote><p>在 Windows 和 Mac 下面目录可能不一样。</p></blockquote><a id="more"></a><p>Mac 系统或 Linux 系统这个文件通常位于</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.nutstore/db/customExtRules.conf</span><br><span class="line">fold/to/ignore <span class="comment"># 文件夹的绝对路径</span></span><br></pre></td></tr></table></figure><h5 id="安卓系统上同步文件夹"><a class="markdownIt-Anchor" href="#安卓系统上同步文件夹"></a> 安卓系统上同步文件夹</h5><p>安卓版的坚果云客户端只会打开临时指定的文件。如果希望跟在PC上一样的操作，将整个文件库都同步到指定的文件夹内，就要用<a href="http://help.jianguoyun.com/?p=2887" target="_blank" rel="noopener">FolderSync</a>软件。</p><p>登陆坚果云官网，账户信息–&gt;安全选项–&gt;第三方应用管理，生成一个新的第三方应用 <strong>androidSync</strong>，密码为 <code>xxxxxxxxxxxxxxxx</code>，然后按照上述官网的指南一步一步配置 FolderSync 就可以了。回头还是用 「坚果云 Markdown」这款软件来阅读md文档。</p><h5 id="托管密码"><a class="markdownIt-Anchor" href="#托管密码"></a> 托管密码</h5><p>设置为 SafeInClound 的托管云盘。用户名是坚果云的登陆账户，密码为专门为其开通的第三方应用 <em>mypass</em> 的专门密码。<code>Local Pfad</code> 填写云盘内存储数据库文件的文件夹。</p><p><img src="https://github.com/maiernte/img/raw/master/Tech/safeInCloudToJianguo.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;忽略文件&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#忽略文件&quot;&gt;&lt;/a&gt; 忽略文件&lt;/h5&gt;
-&lt;p&gt;配置文件 &lt;code&gt;customExtRules.conf&lt;/code&gt;。在 Window 版可以在软件直接打开，在 Mac App 里面没有这个选项，要自行查找这个配置文件。&lt;sup&gt;&lt;a href=&quot;http://www.jianguoyun.com/s/content/2219.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官方说明&lt;/a&gt;&lt;sup&gt;&lt;/sup&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在 Windows 和 Mac 下面目录可能不一样。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="IT" scheme="http://maiernte.github.io/categories/IT/"/>
-    
-      <category term="Tools" scheme="http://maiernte.github.io/categories/IT/Tools/"/>
-    
-    
-      <category term="工具" scheme="http://maiernte.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

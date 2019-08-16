@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maiernte.github.io/TypeScript-build-JS-Package.html</loc>
+    
+    <lastmod>2019-08-16T21:19:47.742Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maiernte.github.io/how-to-manage-big-hexo-blog.html</loc>
     
     <lastmod>2019-08-15T21:51:57.545Z</lastmod>
@@ -156,7 +163,7 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/prominaent-slogen-collection.html</loc>
+    <loc>http://maiernte.github.io/brief-notions-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
@@ -164,13 +171,6 @@
   
   <url>
     <loc>http://maiernte.github.io/funny-things-collection.html</loc>
-    
-    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maiernte.github.io/brief-notions-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
@@ -185,6 +185,13 @@
   
   <url>
     <loc>http://maiernte.github.io/old-stories-collection.html</loc>
+    
+    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maiernte.github.io/prominaent-slogen-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
