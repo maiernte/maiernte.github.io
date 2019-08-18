@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="天涯的知府">
 <meta property="og:description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-16T22:07:59.174Z">
+<meta property="og:updated_time" content="2019-08-18T08:10:23.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用TypeScript编写JS函数库">
 <meta name="twitter:description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
@@ -510,6 +510,31 @@
 <p>TypeScript使用<code>tsconfig.json</code>文件管理工程配置，例如想包含哪些文件和进行哪些检查。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">     		<span class="attr">"noImplicitAny"</span>: <span class="literal">true</span>,  </span><br><span class="line">        //"outDir": "./dist", //不需要. gulpfile.js 已经处理过了</span><br><span class="line">        "allowJs": true,</span><br><span class="line">        "target": "es2015",</span><br><span class="line">        "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */</span><br><span class="line">    &#125;,</span><br><span class="line">   "files": [</span><br><span class="line">        <span class="string">"src/*.ts"</span></span><br><span class="line">    ],</span><br><span class="line">    "include": [</span><br><span class="line">        <span class="string">"./src/**/*.js"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们看到网页显示 <em>Hallo von TypeScript, Dick</em>,  打开chrome的开发者工具, 看到console 中写出 <code>10</code>.</p>
+<h1 id="unit-test"><a class="markdownIt-Anchor" href="#unit-test"></a> Unit-Test</h1>
+<p><a href="https://journal.artfuldev.com/unit-testing-node-applications-with-typescript-using-mocha-and-chai-384ef05f32b2" target="_blank" rel="noopener">参考：Unit testing node applications with Typescript – using nocha and chai</a></p>
+<ol>
+<li>安装测试包文件</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install chai mocha ts-node @types/chai @types/mocha --save-dev</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>新建一个test目录专门存放测试文件，并新建一个测试文件 <code>test/ganzhi.spec.ts</code></li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; expect &#125; <span class="keyword">from</span> <span class="string">'chai'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'mocha'</span>;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'干支 function'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    it(<span class="string">'should return hello world'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> result = <span class="string">'Hello world!'</span>;</span><br><span class="line">      expect(result).to.equal(<span class="string">'Hello world!'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在 <code>package.json</code> 文件中配置测试参数和路径</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"mocha -r ts-node/register test/**/*.spec.ts"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>运行测试</li>
+</ol>
+<blockquote>
+<p>$ npm run test</p>
+<p>&gt; huahets@1.0.0 test /Users/mai/Projects/huahets</p>
+<p>&gt; mocha -r ts-node/register test/**/*.spec.ts</p>
+<p>干支 function</p>
+<p>​    ✓ should return hello world</p>
+<p>1 passing (19ms)</p>
+</blockquote>
 <p>需要更详细代码请下载项目：</p>
 <p><a href="https://gitee.com/maiernte/typescript-build-js-package" target="_blank" rel="noopener">演示项目地址</a></p>
 
@@ -564,6 +589,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/undefined.html" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -652,7 +681,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -721,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-typescript"><span class="nav-number">1.</span> <span class="nav-text"> 安装 TypeScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建工程"><span class="nav-number">2.</span> <span class="nav-text"> 创建工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用javascript文件"><span class="nav-number">3.</span> <span class="nav-text"> 调用JavaScript文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-typescript"><span class="nav-number">1.</span> <span class="nav-text"> 安装 TypeScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建工程"><span class="nav-number">2.</span> <span class="nav-text"> 创建工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用javascript文件"><span class="nav-number">3.</span> <span class="nav-text"> 调用JavaScript文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unit-test"><span class="nav-number">4.</span> <span class="nav-text"> Unit-Test</span></a></li></ol></div>
             
 
           </div>
