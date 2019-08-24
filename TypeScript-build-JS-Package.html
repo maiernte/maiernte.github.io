@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="天涯的知府">
 <meta property="og:description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-18T08:10:23.126Z">
+<meta property="og:updated_time" content="2019-08-24T09:32:50.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用TypeScript编写JS函数库">
 <meta name="twitter:description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
@@ -535,6 +535,38 @@
 <p>​    ✓ should return hello world</p>
 <p>1 passing (19ms)</p>
 </blockquote>
+<h2 id="错误处理"><a class="markdownIt-Anchor" href="#错误处理"></a> 错误处理</h2>
+<p>假设有以下函数调用中<code>LandMaps.FindCity</code>会给出一个异常。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = LandMaps.FindCity(<span class="string">"xx省"</span>, <span class="string">"xx市"</span>);</span><br><span class="line">expect(LandMaps.FindCity.bind(LandMaps, <span class="string">"err"</span>, <span class="string">""</span>)).throw(<span class="string">"Error Message"</span>) # 或者</span><br><span class="line">expect(LandMaps.FindCity.bind(LandMaps, <span class="string">"err"</span>, <span class="string">""</span>)).throw(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Error Message"</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="打包"><a class="markdownIt-Anchor" href="#打包"></a> 打包</h1>
+<p><a href="https://www.xuejiayuan.net/blog/27db473912f642d8a5fa0e32af3bb600" target="_blank" rel="noopener">用 TypeScript 编写函数库</a></p>
+<p><a href="https://requirejs.org/docs/start.html" target="_blank" rel="noopener">require.js 官方文档</a></p>
+<p>通过上述方式生成的 bundle.js 文件不能被浏览器直接使用。参考上面两个网页提供的方式，可以生成给浏览器用的单一js文件。</p>
+<ol>
+<li>新建一个入口文件，将所有接口都连接起来，并统一导出</li>
+</ol>
+ <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># yixue.ts</span><br><span class="line"><span class="keyword">import</span> &#123;TYDate, TYLunar&#125; <span class="keyword">from</span> <span class="string">"./tylunar"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;GanZhi&#125; <span class="keyword">from</span> <span class="string">"./ganzhi"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;ShenSha&#125; <span class="keyword">from</span> <span class="string">"./shensha"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;WuXing, FetchWuXing&#125; <span class="keyword">from</span> <span class="string">"./wuxing"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Gua&#125; <span class="keyword">from</span> <span class="string">'./gua'</span></span><br><span class="line"><span class="keyword">import</span> &#123;LandMaps&#125; <span class="keyword">from</span> <span class="string">"./landmaps"</span></span><br><span class="line"></span><br><span class="line">exports.GanZhi = GanZhi</span><br><span class="line">exports.TYDate = TYDate</span><br><span class="line">exports.Gua = Gua</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>设置<code>tsconfig.json</code>让编译后的文件导出到<code>dist/cmjs</code>目录</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="attr">"target"</span>: <span class="string">"es5"</span>,</span><br><span class="line">    <span class="attr">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">    <span class="attr">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">    <span class="attr">"outDir"</span>: <span class="string">"dist/cmjs"</span>,</span><br><span class="line">    <span class="attr">"rootDir"</span>: <span class="string">"./src"</span>,</span><br><span class="line">    <span class="attr">"declaration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"sourceMap"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"lib"</span>: [<span class="string">"dom"</span>, <span class="string">"es6"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>通过命令 tsc 编译</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc -P tsconfig.json</span><br></pre></td></tr></table></figure>
+<p>也可以在 package.json 中设定，然后运行 <code>npm run build:cmjs</code> 编译。编译后的 yixue.js 文件就是统一入口。</p>
+<ol start="4">
+<li>yi xue.js 实际就是个目录，我需要将其打包成一个单一文件。 安装 browserify ,</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browserify dist/cmjs/base/yixue.js --standalone huahejs -o dist/web/yixue.js</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>下载 <a href="https://requirejs.org/docs/start.html" target="_blank" rel="noopener">require.js</a>， 并放到项目目录中。以下方式将 yixue.js 中的 <code>class GanZhi</code> 设为当前网页的一个全局函数。其它函数就可以调用。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>易学包<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">src</span>=<span class="string">"libs/require.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"greeting"</span>&gt;</span>易学包测试<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">var</span> newGanZhi</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">            requirejs([<span class="string">"web/yixue"</span>], <span class="function"><span class="keyword">function</span><span class="params">(yixue)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(yixue)</span></span><br><span class="line"><span class="actionscript">                newGanZhi = <span class="function"><span class="keyword">function</span><span class="params">(arg)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">return</span> <span class="keyword">new</span> yixue.GanZhi(arg)</span></span><br><span class="line">                &#125; </span><br><span class="line">  </span><br><span class="line">                init()</span><br><span class="line">            &#125;);</span><br><span class="line">              </span><br><span class="line"><span class="actionscript">            <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">"init will be called"</span>)</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> ele = <span class="built_in">document</span>.getElementById(<span class="string">"gz1"</span>)</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> gz = newGanZhi(<span class="number">1</span>)</span></span><br><span class="line">                ele.innerText = gz.Name</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gz1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">name</span>=<span class="string">"gua"</span>&gt;</span>gua<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>在 Node.js 中调用更简单</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;Gua, GanZhi, TYDate&#125; = <span class="built_in">require</span>(<span class="string">"./web/yixue"</span>)</span><br></pre></td></tr></table></figure>
 <p>需要更详细代码请下载项目：</p>
 <p><a href="https://gitee.com/maiernte/typescript-build-js-package" target="_blank" rel="noopener">演示项目地址</a></p>
 
@@ -589,6 +621,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/undefined.html" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -677,7 +713,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -688,7 +724,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -746,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-typescript"><span class="nav-number">1.</span> <span class="nav-text"> 安装 TypeScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建工程"><span class="nav-number">2.</span> <span class="nav-text"> 创建工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用javascript文件"><span class="nav-number">3.</span> <span class="nav-text"> 调用JavaScript文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unit-test"><span class="nav-number">4.</span> <span class="nav-text"> Unit-Test</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-typescript"><span class="nav-number">1.</span> <span class="nav-text"> 安装 TypeScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建工程"><span class="nav-number">2.</span> <span class="nav-text"> 创建工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用javascript文件"><span class="nav-number">3.</span> <span class="nav-text"> 调用JavaScript文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unit-test"><span class="nav-number">4.</span> <span class="nav-text"> Unit-Test</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#错误处理"><span class="nav-number">4.1.</span> <span class="nav-text"> 错误处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包"><span class="nav-number">5.</span> <span class="nav-text"> 打包</span></a></li></ol></div>
             
 
           </div>
