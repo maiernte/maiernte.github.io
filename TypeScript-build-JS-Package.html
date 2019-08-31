@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="天涯的知府">
 <meta property="og:description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-24T09:32:50.413Z">
+<meta property="og:updated_time" content="2019-08-24T11:30:40.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用TypeScript编写JS函数库">
 <meta name="twitter:description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
@@ -564,9 +564,13 @@
 </ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>易学包<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">src</span>=<span class="string">"libs/require.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"greeting"</span>&gt;</span>易学包测试<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">var</span> newGanZhi</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">            requirejs([<span class="string">"web/yixue"</span>], <span class="function"><span class="keyword">function</span><span class="params">(yixue)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(yixue)</span></span><br><span class="line"><span class="actionscript">                newGanZhi = <span class="function"><span class="keyword">function</span><span class="params">(arg)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">return</span> <span class="keyword">new</span> yixue.GanZhi(arg)</span></span><br><span class="line">                &#125; </span><br><span class="line">  </span><br><span class="line">                init()</span><br><span class="line">            &#125;);</span><br><span class="line">              </span><br><span class="line"><span class="actionscript">            <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">"init will be called"</span>)</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> ele = <span class="built_in">document</span>.getElementById(<span class="string">"gz1"</span>)</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> gz = newGanZhi(<span class="number">1</span>)</span></span><br><span class="line">                ele.innerText = gz.Name</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gz1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">name</span>=<span class="string">"gua"</span>&gt;</span>gua<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ol start="6">
-<li>在 Node.js 中调用更简单</li>
-</ol>
+<li>
+<p>在 Node.js 中调用更简单</p>
+</li>
+<li>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;Gua, GanZhi, TYDate&#125; = <span class="built_in">require</span>(<span class="string">"./web/yixue"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <p>需要更详细代码请下载项目：</p>
 <p><a href="https://gitee.com/maiernte/typescript-build-js-package" target="_blank" rel="noopener">演示项目地址</a></p>
 
@@ -621,6 +625,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/mathjax-yixue-usage.html" rel="prev" title="MathJax用于易学领域">
+                MathJax用于易学领域 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -709,7 +717,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1338,6 +1346,59 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+
+      MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () { 
+        MathJax.InputJax.TeX.prefilterHooks.Add(function (data) {  
+          var pattern = /^(\\[a-zA-Z0-9]+)\{/
+          var macro = data.math.match(pattern)
+          var key = macro ? macro[1] : ""
+          var func = dictYiXue[key]
+          if(func){
+            data.math = func(data.math)
+          }
+        }); 
+      }); 
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+   
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" "></script>
+    <script type="text/javascript" src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+    <script> 
+      var dictYiXue = {}
+     
+      var settingYixue = {
+          "字体大小": 5, // 字体大小 1~9 数字越大字体越大
+          "水土共长生": true, // 是否水土共长生
+          "华鹤八字正偏财": true,  // 是否使用华鹤偏财
+          "开启短名": false // 是否使用短名，如“偏财”->“才”
+      }
+
+      var mathsele = document.getElementsByClassName("katex-block")
+      for(var i= 0;i < mathsele.length; i++){
+        var dom  = mathsele[i]
+        var tmp = dom.innerText
+        dom.innerText = `\$${tmp}\$`
+      }
+    </script>
+  
+
 
   
 
