@@ -1241,7 +1241,7 @@ E-Mail:  <a href="mailto:rainer.rohde@fv.nrw.de" target="_blank" rel="noopener">
     </script>
    
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" "></script>
-    <script type="text/javascript" src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+    <script type="text/javascript" src="https://rawcdn.githack.com/maiernte/img/bb3c42dc26b0866a142bb905d1753ac483e0a474/libs/bundle.js"></script>
     <script> 
       var dictYiXue = {}
      
@@ -1252,9 +1252,9 @@ E-Mail:  <a href="mailto:rainer.rohde@fv.nrw.de" target="_blank" rel="noopener">
           "开启短名": false // 是否使用短名，如“偏财”->“才”
       }
 
-      var mathsele = document.getElementsByClassName("katex-block")
-      for(var i= 0;i < mathsele.length; i++){
-        var dom  = mathsele[i]
+      var matherr = document.getElementsByClassName("katex-error")
+      for(var i= 0;i < matherr.length; i++){
+        var dom  = matherr[i]
         var tmp = dom.innerText
         dom.innerText = `\$${tmp}\$`
       }
