@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="天涯的知府">
 <meta property="og:description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-02T06:39:44.000Z">
+<meta property="og:updated_time" content="2020-02-12T20:13:26.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MathJax用于易学领域">
 <meta name="twitter:description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
@@ -511,6 +511,11 @@
 <p><a name="nayin"><strong>命令：纳音</strong></a> <code>\nayin{干支名称}</code></p>
 <p>【干支名称】 ：就是甲子、己卯等六十甲子。</p>
 <p>例子1：<code>\nayin{戊午}</code> --&gt; <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \nayin at position 1: \̲n̲a̲y̲i̲n̲{戊午}">\nayin{戊午}</span></p>
+<p><a name="nayin"><strong>命令：干支日历</strong></a> <code>\timegz{时间参数}{年月日}</code></p>
+<p>【时间参数】 ：例如 2020-02-21。</p>
+<p>【年月日】 ：省略时默认为<code>111</code>，即显示年月日。<code>0</code>表示不显示，<code>1</code>表示显示。</p>
+<p>例子1：<code>\timegz{2020-02-21}</code> --&gt; <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \timegz at position 1: \̲t̲i̲m̲e̲g̲z̲{2020-02-21}">\timegz{2020-02-21}</span></p>
+<p>例子2：<code>\timegz{2020-02-21}{011}</code> --&gt; <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \timegz at position 1: \̲t̲i̲m̲e̲g̲z̲{2020-02-21}{01…">\timegz{2020-02-21}{011}</span></p>
 <h4 id="六爻"><a class="markdownIt-Anchor" href="#六爻"></a> 六爻</h4>
 <p><a name="yao"><strong>命令：爻符</strong></a> <code>\yao{爻名}</code></p>
 <p>【爻名】：laoyin， laoyang，shaoyin，shaoyang， x， o， =， -， 交，重，阴，阳，0，1，2，3</p>
@@ -819,7 +824,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
