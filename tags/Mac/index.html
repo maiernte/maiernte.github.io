@@ -1039,8 +1039,8 @@
         }
       });
 
-      MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () { 
-        MathJax.InputJax.TeX.prefilterHooks.Add(function (data) {  
+      MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+        MathJax.InputJax.TeX.prefilterHooks.Add(function (data) {
           var pattern = /^(\\[a-zA-Z0-9]+)\{/
           var macro = data.math.match(pattern)
           var key = macro ? macro[1] : ""
@@ -1048,8 +1048,8 @@
           if(func){
             data.math = func(data.math)
           }
-        }); 
-      }); 
+        });
+      });
     </script>
 
     <script type="text/x-mathjax-config">
@@ -1060,12 +1060,12 @@
         }
       });
     </script>
-   
+
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" "></script>
-    <script type="text/javascript" src="https://rawcdn.githack.com/maiernte/img/bb3c42dc26b0866a142bb905d1753ac483e0a474/libs/bundle.js"></script>
-    <script> 
+    <script type="text/javascript" src="https://raw.githubusercontent.com/maiernte/img/master/libs/bundle.js"></script>
+    <script>
       var dictYiXue = {}
-     
+
       var settingYixue = {
           "字体大小": 5, // 字体大小 1~9 数字越大字体越大
           "水土共长生": true, // 是否水土共长生
