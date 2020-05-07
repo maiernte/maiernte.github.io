@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="天涯的知府">
 <meta property="og:description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-12T20:13:26.000Z">
+<meta property="og:updated_time" content="2020-05-07T20:37:46.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MathJax用于易学领域">
 <meta name="twitter:description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
@@ -441,36 +441,10 @@
 <p>Markdown 语言<strong>简约而优美</strong>，可以自由转换成pdf、word、Html 等等各种其它格式的文本。可以推送到博客、微信公众号等等。虽然算卦是一个传统的行业，我们仍然不宜<strong>固步自封</strong>。MD语言支持MathJax和Katex书写Latex数学公式，可以写出非常漂亮的数学、物理、化学方面的公式。正式的科技刊物都要求用Latex格式。</p>
 <p>这个易学解决方案是对 MathJax 进行扩展，加入指定的易学公式，让 MathJax 解释器去完成公式渲染。它并不是一个独立的程序。需要构建在已有的MD文本编辑器之上。我使用一个文件夹存放所有的关于易学方面的MD文件，并将这个文件夹同步到 <a href="https://www.jianguoyun.com/#/" target="_blank" rel="noopener">坚果云</a>，这样就可以实现多台电脑和移动端之间的同步，而不太需要一个独立的易学软件。甚至可以将MD文件导出为HTML文件，放到我的HEXO博客上(您正在阅读的这篇博文即是例子)。</p>
 <p>理论上所有支持Markdown语言和MathJax的文本编辑器，都可以改装。改装过程需要两段代码和一个库文件。</p>
-<h6 id="代码一"><a class="markdownIt-Anchor" href="#代码一"></a> 代码一</h6>
-<p><a name="code1">MathJax 扩展注册</a> （简称：代码一）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MathJax.Hub.Register.StartupHook(<span class="string">"TeX Jax Ready"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">  MathJax.InputJax.TeX.prefilterHooks.Add(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> pattern = <span class="regexp">/^(\\[a-zA-Z0-9]+)\&#123;/</span></span><br><span class="line">    <span class="keyword">var</span> macro = data.math.match(pattern)</span><br><span class="line">    <span class="keyword">var</span> key = macro ? macro[<span class="number">1</span>] : <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> func = dictYiXue[key]</span><br><span class="line">    <span class="keyword">if</span>(func)&#123;</span><br><span class="line">    	data.math = func(data.math)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>✏️ 因为下一章要介绍在 Typora 编辑器中如何使用，而 Typora 只支持 MathJax 渲染，所以目前只实现了MathJax 的方式。喜欢用 <code>Katex</code> 的朋友，则需要在 <code>Katex</code> 的自动渲染函数中匹配。以后有时间再贴出来具体的实现办法。但原理是不变的，有心的朋友可以自己摸索。据说 Katex 的渲染速度比 MathJax 要快很多，而我中意的 Typora 只支持 MathJax ，只好用 MathJax 方式。</p>
-<h6 id="代码二"><a class="markdownIt-Anchor" href="#代码二"></a> 代码二</h6>
-<p><a name="code2">易学函数库用户设定</a> （简称：代码二）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; </span><br><span class="line">  <span class="keyword">var</span> dictYiXue = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> settingYixue = &#123;</span><br><span class="line">    <span class="string">"字体大小"</span>: <span class="number">5</span>, <span class="comment">// 字体大小 1~9 数字越大字体越大</span></span><br><span class="line">    <span class="string">"水土共长生"</span>: <span class="literal">true</span>, <span class="comment">// 是否水土共长生</span></span><br><span class="line">    <span class="string">"华鹤八字正偏财"</span>: <span class="literal">true</span>,  <span class="comment">// 是否使用华鹤偏财</span></span><br><span class="line">    <span class="string">"开启短名"</span>: <span class="literal">false</span>, <span class="comment">// 是否使用短名，如“偏财”-&gt;“才”</span></span><br><span class="line">    <span class="string">"Katex"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<h6 id="脚本文件三"><a class="markdownIt-Anchor" href="#脚本文件三"></a> 脚本文件三</h6>
-<p><a name="code3">MathJax库的易学扩展脚本</a> (简称：脚本三)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>= <span class="string">text/javascript</span> <span class="attr">src</span>=<span class="string">"https://rawcdn.githack.com/maiernte/img/bd9422810b8019db78b9e5d1b741032851f3b0e8/libs/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>脚本文件托管在我的 Github 代码仓库上，上面 src 中就是具体的地址。国外的用户访问非常流畅，国内用户可能时间有点长。</p>
-<ul>
-<li>解决办法一：申请国内的云码仓库<a href="https://gitee.com" target="_blank" rel="noopener">Gitee</a>，将我的脚本文件托管到那上边。（托管代码都是免费的）</li>
-<li>解决办法二：将脚本文件下载到本地文件夹使用。</li>
-</ul>
-<p>相应的，引用此脚本文件就要修改为</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"你的路径/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>🔔 <em><strong>如果速度不是太慢，请尽量使用在线脚本。因为在将来可能要不断更新函数库，添加更多的易学功能。或者定期阅读此博文。如果有新功能，会附列在博文后面。</strong></em></p>
-<p>最新的脚本地址会更新的 <a href="https://github.com/maiernte/yixuepackage" target="_blank" rel="noopener">Github</a> 项目中。</p>
 <h4 id="文本编辑器"><a class="markdownIt-Anchor" href="#文本编辑器"></a> 文本编辑器</h4>
 <h5 id="typora"><a class="markdownIt-Anchor" href="#typora"></a> Typora</h5>
 <p>Typora 是我个人最钟爱的MD编辑器，因此这里着重介绍。如果你喜欢用别的MD编辑器，比如iAWrte等，理论上可以用同样的方式改装。(无法百分百保证) 有需要的朋友可以私下联系我。</p>
-<p>Windows版本的Typora需要修改window.html文件，其路径一般为<br>
-<code>c:\programm file(86)\Typora\resource\app\window.html</code></p>
-<p>而在 Mac 系统下通过访达窗口只能找到 <code>Typora.app</code> 这一个文件，通过鼠标右键弹出菜单，选择 <code>显示包内容</code>就能显示里面实际的文件。需要修改的是 <code>Contents\Resources\TypeMark\index.html</code> 文件。</p>
-<ol>
-<li>随便用一个文件编辑器打开上述 <em>window.html</em> 或者 <em>index.html</em> 文件，找到 <code>MathJax.Hub.Config</code> 代码段，并在其下面加入 <a href="#code1">代码一</a> 脚本代码。</li>
-<li>找到<strong>MathJax.js</strong>的脚本引用，在其下面添加 <a href="#code3">脚本三</a> 和 <a href="#code2">代码二</a> 。大概如下：</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 找到这一段，每人具体路径不一样，只要出现 “.../MathJax.js?.....”，就是他了 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 开始添加易学脚本和用户设定 --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> dictYiXue = &#123;&#125;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> settingYixue = &#123;</span></span><br><span class="line">		。。。</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>= <span class="string">text/javascript</span> <span class="attr">src</span>=<span class="string">"你的路径/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最新的安装教程请参考<a href="https://maiernte.gitee.io/huahedocument/chapter6/libinstall.html" target="_blank" rel="noopener">华鹤易学平台文档</a></p>
 <h5 id="hexo博客"><a class="markdownIt-Anchor" href="#hexo博客"></a> Hexo博客</h5>
 <h6 id="next-主题"><a class="markdownIt-Anchor" href="#next-主题"></a> next 主题</h6>
 <ol>
@@ -478,18 +452,10 @@
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: false</span><br><span class="line">  #cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML</span><br><span class="line">  cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"</span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>
-<p>打开 <code>next/layout/_third_party/mathjax.swig</code> 文件，找到 <code>MathJax.Hub.Config</code> 代码段，并在其下面加入 <a href="#code1">代码一</a> 脚本代码。</p>
-</li>
-<li>
-<p>找到<strong>MathJax.js</strong>的脚本引用，在其下面添加 <a href="#code3">脚本三</a> 和 <a href="#code2">代码二</a> 。细节请往上翻看 <a href="#install">安装和使用</a> 一章。</p>
-</li>
-<li>
-<p>由于我都搞不懂的技术原因，MD文件被编译成HTML之后易学公式的标识消失了，易学代码并没有正常被解释。因此要多添加一个脚本，将易学公式重新标识起来。</p>
-</li>
+<li>打开 <code>next/layout/_third_party/mathjax.swig</code> 文件，找到<strong>MathJax.js</strong>的脚本引用。添加以下代码</li>
 </ol>
 <p><a name="yixueJSBlock">标示易学公式脚本</a></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 紧跟着第3项的地方后面添加即可 --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> matherr = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"katex-error"</span>)</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">for</span>(<span class="keyword">var</span> i= <span class="number">0</span>;i &lt; matherr.length; i++)&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> dom  = matherr[i]</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> tmp = dom.innerText</span></span><br><span class="line"><span class="javascript">    dom.innerText = <span class="string">`\$<span class="subst">$&#123;tmp&#125;</span>\$`</span></span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 紧跟着第3项的地方后面添加即可 --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://raw.githack.com/maiernte/img/master/libs/mathjaxYixue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://raw.githack.com/maiernte/img/master/libs/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> matherr = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"katex-error"</span>)</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">for</span>(<span class="keyword">var</span> i= <span class="number">0</span>;i &lt; matherr.length; i++)&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> dom  = matherr[i]</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> tmp = dom.innerText</span></span><br><span class="line"><span class="javascript">    dom.innerText = <span class="string">`\$<span class="subst">$&#123;tmp&#125;</span>\$`</span></span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>需要使用易学公式的文章在头文件添加 <code>mathjax: true</code>。</li>
 </ol>
@@ -502,9 +468,7 @@
 <li>找到 <code>wikitten/layout/plugin/mathjax.ejs</code> 文件，重复上一节(<em>next 主题</em>)中的步骤，就可以实现在易学功能。</li>
 </ol>
 <h4 id="gitbook"><a class="markdownIt-Anchor" href="#gitbook"></a> Gitbook</h4>
-<blockquote>
-<p>暂时还没有找到办法，待解决。</p>
-</blockquote>
+<p>最新的安装教程请参考<a href="https://maiernte.gitee.io/huahedocument/chapter6/libinstall.html" target="_blank" rel="noopener">华鹤易学平台文档</a></p>
 <h3 id="api-参数"><a class="markdownIt-Anchor" href="#api-参数"></a> API 参数</h3>
 <p>使用易学函数库非常简单，在经过改装的Markdown编辑器中，输入易学公式，并用两个 <code>$</code> 符号将公式前后围起来即可。MD语言一般默认两个 <code>$</code> 符号之间的文本是数学公式，它会调用MathJax对公式进行渲染。否则，它会认为这是普通文本，而不会做任何动作。</p>
 <h4 id="易学通用"><a class="markdownIt-Anchor" href="#易学通用"></a> 易学通用</h4>
@@ -804,7 +768,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果与演示"><span class="nav-number">1.</span> <span class="nav-text"> 效果与演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-nameinstall安装和使用a"><span class="nav-number">2.</span> <span class="nav-text"> 安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码一"><span class="nav-number">2.0.0.1.</span> <span class="nav-text"> 代码一</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#代码二"><span class="nav-number">2.0.0.2.</span> <span class="nav-text"> 代码二</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#脚本文件三"><span class="nav-number">2.0.0.3.</span> <span class="nav-text"> 脚本文件三</span></a></li></ol></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#文本编辑器"><span class="nav-number">2.1.</span> <span class="nav-text"> 文本编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#typora"><span class="nav-number">2.1.1.</span> <span class="nav-text"> Typora</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hexo博客"><span class="nav-number">2.1.2.</span> <span class="nav-text"> Hexo博客</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#next-主题"><span class="nav-number">2.1.2.1.</span> <span class="nav-text"> next 主题</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#wikitten-主题"><span class="nav-number">2.1.2.2.</span> <span class="nav-text"> wikitten 主题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitbook"><span class="nav-number">2.2.</span> <span class="nav-text"> Gitbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#api-参数"><span class="nav-number">3.</span> <span class="nav-text"> API 参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#易学通用"><span class="nav-number">3.1.</span> <span class="nav-text"> 易学通用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六爻"><span class="nav-number">3.2.</span> <span class="nav-text"> 六爻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八字"><span class="nav-number">3.3.</span> <span class="nav-text"> 八字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未来与展望"><span class="nav-number">4.</span> <span class="nav-text"> 未来与展望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text"> 附录:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令列表"><span class="nav-number">5.1.</span> <span class="nav-text"> 命令列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布"><span class="nav-number">5.2.</span> <span class="nav-text"> 发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前易学函数库版本"><span class="nav-number">5.3.</span> <span class="nav-text"> 查看当前易学函数库版本</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果与演示"><span class="nav-number">1.</span> <span class="nav-text"> 效果与演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-nameinstall安装和使用a"><span class="nav-number">2.</span> <span class="nav-text"> 安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本编辑器"><span class="nav-number">2.1.</span> <span class="nav-text"> 文本编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#typora"><span class="nav-number">2.1.1.</span> <span class="nav-text"> Typora</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hexo博客"><span class="nav-number">2.1.2.</span> <span class="nav-text"> Hexo博客</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#next-主题"><span class="nav-number">2.1.2.1.</span> <span class="nav-text"> next 主题</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#wikitten-主题"><span class="nav-number">2.1.2.2.</span> <span class="nav-text"> wikitten 主题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitbook"><span class="nav-number">2.2.</span> <span class="nav-text"> Gitbook</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#api-参数"><span class="nav-number">3.</span> <span class="nav-text"> API 参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#易学通用"><span class="nav-number">3.1.</span> <span class="nav-text"> 易学通用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六爻"><span class="nav-number">3.2.</span> <span class="nav-text"> 六爻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八字"><span class="nav-number">3.3.</span> <span class="nav-text"> 八字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未来与展望"><span class="nav-number">4.</span> <span class="nav-text"> 未来与展望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text"> 附录:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令列表"><span class="nav-number">5.1.</span> <span class="nav-text"> 命令列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布"><span class="nav-number">5.2.</span> <span class="nav-text"> 发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前易学函数库版本"><span class="nav-number">5.3.</span> <span class="nav-text"> 查看当前易学函数库版本</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1373,18 +1337,6 @@
           skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       });
-
-      MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
-        MathJax.InputJax.TeX.prefilterHooks.Add(function (data) {
-          var pattern = /^(\\[a-zA-Z0-9]+)\{/
-          var macro = data.math.match(pattern)
-          var key = macro ? macro[1] : ""
-          var func = dictYiXue[key]
-          if(func){
-            data.math = func(data.math)
-          }
-        });
-      });
     </script>
 
     <script type="text/x-mathjax-config">
@@ -1397,17 +1349,9 @@
     </script>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" "></script>
-    <script type="text/javascript" src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+    <script src="https://raw.githack.com/maiernte/img/master/libs/mathjaxYixue.js"></script>
+    <script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
     <script>
-      var dictYiXue = {}
-
-      var settingYixue = {
-          "字体大小": 5, // 字体大小 1~9 数字越大字体越大
-          "水土共长生": true, // 是否水土共长生
-          "华鹤八字正偏财": true,  // 是否使用华鹤偏财
-          "开启短名": false // 是否使用短名，如“偏财”->“才”
-      }
-
       var matherr = document.getElementsByClassName("katex-error")
       for(var i= 0;i < matherr.length; i++){
         var dom  = matherr[i]
