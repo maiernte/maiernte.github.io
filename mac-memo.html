@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="指令和任务  隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 快速命令，打开访达窗口，然后 ⌘ + ⇧ + .  就可以隐藏">
+<meta name="description" content="指令和任务 隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 快速命令，打开访达窗口，然后 ⌘ + ⇧ + .  就可以隐藏/显">
 <meta name="keywords" content="Mac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac备忘录">
 <meta property="og:url" content="http://maiernte.github.io/mac-memo.html">
 <meta property="og:site_name" content="天涯的知府">
-<meta property="og:description" content="指令和任务  隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 快速命令，打开访达窗口，然后 ⌘ + ⇧ + .  就可以隐藏">
+<meta property="og:description" content="指令和任务 隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 快速命令，打开访达窗口，然后 ⌘ + ⇧ + .  就可以隐藏/显">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.mac52ipod.cn/attachment.php?fid=5823">
 <meta property="og:image" content="http://www.mac52ipod.cn/attachment.php?fid=5824">
 <meta property="og:updated_time" content="2020-05-07T07:28:37.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac备忘录">
-<meta name="twitter:description" content="指令和任务  隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 快速命令，打开访达窗口，然后 ⌘ + ⇧ + .  就可以隐藏">
+<meta name="twitter:description" content="指令和任务 隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 快速命令，打开访达窗口，然后 ⌘ + ⇧ + .  就可以隐藏/显">
 <meta name="twitter:image" content="http://www.mac52ipod.cn/attachment.php?fid=5823">
 
 
@@ -278,8 +278,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -430,8 +430,8 @@
       
 
       
-        <h1 id="指令和任务"><a class="markdownIt-Anchor" href="#指令和任务"></a> 指令和任务</h1>
-<h2 id="隐藏文件夹"><a class="markdownIt-Anchor" href="#隐藏文件夹"></a> 隐藏文件夹</h2>
+        <h1>指令和任务</h1>
+<h2 id="隐藏文件夹">隐藏文件夹</h2>
 <p>Terminal 命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//显示隐藏文件</span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span></span><br><span class="line">//不显示隐藏文件</span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>快速命令，打开访达窗口，然后 ⌘ + ⇧ + .  就可以隐藏/显示。</p>
@@ -439,11 +439,11 @@
 <blockquote>
 <p>重启Finder：窗口左上角的苹果标志–&gt;强制退出–&gt;Finder–&gt;重新启动</p>
 </blockquote>
-<h2 id="允许任何来源软件"><a class="markdownIt-Anchor" href="#允许任何来源软件"></a> 允许任何来源软件</h2>
+<h2 id="允许任何来源软件">允许任何来源软件</h2>
 <p>系统默认在 <strong>安全与隐私</strong> 里只显示 “App Store” 和 “App Store 和被认可的开发者”，没有 “任何来源”。开启的话需要在终端输入</p>
 <p><code>sudo spctl --master-disable</code></p>
 <p>并输入开机密码。</p>
-<h2 id="任务控制"><a class="markdownIt-Anchor" href="#任务控制"></a> 任务控制</h2>
+<h2 id="任务控制">任务控制</h2>
 <ul>
 <li>
 <p>将任务放在后台运行：<code>command + &amp;</code></p>
@@ -464,16 +464,16 @@
 <p>管理后台当中的任务：<code>kill -signal %jobnumber</code></p>
 </li>
 </ul>
-<h1 id="文件管理"><a class="markdownIt-Anchor" href="#文件管理"></a> 文件管理</h1>
-<h2 id="标签的使用"><a class="markdownIt-Anchor" href="#标签的使用"></a> 标签的使用</h2>
+<h1>文件管理</h1>
+<h2 id="标签的使用">标签的使用</h2>
 <p>参看 <a href="mac-using-tags.html">mac 标签的使用</a></p>
-<h1 id="通用技巧"><a class="markdownIt-Anchor" href="#通用技巧"></a> 通用技巧</h1>
-<h2 id="输入法"><a class="markdownIt-Anchor" href="#输入法"></a> 输入法</h2>
-<h3 id="查看按键字符"><a class="markdownIt-Anchor" href="#查看按键字符"></a> 查看按键字符</h3>
+<h1>通用技巧</h1>
+<h2 id="输入法">输入法</h2>
+<h3 id="查看按键字符">查看按键字符</h3>
 <ol>
 <li>偏好设置 → 键盘 → 输入法，窗口右面会显示键盘⌨️图案，按住shift⇧键或者option⌥，会显示在不同功能键下面的字符。</li>
 </ol>
-<h2 id="通过automator添加快捷键"><a class="markdownIt-Anchor" href="#通过automator添加快捷键"></a> 通过Automator添加快捷键</h2>
+<h2 id="通过Automator添加快捷键">通过Automator添加快捷键</h2>
 <p><a href="https://zhidao.baidu.com/question/1514898183998822540.html" target="_blank" rel="noopener">文章来源</a></p>
 <ol>
 <li>一次打开 <em><strong>Finder —&gt; 应用程序 —&gt; automator</strong></em></li>
@@ -486,7 +486,7 @@
 <li>⌘+S 保存，命名为 <em>Open Safari</em>。关闭automator</li>
 <li>转到 <em><strong>系统偏好设置—&gt;键盘—&gt;快捷键—&gt;服务—&gt;通用—&gt;open safari</strong></em> ，然后设定快捷键就好了。</li>
 </ol>
-<h2 id="电源管理"><a class="markdownIt-Anchor" href="#电源管理"></a> 电源管理</h2>
+<h2 id="电源管理">电源管理</h2>
 <p><code>pmset</code>是<strong>macOS</strong>下用来操作、电源管理的工具，可设定休眠模式、时间和唤醒时间或显示电源信息，不过因为它是一个命令列的指令，因此得透过终端机察看或修改设定。当你开启「终端机」输入p<code>mset -g</code> 会看到具体设置。</p>
 <ul>
 <li><code>Standbydelay 28800</code> ：将系统储存于內存中休眠，会消耗一些电力。</li>
@@ -498,19 +498,19 @@
 <blockquote>
 <p>中间的参数-b是使用电池下的参数，-c为外接电源下的参数设定， -a 为所有情况下的设定。</p>
 </blockquote>
-<h2 id="升级到mojave后鼠标发飘"><a class="markdownIt-Anchor" href="#升级到mojave后鼠标发飘"></a> 升级到Mojave后鼠标发飘</h2>
-<p>前往***偏好设置–&gt;网络–&gt;设定服务顺序(左下角齿轮)***，然后将***蓝牙PAN***拖到最上面。</p>
-<h1 id="网络资源"><a class="markdownIt-Anchor" href="#网络资源"></a> 网络资源</h1>
-<h2 id="应用软件"><a class="markdownIt-Anchor" href="#应用软件"></a> 应用软件</h2>
+<h2 id="升级到Mojave后鼠标发飘">升级到Mojave后鼠标发飘</h2>
+<p>前往<em><strong>偏好设置–&gt;网络–&gt;设定服务顺序(左下角齿轮)</strong></em>，然后将<em><strong>蓝牙PAN</strong></em>拖到最上面。</p>
+<h1>网络资源</h1>
+<h2 id="应用软件">应用软件</h2>
 <ol>
 <li>大量破解资源分享的网站 <a href="https://www.macenjoy.co/" target="_blank" rel="noopener">MacEnjoy</a></li>
 </ol>
-<h2 id="在线文档"><a class="markdownIt-Anchor" href="#在线文档"></a> 在线文档</h2>
+<h2 id="在线文档">在线文档</h2>
 <p><a href="https://support.apple.com/kb/SP665?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">iMac 2012 规格</a></p>
-<h3 id="升级ssd固态硬盘"><a class="markdownIt-Anchor" href="#升级ssd固态硬盘"></a> 升级SSD固态硬盘</h3>
+<h3 id="升级SSD固态硬盘">升级SSD固态硬盘</h3>
 <p><a href="https://zh.ifixit.com/Teardown/iMac+Intel+21.5-Inch+EMC+2544+Teardown/11936" target="_blank" rel="noopener">iMac 2012 21.5吋 拆卸指南</a></p>
 <p><a href="https://luolei.org/imac-5k-external-usb-ssd-update/" target="_blank" rel="noopener">Mac升级外挂SSD硬盘</a></p>
-<p><a href="https://support.apple.com/zh-cn/HT202796" target="_blank" rel="noopener">如何选择另一个启动磁盘</a> <font color="gray">🖊 <i>官方说明</i></font></p>
+<p><a href="https://support.apple.com/zh-cn/HT202796" target="_blank" rel="noopener">如何选择另一个启动磁盘</a> <font color="gray">:pen: <i>官方说明</i></font></p>
 <p><a href="http://www.mac52ipod.cn/post/apple-mac-macbook-pro-change-ssd-hardisk-tutorial.php" target="_blank" rel="noopener">更换SSD固态硬盘攻略</a></p>
 <ol>
 <li>
@@ -519,14 +519,14 @@
 </li>
 <li>
 <p>用 Carbon Copy Cloner（<a href="https://bombich.com/" target="_blank" rel="noopener">官网下载</a>）把原硬盘的数据镜像到 SSD。完成后要制作恢复分区「Recovery HD」<a href="https://www.macenjoy.co/blog/carbon-copy-cloner-for-mac-v5-1-9" target="_blank" rel="noopener">破解版下载地址</a></p>
-<p>或者 <a href="https://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html" target="_blank" rel="noopener">SuperDuper</a> <font color="gray">🖊 <i>免费版可以全盘备份，而不支持增量操作。</i></font></p>
+<p>或者 <a href="https://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html" target="_blank" rel="noopener">SuperDuper</a> <font color="gray">:pen: <i>免费版可以全盘备份，而不支持增量操作。</i></font></p>
 <p><img src="http://www.mac52ipod.cn/attachment.php?fid=5824" alt></p>
 </li>
 <li>
 <p>重启，听到 「当 」一声后按住 <code>Option</code> 键(windows 键盘上的 Alt)。然后选择SSD作为启动硬盘。</p>
 </li>
 <li>
-<p>开机后用 <strong>Trim Enabler</strong>（<a href="http://www.cindori.org/software/trimenabler/" target="_blank" rel="noopener">官网下载</a>）开启 <strong>Trim</strong> 读写加速。👍</p>
+<p>开机后用 <strong>Trim Enabler</strong>（<a href="http://www.cindori.org/software/trimenabler/" target="_blank" rel="noopener">官网下载</a>）开启 <strong>Trim</strong> 读写加速。:+1:</p>
 </li>
 </ol>
 
@@ -742,7 +742,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指令和任务"><span class="nav-number">1.</span> <span class="nav-text"> 指令和任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏文件夹"><span class="nav-number">1.1.</span> <span class="nav-text"> 隐藏文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#允许任何来源软件"><span class="nav-number">1.2.</span> <span class="nav-text"> 允许任何来源软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务控制"><span class="nav-number">1.3.</span> <span class="nav-text"> 任务控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件管理"><span class="nav-number">2.</span> <span class="nav-text"> 文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签的使用"><span class="nav-number">2.1.</span> <span class="nav-text"> 标签的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通用技巧"><span class="nav-number">3.</span> <span class="nav-text"> 通用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入法"><span class="nav-number">3.1.</span> <span class="nav-text"> 输入法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看按键字符"><span class="nav-number">3.1.1.</span> <span class="nav-text"> 查看按键字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过automator添加快捷键"><span class="nav-number">3.2.</span> <span class="nav-text"> 通过Automator添加快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电源管理"><span class="nav-number">3.3.</span> <span class="nav-text"> 电源管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级到mojave后鼠标发飘"><span class="nav-number">3.4.</span> <span class="nav-text"> 升级到Mojave后鼠标发飘</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络资源"><span class="nav-number">4.</span> <span class="nav-text"> 网络资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用软件"><span class="nav-number">4.1.</span> <span class="nav-text"> 应用软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线文档"><span class="nav-number">4.2.</span> <span class="nav-text"> 在线文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#升级ssd固态硬盘"><span class="nav-number">4.2.1.</span> <span class="nav-text"> 升级SSD固态硬盘</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">指令和任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏文件夹"><span class="nav-number">1.1.</span> <span class="nav-text">隐藏文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#允许任何来源软件"><span class="nav-number">1.2.</span> <span class="nav-text">允许任何来源软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务控制"><span class="nav-number">1.3.</span> <span class="nav-text">任务控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签的使用"><span class="nav-number">2.1.</span> <span class="nav-text">标签的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">通用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入法"><span class="nav-number">3.1.</span> <span class="nav-text">输入法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看按键字符"><span class="nav-number">3.1.1.</span> <span class="nav-text">查看按键字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过Automator添加快捷键"><span class="nav-number">3.2.</span> <span class="nav-text">通过Automator添加快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电源管理"><span class="nav-number">3.3.</span> <span class="nav-text">电源管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级到Mojave后鼠标发飘"><span class="nav-number">3.4.</span> <span class="nav-text">升级到Mojave后鼠标发飘</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">网络资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用软件"><span class="nav-number">4.1.</span> <span class="nav-text">应用软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线文档"><span class="nav-number">4.2.</span> <span class="nav-text">在线文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#升级SSD固态硬盘"><span class="nav-number">4.2.1.</span> <span class="nav-text">升级SSD固态硬盘</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

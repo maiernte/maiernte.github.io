@@ -277,8 +277,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -429,7 +429,7 @@
       
 
       
-        <h1 id="建立博客的初衷"><a class="markdownIt-Anchor" href="#建立博客的初衷"></a> 建立博客的初衷</h1>
+        <h1>建立博客的初衷</h1>
 <p>虽说这篇笔记的题目是「如何管理」，为了更好的回答这个问题，必须要回到最原始问题上来——我为何要建一个博客，而且是费那么大劲。而我的初衷是建立和维护一个属于自己的「知识库」。通常来说，为了达成这个目的，更好的选择是笔记APP，而不是博客。我确实也是这么做的。一开始用印象笔记，因为它死活不支持多级目录，我又转到国内的为知笔记，做了五年的VIP用户。但它五年来似乎从没改进过。随着近年来有道云异军突起，以及IOS生态圈中琳琅满目的APP，如熊掌记、Notion、谷歌的Keep、阿里的语雀。。。。。。各有各的惊艳，各有各的槽点。</p>
 <p>随着国外的Github和国内的Coding等公司，相继开放永久免费、不限流量的静态网页托管平台，如Github Pages。我走上了自建Bolg的不归路。当然不是说，搭博客这条路完全没有槽点。而是——自己造的孽，含着泪也会继续造下去。至少它满足了我以下几点「必不可少」的要求：</p>
 <ul>
@@ -441,9 +441,9 @@
 <p>说白了，我是利用Github提供的免费平台，把Blog当笔记本来用。最后选了Hexo，简单易用、界面绚丽、插件丰富。除开自用的「知识平台」功能以外，偶尔还能发发博文装大尾巴狼，也是蛮不错的感觉。</p>
 <p>网上介绍怎么搭建Hexo以及添加绚丽功能的帖子海了去了，但我基本没有发现分享「如何管理」的。因为绝大多数这些博主，搭建Hexo只是用来玩一阵子。回头有更新更好玩的东西，就跑去玩别的了。极少数有博客，站内文章超过50篇的。所以，对他们来说，根本不存在——管理——这个议题。</p>
 <p>虽然Hexo在逻辑上支持<code>分类</code>和<code>标签</code>，但物理上它把所有的Post都放到一个单一的目录下面。而我是打算把它当作知识库，长期、密集使用的。可预见的将来，站内笔记会非常多。不但写新贴，还可能经常更改旧贴。那势必会带来一个问题：如何管理数量少日益膨胀的笔记？</p>
-<h1 id="解决思路"><a class="markdownIt-Anchor" href="#解决思路"></a> 解决思路</h1>
+<h1>解决思路</h1>
 <p>我能想到的办法很简单，也很传统。就是不但逻辑分类，而且也必须物理上分目录存放。理论上在自己的PC分目录保存就好了。但我有好几台电脑，单位一台、自己Windows一台、Mac一台，还有平板。为了让能在不同的电脑上能随时修改、添加笔记，必须放在托管在云端。</p>
-<h2 id="硬件"><a class="markdownIt-Anchor" href="#硬件"></a> 硬件</h2>
+<h2 id="硬件">硬件</h2>
 <p>没有必要租用传统的VPS，太贵了，而且连10%的运算能力都用不上。用共享的Web Hosting就完全能解决需求。比如百度云，或者Azure的Web App。而我是租用 1&amp;1 公司的Web Hosting，每个月 1€</p>
 <ul>
 <li>1 CPU</li>
@@ -451,7 +451,7 @@
 <li>20G SSD</li>
 </ul>
 <p>就算那么低的运算能力，平时我的网站也用不到25%的运算能力。应付起啦，绰绰有余。</p>
-<h2 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h2>
+<h2 id="软件">软件</h2>
 <p>我采用了<code>MM-Wiki</code> 管理平台（以下简称维基平台）。这是一个非常优秀的开源项目，具体请参看<a href="https://github.com/phachon/mm-wiki" target="_blank" rel="noopener">作者的文档</a>。部署超级简单，可以说一键部署，然后就可以用起啦了。简单来说这个平台有以下几个特点：</p>
 <ul>
 <li>[x] 支持空间管理、空间内支持多级目录。</li>
@@ -463,15 +463,15 @@
 </ul>
 <p>但它跟Hexo博客搭配使用，就完全满足我的需求了。其实Hexo博客中，有个仿维基的Wikitten主题，跟<code>MM-Wiki</code>项目非常像。但毕竟不是所有内容，都适合摆在公开的地方。以<code>MM-Wiki</code> 作为私用平台，增加了私隐保护。</p>
 <p>我的做法是，在维基平台中开辟一个独立的空间，用来存放博客上所有的源文件。而在Github Pages上托管的静态网站其实都是HTML文件。所有的改动，都必须在源Markdownn文件上修改，然后再推送到博客网站的。</p>
-<p>在维基平台修改、添加、删除笔记的源文件。然后复制到Hexo的项目目录，编译后推送到Github Pages站点。维基百科内置的在线版<code>Editor.md</code>编辑器，非常美观实用。基本上我都不太需要在自己的电脑上用Typora等编辑器写MD文本了。思路有了，实现起来还是有一点问题。</p>
-<h1 id="难点的解决办法"><a class="markdownIt-Anchor" href="#难点的解决办法"></a> 难点的解决办法</h1>
+<p>在维基平台修改、添加、删除笔记的源文件。然后复制到Hexo的项目目录，编译后推送到Github Pages站点。维基百科内置的在线版<code>Editor.md </code>编辑器，非常美观实用。基本上我都不太需要在自己的电脑上用Typora等编辑器写MD文本了。思路有了，实现起来还是有一点问题。</p>
+<h1>难点的解决办法</h1>
 <p>首先，在维基平台内，MD文件是分目录存储的。这个目录不能直接拷贝到Hexo的<code>_post</code>目录。懒得每修改一个，或者添加一个笔记，就立马拷贝到博客中去。解决笔记复制的问题。</p>
 <p>其次，笔记的物理保存目录，<strong>必须</strong>跟Hexo上的「分类」是一一对应的。否则，管理起来会很麻烦。在维基平台移动了笔记的保存目录后，在一一修改内容，也是很吃力的事情。</p>
-<h2 id="笔记复制的解决办法"><a class="markdownIt-Anchor" href="#笔记复制的解决办法"></a> 笔记复制的解决办法</h2>
+<h2 id="笔记复制的解决办法">笔记复制的解决办法</h2>
 <p>说来也超级简单，一个脚本命令就够了。先用<code>find</code>命令在指定目录找出所有的MD文件，然后通过管道传给复制命令<code>cp</code>，搞定！</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find  /root/bibliothek/markdowns/博客草稿/  -<span class="built_in">type</span> f -name <span class="string">"*.md"</span> -<span class="built_in">exec</span> cp &#123;&#125; /home/_post/ \;</span><br></pre></td></tr></table></figure>
 <p>然后<code>hexo d -g</code>编译、发布，结束！</p>
-<h2 id="管理笔记的分类"><a class="markdownIt-Anchor" href="#管理笔记的分类"></a> 管理笔记的分类</h2>
+<h2 id="管理笔记的分类">管理笔记的分类</h2>
 <p>这个问题有一点麻烦。因为必须打开每一个文件，读取笔记的头文件描述，然后再比较跟文件的物理位置是否符合。我尝试用shell脚本解决这难题。无奈我的的shell脚本功底是在很差，搞半天未果就放弃了。<a href="http://xn--Java-875hh09gm5p.NET" target="_blank" rel="noopener">用Java或者.NET</a> Core啥的，正儿八经写一个Console程序，也不是不行。但有种杀鸡用牛刀的感觉。</p>
 <p>最后想到了用Javascript。因为编译Hexo是需要安装Node.js的，写一段JavaScript，让Node跑起来。通往罗马的道路千万条，选一条自己最熟悉的就完了。</p>
 <div><div class="fold_hider"><div class="close hider_title">点击查看代码</div></div><div class="fold">
@@ -693,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建立博客的初衷"><span class="nav-number">1.</span> <span class="nav-text"> 建立博客的初衷</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text"> 解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件"><span class="nav-number">2.1.</span> <span class="nav-text"> 硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件"><span class="nav-number">2.2.</span> <span class="nav-text"> 软件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#难点的解决办法"><span class="nav-number">3.</span> <span class="nav-text"> 难点的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记复制的解决办法"><span class="nav-number">3.1.</span> <span class="nav-text"> 笔记复制的解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理笔记的分类"><span class="nav-number">3.2.</span> <span class="nav-text"> 管理笔记的分类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">建立博客的初衷</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件"><span class="nav-number">2.1.</span> <span class="nav-text">硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件"><span class="nav-number">2.2.</span> <span class="nav-text">软件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">难点的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记复制的解决办法"><span class="nav-number">3.1.</span> <span class="nav-text">笔记复制的解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理笔记的分类"><span class="nav-number">3.2.</span> <span class="nav-text">管理笔记的分类</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -274,8 +274,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -1468,10 +1468,10 @@
       
         
           
-          最近才搞明白，原来Hexo博客的_post文件夹里面的Markdown原文件是可以按照分级嵌套的目录结构摆放的。编译的时候才放到public这个单一目录下。如果能让文章在Hexo的分类严格跟md文件的存储目录一一对应，将来需要找原文件的时侯会方便很多。😄
-使用Mac系统的同学也知道，mac有个很风骚的操作，就是给文件分配不同颜色的标签，非常方便文件寻找。我也希望博客上的文章标签，能跟Mac系统里的标签统一起来。😄
+          最近才搞明白，原来Hexo博客的_post文件夹里面的Markdown原文件是可以按照分级嵌套的目录结构摆放的。编译的时候才放到public这个单一目录下。如果能让文章在Hexo的==分类==严格跟md文件的存储目录一一对应，将来需要找原文件的时侯会方便很多。😄
+使用Mac系统的同学也知道，mac有个很风骚的操作，就是给文件分配不同颜色的标签，非常方便文件寻找。我也希望博客上的文章标签，能跟Mac系统里的标签统一起来。:smile:
 实现物理存储目录与Hexo分类统一很简单，将源md文件的相对存储路径写到文件meta元素的categories里面就行了。比如源文件放在我的博客--&gt;IT--&gt;前端，文章的头文件就写成这样：categories：[IT, 前端]。
-实现标签的统一稍微麻烦一点，需要先
+实现标签的统一稍
           ...
           <!--noindex-->
           <div class="post-button text-center">

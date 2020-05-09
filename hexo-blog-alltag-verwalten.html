@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="复制MD文件   查找最新文件 1234ls -t /Users/mai/Projects/hexo/source/_posts/*.md | head -1 | xargs ls -l | awk &apos;&amp;#123;print  $6 &quot;-&quot; $7 &quot;-&quot; $8 &amp;#125;&apos;# 最旧的文件就应该是ls -t /Users/mai/Projects/hexo/source/_posts/*.md">
+<meta name="description" content="复制MD文件  查找最新文件 1234ls -t /Users/mai/Projects/hexo/source/_posts/*.md | head -1 | xargs ls -l | awk &apos;&amp;#123;print  $6 &quot;-&quot; $7 &quot;-&quot; $8 &amp;#125;&apos;# 最旧的文件就应该是ls -t /Users/mai/Projects/hexo/source/_posts/*.md |">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo日常管理">
 <meta property="og:url" content="http://maiernte.github.io/hexo-blog-alltag-verwalten.html">
 <meta property="og:site_name" content="天涯的知府">
-<meta property="og:description" content="复制MD文件   查找最新文件 1234ls -t /Users/mai/Projects/hexo/source/_posts/*.md | head -1 | xargs ls -l | awk &apos;&amp;#123;print  $6 &quot;-&quot; $7 &quot;-&quot; $8 &amp;#125;&apos;# 最旧的文件就应该是ls -t /Users/mai/Projects/hexo/source/_posts/*.md">
+<meta property="og:description" content="复制MD文件  查找最新文件 1234ls -t /Users/mai/Projects/hexo/source/_posts/*.md | head -1 | xargs ls -l | awk &apos;&amp;#123;print  $6 &quot;-&quot; $7 &quot;-&quot; $8 &amp;#125;&apos;# 最旧的文件就应该是ls -t /Users/mai/Projects/hexo/source/_posts/*.md |">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-02T03:54:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo日常管理">
-<meta name="twitter:description" content="复制MD文件   查找最新文件 1234ls -t /Users/mai/Projects/hexo/source/_posts/*.md | head -1 | xargs ls -l | awk &apos;&amp;#123;print  $6 &quot;-&quot; $7 &quot;-&quot; $8 &amp;#125;&apos;# 最旧的文件就应该是ls -t /Users/mai/Projects/hexo/source/_posts/*.md">
+<meta name="twitter:description" content="复制MD文件  查找最新文件 1234ls -t /Users/mai/Projects/hexo/source/_posts/*.md | head -1 | xargs ls -l | awk &apos;&amp;#123;print  $6 &quot;-&quot; $7 &quot;-&quot; $8 &amp;#125;&apos;# 最旧的文件就应该是ls -t /Users/mai/Projects/hexo/source/_posts/*.md |">
 
 
 
@@ -275,8 +275,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -416,16 +416,16 @@
       
 
       
-        <h1 id="复制md文件"><a class="markdownIt-Anchor" href="#复制md文件"></a> 复制MD文件</h1>
+        <h1>复制MD文件</h1>
 <script src="https://gist.github.com/maiernte/7d23ede58ddd69608bd7ee98b743e155.js"></script>
-<h4 id="查找最新文件"><a class="markdownIt-Anchor" href="#查找最新文件"></a> 查找最新文件</h4>
+<h4 id="查找最新文件">查找最新文件</h4>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -t /Users/mai/Projects/hexo/<span class="built_in">source</span>/_posts/*.md | head -1 | xargs ls -l | awk <span class="string">'&#123;print  $6 "-" $7 "-" $8 &#125;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 最旧的文件就应该是</span></span><br><span class="line">ls -t /Users/mai/Projects/hexo/<span class="built_in">source</span>/_posts/*.md | tail -1 | xargs ls -l | awk <span class="string">'&#123;print  $6 "-" $7 "-" $8 &#125;'</span></span><br></pre></td></tr></table></figure>
-<h1 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它</h1>
+<h1>其它</h1>
 <p>Hexo 代码折叠</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% fold 点击显/隐内容 %&#125;</span><br><span class="line">需要隐藏的内容。。。</span><br><span class="line">&#123;% endfold %&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="参考文件"><a class="markdownIt-Anchor" href="#参考文件"></a> 参考文件</h1>
+<h1>参考文件</h1>
 <p><a href="helpfull-shell-command.html">有用的shell命令</a></p>
-<h1 id="会导致编译奔溃的错误"><a class="markdownIt-Anchor" href="#会导致编译奔溃的错误"></a> 会导致编译奔溃的错误</h1>
+<h1>会导致编译奔溃的错误</h1>
 <p>大括号和井号连在一起</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="comment">#、 #&#125;、&#123;#&#125; 这三种情况都会导致系统奔溃</span></span><br><span class="line">&#123;&#125; 和 <span class="comment"># 之间如果有别的字符就不会。如 &#123; # &#125;</span></span><br><span class="line">或者放在代码段内也不会。行内代码不能避免这种情形。</span><br></pre></td></tr></table></figure>
 
@@ -641,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#复制md文件"><span class="nav-number">1.</span> <span class="nav-text"> 复制MD文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查找最新文件"><span class="nav-number">1.0.0.1.</span> <span class="nav-text"> 查找最新文件</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#其它"><span class="nav-number">2.</span> <span class="nav-text"> 其它</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文件"><span class="nav-number">3.</span> <span class="nav-text"> 参考文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#会导致编译奔溃的错误"><span class="nav-number">4.</span> <span class="nav-text"> 会导致编译奔溃的错误</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">复制MD文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查找最新文件"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">查找最新文件</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">参考文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">会导致编译奔溃的错误</span></a></li></div>
             
 
           </div>

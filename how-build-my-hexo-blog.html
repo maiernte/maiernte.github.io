@@ -275,8 +275,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -427,8 +427,8 @@
       
 
       
-        <h1 id="建立网站"><a class="markdownIt-Anchor" href="#建立网站"></a> 建立网站</h1>
-<h2 id="github配置"><a class="markdownIt-Anchor" href="#github配置"></a> Github配置</h2>
+        <h1>建立网站</h1>
+<h2 id="Github配置">Github配置</h2>
 <p>输入命令 <code>ssh-keygen -t rsa -b 4096 -C &quot;myname@gmail.com&quot;</code>。</p>
 <p>密码 <code>T1</code>。(下列展开后复制)</p>
 <blockquote>
@@ -443,7 +443,7 @@
 <li>测试公匙</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line"></span><br><span class="line">Hi username! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
-<h2 id="安装hexo"><a class="markdownIt-Anchor" href="#安装hexo"></a> 安装Hexo</h2>
+<h2 id="安装Hexo">安装Hexo</h2>
 <p>参考资料<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> <sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup>。</p>
 <ol>
 <li>安装node.js 因为以前已经安装过，所以跳过。</li>
@@ -467,7 +467,7 @@ Press Ctrl+C to stop.</p>
 <p><strong>Setup</strong></p>
 <p>Symlink the folder into <code>~/.pow</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/.pow</span><br><span class="line">$ ln -s /path/to/test</span><br></pre></td></tr></table></figure>
-<h2 id="发布到github"><a class="markdownIt-Anchor" href="#发布到github"></a> 发布到Github</h2>
+<h2 id="发布到Github">发布到Github</h2>
 <p>终于搭建好站点部署环境啦，那么要怎么样将我们本地生成预览好的页面发布到github上呢？很简单，Follow!</p>
 <p>首先，打开blog目录下的<code>_config.yml</code>，找到deploy段，配置成这样</p>
 <blockquote>
@@ -483,18 +483,18 @@ branch: master</p>
 git config --global user.email “你的邮箱”</p>
 </blockquote>
 <p>执行以下指令进行部署</p>
-<p><code>hexo d -g</code></p>
+<p><code>hexo d -g </code></p>
 <p>如果提示没找到git，请先执行以下指令</p>
 <p><code>cnpm install hexo-deployer-git --save</code></p>
 <p>再次部署后，浏览器打开 <a href="https://yourname.github.io/" target="_blank" rel="noopener">https://yourname.github.io</a> 就可以看到刚才本地预览页面。</p>
-<h2 id="网站基本配置"><a class="markdownIt-Anchor" href="#网站基本配置"></a> 网站基本配置</h2>
-<h3 id="next-主题"><a class="markdownIt-Anchor" href="#next-主题"></a> Next 主题</h3>
+<h2 id="网站基本配置">网站基本配置</h2>
+<h3 id="Next-主题">Next 主题</h3>
 <p>主题配置文件说明</p>
 <div><div class="fold_hider"><div class="close hider_title">点击显/隐内容</div></div><div class="fold">
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo 站点配置文件</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 网站配置</span></span><br><span class="line">title: Hexo            # 网站标题</span><br><span class="line">subtitle:              # 网站副标题</span><br><span class="line">description:           # 网站描述</span><br><span class="line">author: John Doe       # 你的昵称</span><br><span class="line">language:              # 网站使用的语言(英文:en, 简体中文:zh-Hans，繁体中文:zh-tw)</span><br><span class="line">timezone:              # 网站时区，用于生成页面时填充相关时间，默认使用电脑时区，一般不用改</span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## 如果你的站点要放入子目录, 请将url设置为'http://yoursite.com/child' 并将根目录设置为'/child/'</span></span><br><span class="line">url: http://yoursite.com  # 站点网址</span><br><span class="line">root: /                   # 网站根目录</span><br><span class="line">permalink: :year/:month/:day/:title/ #文单的永久链接格式</span><br><span class="line">permalink_defaults:       # 永久链接中各部分的默认值</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目录</span></span><br><span class="line">source_dir: source        # 资源文件夹，这个文件夹用来存放博客内容</span><br><span class="line">public_dir: public        # 公共文件夹，这个文件夹用来存放生成的站点静态文件</span><br><span class="line">tag_dir: tags             # 标签文件夹</span><br><span class="line">archive_dir: archives     # 归档文件夹</span><br><span class="line">category_dir: categories  # 分类文件夹</span><br><span class="line">code_dir: downloads/code  # Include code文件夹</span><br><span class="line">i18n_dir: :lang           # 国际化文件夹，存放各种语言定义</span><br><span class="line">skip_render:              # 跳过指定文件的渲染</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写作</span></span><br><span class="line">new_post_name: :title.md  # 新文章的文件名称</span><br><span class="line">default_layout: post      # 预设布局</span><br><span class="line">titlecase: false          # 把标题转换为 title case</span><br><span class="line">external_link: true       # 在新标签中打开链接</span><br><span class="line">filename_case: 0          # 把文件名称转换为 (1) 小写或 (2) 大写</span><br><span class="line">render_drafts: false      # 显示草稿</span><br><span class="line">post_asset_folder: false  # 启动 Asset 文件夹</span><br><span class="line">relative_link: false      # 把链接改为与根目录的相对位址</span><br><span class="line">future: true              # 显示未来的文章</span><br><span class="line">highlight:                # 代码块的设置</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: false</span><br><span class="line">  tab_replace:</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分类 &amp; 标签</span></span><br><span class="line">default_category: uncategorized  # 默认分类</span><br><span class="line">category_map:                    # 分类别名</span><br><span class="line">tag_map:                         # 标签别名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日期 / 时间格式</span></span><br><span class="line"><span class="comment">## Hexo 使用 Moment.js 来解析和显示时间</span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line">date_format: YYYY-MM-DD # 日期格式</span><br><span class="line">time_format: HH:mm:ss   # 时间格式</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分页</span></span><br><span class="line"><span class="comment">## 每页显示的文章量 (0 = 关闭分页功能)</span></span><br><span class="line">per_page: 10</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"><span class="comment"># 扩展</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line">theme: landscape       # 主题</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  type:</span><br></pre></td></tr></table></figure>
 
 </div></div>
-<h3 id="wikitten主题"><a class="markdownIt-Anchor" href="#wikitten主题"></a> Wikitten主题</h3>
+<h3 id="Wikitten主题">Wikitten主题</h3>
 <p>具体配置参考<a href="https://github.com/zthxxx/hexo-theme-Wikitten/blob/master/README_zh-CN.md" target="_blank" rel="noopener">开发者说明</a>，更详细的描述参阅<a href="https://github.com/ppoffice/hexo-theme-icarus/wiki" target="_blank" rel="noopener">hexo-theme-icarus</a>。为了与主题Next不冲突，作以下修改。</p>
 <ol>
 <li>自行修改 <code>tags</code>, <code>about</code>,<code>categories</code> 等<code>index.md</code>，而不能从主题复制，覆盖站点原有设置。</li>
@@ -506,7 +506,7 @@ git config --global user.email “你的邮箱”</p>
 <li><code>thumbnail: true</code> 使得每个post在快速列表里，显示图标。但就是每个帖子都要设定，很麻烦。</li>
 <li>post 中的 toc 要设置为 true，如果需要显示目录的话。</li>
 </ol>
-<h3 id="同时部署两个项目"><a class="markdownIt-Anchor" href="#同时部署两个项目"></a> 同时部署两个项目</h3>
+<h3 id="同时部署两个项目">同时部署两个项目</h3>
 <p>第一个项目使用 Github 上面默认的 Github Pages，即 <code>username.github.io</code> 。在站点配置文件中如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">url: http://username.github.io</span><br><span class="line">root: /</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>第二个站点开通一个 普通的repository，添加名为<code>gh-pages</code> 的Branch，并将gh-pages<code>设为默认Branch。我将第二个仓库命名为 wiki ，那第二个站点就运行在</code><a href="https://username.github.io/wiki%60%E6%AC%A1%E7%BA%A7%E7%9B%AE%E5%BD%95%E4%B8%8B%E9%9D%A2%E3%80%82" target="_blank" rel="noopener">https://username.github.io/wiki`次级目录下面。</a></p>
@@ -515,7 +515,7 @@ git config --global user.email “你的邮箱”</p>
 <p>同样用 <code>hexo d -g</code> 部署命令发布，两个站点就都运行起来了。</p>
 <p>为了使得两个项目使用同一个笔记资源，将站点中的 source 文件夹移到项目意外，将配置文件里的 <code>source_dir: source</code> 改为 <code>source_dir: ../source</code>(这里使用了相对目录)。</p>
 <p><a href="ttp://chitanda.me/2015/11/03/multiple-git-pages-in-one-github-account/" target="_blank" rel="noopener">参考文章</a> (细节已经失效，但思路值得参考)</p>
-<h3 id="站内搜索"><a class="markdownIt-Anchor" href="#站内搜索"></a> 站内搜索</h3>
+<h3 id="站内搜索">站内搜索</h3>
 <ol>
 <li>安装插件</li>
 </ol>
@@ -532,7 +532,7 @@ git config --global user.email “你的邮箱”</p>
 <li>生成<code>search.xml</code>文件以及发布</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d -g # 本地运行 hexo s</span><br></pre></td></tr></table></figure>
-<h3 id="去除主题字样"><a class="markdownIt-Anchor" href="#去除主题字样"></a> 去除主题字样</h3>
+<h3 id="去除主题字样">去除主题字样</h3>
 <p>关于添加头像、标签、分类、「关于」等具体的修改，跟着参考资料<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>里面的步骤做就好了。最后说说如何去掉底部强力驱动及主题字样。</p>
 <ol>
 <li>找到 <code>\themes\next\layout_partials\</code>下面的<code>footer.swig</code>文件，打开：</li>
@@ -542,12 +542,12 @@ git config --global user.email “你的邮箱”</p>
 <p>第二条是“主题-Next.XX”，将xml段都删掉，不留引号。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"powered-by"</span>&gt;</span></span><br><span class="line">  &#123;&#123; __('footer.powered', '') &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"theme-info"</span>&gt;</span></span><br><span class="line">  &#123;&#123; __('footer.theme') &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>找到这个地方<code>\themes\next\languages\</code>下面的语言文件<code>zh-Hans.yml</code>（以中文为例）：</li>
+<li>找到这个地方<code>\themes\next\languages\ </code>下面的语言文件<code>zh-Hans.yml</code>（以中文为例）：</li>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">footer:</span><br><span class="line">  powered: "由 %s 强力驱动"</span><br><span class="line">  theme: 主题</span><br></pre></td></tr></table></figure>
 <p>将上面的文字改成自己想要的即可。</p>
-<h2 id="添加评论功能"><a class="markdownIt-Anchor" href="#添加评论功能"></a> 添加评论功能</h2>
-<h4 id="gitment"><a class="markdownIt-Anchor" href="#gitment"></a> Gitment</h4>
+<h2 id="添加评论功能">添加评论功能</h2>
+<h4 id="Gitment">Gitment</h4>
 <p>**此项目已经终止！**改为Disqus，以及其它评论服务。</p>
 <ol>
 <li>安装功能模块。在项目的根目录：</li>
@@ -568,7 +568,7 @@ git config --global user.email “你的邮箱”</p>
 <p>找到giment的配置：<code>/themes/next/layout/_third-party/comments/gitment.swig</code> 文件， 并找到如下部分：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gitment = <span class="keyword">new</span> &#123;&#123;CommentsClass&#125;&#125;(&#123;</span><br><span class="line">    id: <span class="built_in">window</span>.location.pathname,</span><br><span class="line">    owner: <span class="string">'&#123;&#123; theme.gitment.github_user &#125;&#125;'</span>,</span><br><span class="line">    repo: <span class="string">'&#123;&#123; theme.gitment.github_repo &#125;&#125;'</span>,</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 <p>将<code>id</code>后面的路径值修改为 ‘itfanr_blog_&lt;!–￼1–&gt;’ 就可以了。</p>
-<h4 id="disqus"><a class="markdownIt-Anchor" href="#disqus"></a> Disqus</h4>
+<h4 id="Disqus">Disqus</h4>
 <p>目前只开通<a href="https://disqus.com/" target="_blank" rel="noopener">Disqus</a>的评论。</p>
 <ol>
 <li>开通Disqus账号，并添加一个点 应用。具体步骤参看<a href="https://www.jianshu.com/p/d68de067ea74" target="_blank" rel="noopener">Hexo搭建博客系列：（六）Hexo添加Disqus评论</a>。</li>
@@ -576,18 +576,18 @@ git config --global user.email “你的邮箱”</p>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Disqus</span><br><span class="line">disqus:</span><br><span class="line">  enable: true</span><br><span class="line">  shortname: tian-ya-de-zhi-fu</span><br><span class="line">  count: true</span><br></pre></td></tr></table></figure>
 <p>更详细请参阅网上。</p>
-<h2 id="新文章命名规则"><a class="markdownIt-Anchor" href="#新文章命名规则"></a> 新文章命名规则</h2>
+<h2 id="新文章命名规则">新文章命名规则</h2>
 <p>发表新文章后系统崩溃。</p>
 <p>在根目录的配置文件中找到类似的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Writing</span><br><span class="line">new_post_name: 新文章.md # File name of new posts</span><br><span class="line">default_layout: post</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>将其改为由时间和题目组成：<span id="id_new_post_name"></span></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Writing</span><br><span class="line">new_post_name: year-:month-:day-:title.md # File name of new posts</span><br><span class="line">default_layout: post</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h1 id="进阶设置"><a class="markdownIt-Anchor" href="#进阶设置"></a> 进阶设置</h1>
-<h2 id="显示"><a class="markdownIt-Anchor" href="#显示"></a> 显示</h2>
-<h3 id="首页文章显示预览"><a class="markdownIt-Anchor" href="#首页文章显示预览"></a> 首页文章显示预览</h3>
+<h1>进阶设置</h1>
+<h2 id="显示">显示</h2>
+<h3 id="首页文章显示预览">首页文章显示预览</h3>
 <p>默认设定下。首页的文章每一篇都显示全文，不方便浏览。需要到主题的配置文件里将<code>auto_excerpt</code> 的 <code>enable</code> 改为 <code>true</code>。而<code>length</code> 字节表示文章预览的长度。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Automatically Excerpt. Not recommand.</span><br><span class="line">auto_excerpt:</span><br><span class="line">	enable: true</span><br><span class="line">	length: 300</span><br></pre></td></tr></table></figure>
-<h3 id="永久链接"><a class="markdownIt-Anchor" href="#永久链接"></a> 永久链接</h3>
+<h3 id="永久链接">永久链接</h3>
 <p>新文章的名字采用了中文(<a href="#id_new_post_name">见上</a>)，中文出现在地址栏上不美观。也不利于SEO，以及增加了博文URL的层数。解决办法是给每篇文章制定链接地址。</p>
 <ol>
 <li>修改网站的配置文件中永久地址的设定：</li>
@@ -598,7 +598,7 @@ git config --global user.email “你的邮箱”</p>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: 《少有人走的路》笔记</span><br><span class="line">date: 2019-07-21 00:14:37</span><br><span class="line">urlname: road-less-traveled-summary</span><br><span class="line">tags:</span><br><span class="line">  - 心理学</span><br><span class="line">categories: 读书笔记</span><br></pre></td></tr></table></figure>
 <p>编译后新的地址为 <code>http://mywiki.test/road-less-traveled-summary.html</code>。看起来就清爽多了。</p>
-<h3 id="图片链接"><a class="markdownIt-Anchor" href="#图片链接"></a> 图片链接</h3>
+<h3 id="图片链接">图片链接</h3>
 <ol>
 <li>开通<a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹</a>，创建新文章的时候会自动建立一个与文章同名的文件夹。可以将图片或者其它资源文件放到里面（<em>打算将思维导图放到这里</em>）。因为自定义了<a href="#id_new_post_name">文件名的方式</a>，所以根据官方描述无效。</li>
 <li>安装第三方插件<code>hexo-asset-image</code></li>
@@ -618,27 +618,27 @@ git config --global user.email “你的邮箱”</p>
 <p>找到 <code>node_modules/hexo-asset-imge</code> 目录下的 <code>index.js</code> 文件，将以下代码中的 <code>1</code> 改成 <code>5</code>，就可以正常显示图片了。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> endPos = link.length - <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>考虑到将来项目膨胀，应该将图片放到图床，比如七牛。</p>
-<h3 id="站内链接"><a class="markdownIt-Anchor" href="#站内链接"></a> 站内链接</h3>
+<h3 id="站内链接">站内链接</h3>
 <p>导航到站内别的文章使用以下方式就可以。</p>
 <p>链接方式 <code>[文章名](urlname.html)</code></p>
-<h3 id="设定代码区的高度"><a class="markdownIt-Anchor" href="#设定代码区的高度"></a> 设定代码区的高度</h3>
-<p>Hexo自身的式样暂时还没找到。其实也不太需要。如果代码不长直接显示全部就好了。太长的话不如放到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mi>i</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">Gits</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span>，通过限制gist的高度实现。<strong>Net</strong>主题修改 <code>next/themes/next/source/css/_custom/custom.styl</code> ，Wikitten主题则在文件 <code>wikitten/themes/Wikitten/source/css/_partial/article.styl</code> 中修改。</p>
+<h3 id="设定代码区的高度">设定代码区的高度</h3>
+<p>Hexo自身的式样暂时还没找到。其实也不太需要。如果代码不长直接显示全部就好了。太长的话不如放到$Gits$，通过限制gist的高度实现。<strong>Net</strong>主题修改 <code>next/themes/next/source/css/_custom/custom.styl</code> ，Wikitten主题则在文件 <code>wikitten/themes/Wikitten/source/css/_partial/article.styl</code> 中修改。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.gist</span> </span><br><span class="line"><span class="selector-class">.gist-file</span></span><br><span class="line"><span class="selector-class">.gist-data</span> &#123;</span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">450px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="添加注脚支持"><a class="markdownIt-Anchor" href="#添加注脚支持"></a> 添加注脚支持</h3>
+<h3 id="添加注脚支持">添加注脚支持</h3>
 <p><a href="https://github.com/LouisBarranqueiro/hexo-footnotes" target="_blank" rel="noopener">插件项目</a></p>
 <ol>
 <li>安装插件 <code>npm install hexo-footnotes --save</code></li>
 <li><strong>项目配置文件</strong> 添加</li>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意第二行的前面没有 "-" 符号,官方说明有. 但是会导致无法编译.</span></span><br><span class="line">plugins:</span><br><span class="line">  hexo-footnotes</span><br></pre></td></tr></table></figure>
-<h3 id="更换markdown渲染"><a class="markdownIt-Anchor" href="#更换markdown渲染"></a> 更换Markdown渲染</h3>
+<h3 id="更换Markdown渲染">更换Markdown渲染</h3>
 <p><a href="https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus" target="_blank" rel="noopener">Markdown-it-plus</a></p>
 <p>如果更换了这个渲染,就无需上面那个注脚插件, 因为已经支持了. 首先卸载掉旧的渲染, 然后安装新的.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-renderer-marked --save</span><br><span class="line">npm i hexo-renderer-markdown-it-plus --save</span><br><span class="line"><span class="comment"># 查看是否已经安装</span></span><br><span class="line">npm ls hexo-renderer-markdown-it-plus</span><br></pre></td></tr></table></figure>
 <p>然后在项目配置文件, 添加下面文字. 更深入的设置, 参看 markdown-it-plus 项目的说明文档.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">markdown_it_plus:</span><br><span class="line">    highlight: true</span><br><span class="line">    html: true</span><br><span class="line">    xhtmlOut: true</span><br><span class="line">    breaks: true</span><br><span class="line">    langPrefix:</span><br><span class="line">    linkify: true</span><br><span class="line">    typographer:</span><br><span class="line">    quotes: “”‘’</span><br><span class="line">    plugins:</span><br></pre></td></tr></table></figure>
-<h2 id="辅助功能"><a class="markdownIt-Anchor" href="#辅助功能"></a> 辅助功能</h2>
-<h3 id="本地运行服务"><a class="markdownIt-Anchor" href="#本地运行服务"></a> 本地运行服务</h3>
+<h2 id="辅助功能">辅助功能</h2>
+<h3 id="本地运行服务">本地运行服务</h3>
 <p>在Mac中可以用本地服务<a href="http://pow.cx" target="_blank" rel="noopener">Pow</a>运行网站，不用每次更改重启服务器<code>hexo s</code>。</p>
 <ol>
 <li>安装Pow</li>
@@ -649,10 +649,10 @@ git config --global user.email “你的邮箱”</p>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.pow</span><br><span class="line">$ ln -s /path/to/myapp</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>执行完以上步骤后在浏览器打开链接 <code>http://myapp.test/</code> 就能看到网站。更改内容后要执行<mark>生成</mark> 命令才能看到更新<code>hexo generate</code> or <code>hexo g</code> 。</li>
+<li>执行完以上步骤后在浏览器打开链接 <code>http://myapp.test/</code> 就能看到网站。更改内容后要执行==生成== 命令才能看到更新<code>hexo generate</code> or <code>hexo g</code> 。</li>
 <li>不想运行，直接把项目文件夹删除就可以。</li>
 </ol>
-<h3 id="绑定个人域名"><a class="markdownIt-Anchor" href="#绑定个人域名"></a> 绑定个人域名</h3>
+<h3 id="绑定个人域名">绑定个人域名</h3>
 <ol>
 <li>在万网买一个顶级域名，开通后添加两个域名解释</li>
 </ol>
@@ -662,12 +662,12 @@ git config --global user.email “你的邮箱”</p>
 <li>将来不希望用这个域名，域名重定向后，在浏览器输入 <a href="http://username.github.io" target="_blank" rel="noopener">username.github.io</a> 后 Chrome 会一直转向 goldentianya.pub 。需要打开<code>开发者工具</code>，选中 <code>disable cache</code> ，再刷新一遍地址就好了。</li>
 <li><code>next</code> 项目要将 <code>CNAME</code> 文件复制到 <code>/themes/next/source</code> 目录下个，编译的时候会拷贝到 <code>public</code> 目录。<code>wikitten</code> 项目不需要，域名定向以后能找到 <code>goldentianya/wiki</code> 站点，十分神奇。</li>
 </ol>
-<h3 id="隐藏文章"><a class="markdownIt-Anchor" href="#隐藏文章"></a> 隐藏文章</h3>
-<h4 id="全隐藏"><a class="markdownIt-Anchor" href="#全隐藏"></a> 全隐藏</h4>
+<h3 id="隐藏文章">隐藏文章</h3>
+<h4 id="全隐藏">全隐藏</h4>
 <p>根据插件<code>hext-sage-posts</code> 作者的博文<sup id="fnref:9"><a href="#fn:9" rel="footnote">9</a></sup>中描述，安装插件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-sage-posts --save</span><br></pre></td></tr></table></figure>
 <p>并将初创时的<code>Hello-world.md</code> 文章的Metadata中加入<code>sage: true</code>，文章就从网站上消失了。但在别的文章下面导航栏中，通过“下一篇”或者“上一篇”还是能被找到。被隐藏的文章其地址仍旧没有改变，只是不不出现在首页导航，和分类中而已。</p>
-<h4 id="从首页隐藏"><a class="markdownIt-Anchor" href="#从首页隐藏"></a> 从首页隐藏</h4>
+<h4 id="从首页隐藏">从首页隐藏</h4>
 <p>为了不让太琐碎的文章充斥首页，但又可以在分类中找到。可以采用这种方式。</p>
 <ol>
 <li>在文章的Metadata部分添加关键字 <code>notshow: true</code>。</li>
@@ -676,7 +676,7 @@ git config --global user.email “你的邮箱”</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"posts"</span> <span class="attr">class</span>=<span class="string">"posts-expand"</span>&gt;</span></span><br><span class="line">    &#123;% for post in page.posts %&#125;</span><br><span class="line">        &#123;&#123; post_template.render(post, true) &#125;&#125; <span class="comment">&lt;!--修改此行--&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  &#123;% include '_partials/pagination.swig' %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
 <p>将以上代码第四行修改为</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if post.notshow != true %&#125;</span><br><span class="line">	&#123;&#123; post_template.render(post, true) &#125;&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="文章加密"><a class="markdownIt-Anchor" href="#文章加密"></a> 文章加密</h4>
+<h4 id="文章加密">文章加密</h4>
 <ol>
 <li>安装插件 <code>hexo-blog-encrypt</code></li>
 </ol>
@@ -698,12 +698,12 @@ git config --global user.email “你的邮箱”</p>
 <p>message: 这个是博客查看时，密码输入框上面的描述性文字</p>
 </li>
 </ul>
-<h3 id="hexo-admin"><a class="markdownIt-Anchor" href="#hexo-admin"></a> Hexo Admin</h3>
+<h3 id="Hexo-Admin">Hexo Admin</h3>
 <p>安装后台管理插件 <code>hexo-damin</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br></pre></td></tr></table></figure>
 <p>初次运行后，设置管理账户。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">admin:</span><br><span class="line">  username: maiernte</span><br><span class="line">  password_hash: $2a$10$QeeWfDwIxbJ94h8EDfplDe9aLB0uaNrjMeVGhaYnfF0BBDosDze0S</span><br><span class="line">  secret: NamoAmitabha!</span><br></pre></td></tr></table></figure>
-<h3 id="访问量统计"><a class="markdownIt-Anchor" href="#访问量统计"></a> 访问量统计</h3>
+<h3 id="访问量统计">访问量统计</h3>
 <p><a href="https://bjtu-hxs.github.io/2018/06/12/leancloud-config/" target="_blank" rel="noopener">介绍文章</a>   （<em>有图</em>）</p>
 <p><a href="https://notes.doublemine.me/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="noopener">原文（有代码）</a></p>
 <ol>
@@ -717,7 +717,7 @@ git config --global user.email “你的邮箱”</p>
 <p>按上面的文章修改 Hexo 以及主题配置。</p>
 </li>
 </ol>
-<h3 id="在线交流"><a class="markdownIt-Anchor" href="#在线交流"></a> 在线交流</h3>
+<h3 id="在线交流">在线交流</h3>
 <p>使用 <a href="https://www.daovoice.io/" target="_blank" rel="noopener">道客</a>  Daovoice</p>
 <p>接入方式</p>
 <ol>
@@ -733,7 +733,7 @@ git config --global user.email “你的邮箱”</p>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">daovoice(&apos;init&apos;, &#123;</span><br><span class="line">  app_id: &quot;5e5fa370&quot;</span><br><span class="line">&#125;);</span><br><span class="line">daovoice(&apos;update&apos;);</span><br></pre></td></tr></table></figure>
 <p>完成代码粘贴后,检测是否成功接入: Ping 一下</p>
-<h3 id="待解决问题"><a class="markdownIt-Anchor" href="#待解决问题"></a> 待解决问题</h3>
+<h3 id="待解决问题">待解决问题</h3>
 <ul>
 <li>
 <p>[x] 文章评论</p>
@@ -766,7 +766,7 @@ git config --global user.email “你的邮箱”</p>
 <p>[ ] <a href="https://segmentfault.com/a/1190000019104144" target="_blank" rel="noopener">在vps上部署hexo博客的那些事</a></p>
 </li>
 </ul>
-<h1 id="有趣插件"><a class="markdownIt-Anchor" href="#有趣插件"></a> 有趣插件</h1>
+<h1>有趣插件</h1>
 <ul>
 <li>
 <p>[x] <a href="https://www.jianshu.com/p/805bd0b65d98" target="_blank" rel="noopener">短地址 &amp; 指定摘要</a></p>
@@ -790,7 +790,7 @@ git config --global user.email “你的邮箱”</p>
 <p>[ ] <a href="https://github.com/tea3/hexo-include-markdown" target="_blank" rel="noopener">include markdown</a></p>
 </li>
 </ul>
-<h3 id><a class="markdownIt-Anchor" href="#"></a> —</h3>
+<h3 id="—">—</h3>
 <p><a href="https://binglumeng.github.io/2017/03/21/Hexo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">讲解详细的博客</a></p>
 <p><a href="http://yearito.cn/posts/hexo-advanced-settings.html" target="_blank" rel="noopener">这个也不错</a></p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;"><a href="https://blog.annieyu.com/posts/207737771.html" target="_blank" rel="noopener">Hexo博客搭建全攻略(一):基于Hexo+Github环境搭建</a></span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;"><a href="https://blog.annieyu.com/posts/976961586.html" target="_blank" rel="noopener">Hexo博客搭建全攻略(二):NexT主题配置</a></span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;"><a href="https://blog.annieyu.com/posts/1209152972.html" target="_blank" rel="noopener">Hexo博客搭建全攻略(三):三方服务集成</a></span><a href="#fnref:3" rev="footnote"> ↩</a></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">4.</span><span style="display: inline-block; vertical-align: top;"><a href="https://blog.annieyu.com/posts/3333782006.html" target="_blank" rel="noopener">Hexo博客搭建全攻略(四):高级应用</a></span><a href="#fnref:4" rev="footnote"> ↩</a></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">5.</span><span style="display: inline-block; vertical-align: top;"><a href="https://blog.annieyu.com/posts/a341668e.html" target="_blank" rel="noopener">Hexo博客搭建全攻略(五):基于Github Issue搭建评论系统</a></span><a href="#fnref:5" rev="footnote"> ↩</a></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">6.</span><span style="display: inline-block; vertical-align: top;"><a href="https://www.jianshu.com/p/2bb87ae49ff6" target="_blank" rel="noopener">Hexo博客搭建全攻略(六):博文图片处理</a></span><a href="#fnref:6" rev="footnote"> ↩</a></li><li id="fn:7"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">7.</span><span style="display: inline-block; vertical-align: top;"><a href="https://gavinlee1.github.io/2017/02/25/%E5%8D%81%E6%AD%A5%E4%B9%8B%E5%86%85%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A-Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">十步之内轻松搞定 Hexo + GitHub搭建个人博客</a> ​​</span><a href="#fnref:7" rev="footnote"> ↩</a></li><li id="fn:8"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">8.</span><span style="display: inline-block; vertical-align: top;"><a href="https://vanchchen.github.io/p/7587.html" target="_blank" rel="noopener">如何优雅的 隐藏博客</a></span><a href="#fnref:8" rev="footnote"> ↩</a></li><li id="fn:9"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">9.</span><span style="display: inline-block; vertical-align: top;"><a href="https://blessing.studio/hexo-plugin-to-make-posts-sage-unlisted/" target="_blank" rel="noopener">为 Hexo 博客添加隐藏文章 / 限定公开功能</a></span><a href="#fnref:9" rev="footnote"> ↩</a></li><li id="fn:10"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">10.</span><span style="display: inline-block; vertical-align: top;"><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo 中文文档</a></span><a href="#fnref:10" rev="footnote"> ↩</a></li></ol></div></div>
@@ -1006,7 +1006,7 @@ git config --global user.email “你的邮箱”</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建立网站"><span class="nav-number">1.</span> <span class="nav-text"> 建立网站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#github配置"><span class="nav-number">1.1.</span> <span class="nav-text"> Github配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.2.</span> <span class="nav-text"> 安装Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布到github"><span class="nav-number">1.3.</span> <span class="nav-text"> 发布到Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站基本配置"><span class="nav-number">1.4.</span> <span class="nav-text"> 网站基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#next-主题"><span class="nav-number">1.4.1.</span> <span class="nav-text"> Next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wikitten主题"><span class="nav-number">1.4.2.</span> <span class="nav-text"> Wikitten主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同时部署两个项目"><span class="nav-number">1.4.3.</span> <span class="nav-text"> 同时部署两个项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站内搜索"><span class="nav-number">1.4.4.</span> <span class="nav-text"> 站内搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去除主题字样"><span class="nav-number">1.4.5.</span> <span class="nav-text"> 去除主题字样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加评论功能"><span class="nav-number">1.5.</span> <span class="nav-text"> 添加评论功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gitment"><span class="nav-number">1.5.0.1.</span> <span class="nav-text"> Gitment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#disqus"><span class="nav-number">1.5.0.2.</span> <span class="nav-text"> Disqus</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新文章命名规则"><span class="nav-number">1.6.</span> <span class="nav-text"> 新文章命名规则</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#进阶设置"><span class="nav-number">2.</span> <span class="nav-text"> 进阶设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示"><span class="nav-number">2.1.</span> <span class="nav-text"> 显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首页文章显示预览"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 首页文章显示预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#永久链接"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 永久链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片链接"><span class="nav-number">2.1.3.</span> <span class="nav-text"> 图片链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站内链接"><span class="nav-number">2.1.4.</span> <span class="nav-text"> 站内链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设定代码区的高度"><span class="nav-number">2.1.5.</span> <span class="nav-text"> 设定代码区的高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加注脚支持"><span class="nav-number">2.1.6.</span> <span class="nav-text"> 添加注脚支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换markdown渲染"><span class="nav-number">2.1.7.</span> <span class="nav-text"> 更换Markdown渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助功能"><span class="nav-number">2.2.</span> <span class="nav-text"> 辅助功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地运行服务"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 本地运行服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定个人域名"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 绑定个人域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏文章"><span class="nav-number">2.2.3.</span> <span class="nav-text"> 隐藏文章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全隐藏"><span class="nav-number">2.2.3.1.</span> <span class="nav-text"> 全隐藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从首页隐藏"><span class="nav-number">2.2.3.2.</span> <span class="nav-text"> 从首页隐藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章加密"><span class="nav-number">2.2.3.3.</span> <span class="nav-text"> 文章加密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-admin"><span class="nav-number">2.2.4.</span> <span class="nav-text"> Hexo Admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问量统计"><span class="nav-number">2.2.5.</span> <span class="nav-text"> 访问量统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线交流"><span class="nav-number">2.2.6.</span> <span class="nav-text"> 在线交流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#待解决问题"><span class="nav-number">2.2.7.</span> <span class="nav-text"> 待解决问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有趣插件"><span class="nav-number">3.</span> <span class="nav-text"> 有趣插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.0.1.</span> <span class="nav-text"> —</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">建立网站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github配置"><span class="nav-number">1.1.</span> <span class="nav-text">Github配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.2.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布到Github"><span class="nav-number">1.3.</span> <span class="nav-text">发布到Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站基本配置"><span class="nav-number">1.4.</span> <span class="nav-text">网站基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Next-主题"><span class="nav-number">1.4.1.</span> <span class="nav-text">Next 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wikitten主题"><span class="nav-number">1.4.2.</span> <span class="nav-text">Wikitten主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同时部署两个项目"><span class="nav-number">1.4.3.</span> <span class="nav-text">同时部署两个项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站内搜索"><span class="nav-number">1.4.4.</span> <span class="nav-text">站内搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去除主题字样"><span class="nav-number">1.4.5.</span> <span class="nav-text">去除主题字样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加评论功能"><span class="nav-number">1.5.</span> <span class="nav-text">添加评论功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitment"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">Gitment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disqus"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">Disqus</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新文章命名规则"><span class="nav-number">1.6.</span> <span class="nav-text">新文章命名规则</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">进阶设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示"><span class="nav-number">2.1.</span> <span class="nav-text">显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首页文章显示预览"><span class="nav-number">2.1.1.</span> <span class="nav-text">首页文章显示预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#永久链接"><span class="nav-number">2.1.2.</span> <span class="nav-text">永久链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片链接"><span class="nav-number">2.1.3.</span> <span class="nav-text">图片链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站内链接"><span class="nav-number">2.1.4.</span> <span class="nav-text">站内链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设定代码区的高度"><span class="nav-number">2.1.5.</span> <span class="nav-text">设定代码区的高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加注脚支持"><span class="nav-number">2.1.6.</span> <span class="nav-text">添加注脚支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换Markdown渲染"><span class="nav-number">2.1.7.</span> <span class="nav-text">更换Markdown渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助功能"><span class="nav-number">2.2.</span> <span class="nav-text">辅助功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地运行服务"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地运行服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定个人域名"><span class="nav-number">2.2.2.</span> <span class="nav-text">绑定个人域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏文章"><span class="nav-number">2.2.3.</span> <span class="nav-text">隐藏文章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全隐藏"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">全隐藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从首页隐藏"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">从首页隐藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章加密"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">文章加密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-Admin"><span class="nav-number">2.2.4.</span> <span class="nav-text">Hexo Admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问量统计"><span class="nav-number">2.2.5.</span> <span class="nav-text">访问量统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线交流"><span class="nav-number">2.2.6.</span> <span class="nav-text">在线交流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#待解决问题"><span class="nav-number">2.2.7.</span> <span class="nav-text">待解决问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">有趣插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#—"><span class="nav-number">3.0.1.</span> <span class="nav-text">—</span></a></li></ol></li></div>
             
 
           </div>

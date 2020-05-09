@@ -275,8 +275,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -427,7 +427,7 @@
       
 
       
-        <h3 id="部署以及更新"><a class="markdownIt-Anchor" href="#部署以及更新"></a> 部署以及更新</h3>
+        <h3 id="部署以及更新">部署以及更新</h3>
 <ul>
 <li>
 <p><strong>初建</strong>：将文件夹设置为仓库。只是第一次需要，以后就基本不用。<br>
@@ -447,7 +447,7 @@
 </li>
 </ul>
 <a id="more"></a>
-<h4 id="详细指令"><a class="markdownIt-Anchor" href="#详细指令"></a> 详细指令</h4>
+<h4 id="详细指令">详细指令</h4>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/maiernte/NewAngular.git</span><br><span class="line"></span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># For the next commit</span></span><br><span class="line">$ git add .   <span class="comment"># add to index only files created/modified and not those deleted</span></span><br><span class="line">$ git add -u  <span class="comment"># add to index only files deleted/modified and not those created</span></span><br><span class="line">$ git add -A  <span class="comment"># do both operation at once, add to index all files</span></span><br></pre></td></tr></table></figure>
 <p>下载及更新</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载整个项目</span></span><br><span class="line">git <span class="built_in">clone</span> XXXXX</span><br><span class="line"><span class="comment">#从服务器更新</span></span><br><span class="line">git pull [xxxxxx]</span><br><span class="line"><span class="comment">#Help</span></span><br><span class="line">git hepl VERB</span><br><span class="line">git VERB -h</span><br></pre></td></tr></table></figure>
@@ -457,14 +457,14 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure>
 <p>并添加类似的行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># See https://help.github.com/ignore-files/ for more about ignoring files.</span><br><span class="line"># dependencies</span><br><span class="line">/node_modules</span><br><span class="line"></span><br><span class="line"># testing</span><br><span class="line">/coverage</span><br><span class="line"># production</span><br><span class="line">/build</span><br><span class="line"># misc</span><br><span class="line">.DS_Store</span><br><span class="line">.env.local</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br></pre></td></tr></table></figure>
-<h3 id="设置git身份信息"><a class="markdownIt-Anchor" href="#设置git身份信息"></a> 设置git身份信息</h3>
+<h3 id="设置git身份信息">设置git身份信息</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"你的用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"你的邮箱"</span></span><br></pre></td></tr></table></figure>
-<h3 id="密码和凭证"><a class="markdownIt-Anchor" href="#密码和凭证"></a> 密码和凭证</h3>
-<h4 id="保存-github-用户名和密码"><a class="markdownIt-Anchor" href="#保存-github-用户名和密码"></a> 保存 Github 用户名和密码</h4>
+<h3 id="密码和凭证">密码和凭证</h3>
+<h4 id="保存-Github-用户名和密码">保存 Github 用户名和密码</h4>
 <p>Mac 下面每次 <code>push</code>  都要询问用户名和密码，很麻烦。而且将来不利于用脚本控制部署。有个解决的办法：进入项目根目录，执行一下命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
 <p>然后推送一次，输入账号和密码后，第二次推送就不需要了!</p>
-<h4 id="ssh-key-凭证"><a class="markdownIt-Anchor" href="#ssh-key-凭证"></a> SSH Key 凭证</h4>
+<h4 id="SSH-Key-凭证">SSH Key 凭证</h4>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加入 SSH Agent</span></span><br><span class="line">ssh-agent -s</span><br></pre></td></tr></table></figure>
 <p>如果出现类似<code>Agent pid XXXX</code>这样的字样，则跳过下一步，否则输入：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> `ssh-agent -s`</span><br></pre></td></tr></table></figure>
@@ -483,23 +483,23 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;username@gmail.com&quot;</span><br></pre></td></tr></table></figure>
 <p>用第一台电脑上的两个key文件 <code>id_rsa, id_rsa.pub</code> 覆盖第二台电脑的文件（<em>注意备份</em>）。确保NEW上的两个文件的权限是正确的，id_rsa是600，id_rsa.pub是644，比如：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-rw------- 1 fancy fancy 1675 2013-03-19 12:55 id_rsa</span><br><span class="line">-rw-r--r-- 1 fancy fancy 406 2013-03-19 12:55 id_rsa.pub</span><br><span class="line"><span class="comment"># 查看权限命令是 </span></span><br><span class="line">ls -l</span><br><span class="line"><span class="comment"># 更改权限命令是</span></span><br><span class="line">chmod 600 ~/.ssh/id_rsa</span><br><span class="line">chmod 644 ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<h3 id="删除仓库"><a class="markdownIt-Anchor" href="#删除仓库"></a> 删除仓库</h3>
+<h3 id="删除仓库">删除仓库</h3>
 <ol>
 <li>点开仓库</li>
 <li>点击右上角的 <code>Settings</code></li>
 <li>滚动到最下面 <code>Done Zone</code>， 选择 <code>Delete this repository</code>。</li>
 </ol>
-<h3 id="恢复所有修改"><a class="markdownIt-Anchor" href="#恢复所有修改"></a> 恢复所有修改</h3>
+<h3 id="恢复所有修改">恢复所有修改</h3>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git checkout . <span class="comment">#本地所有修改的。没有的提交的，都返回到原来的状态</span></span><br><span class="line">git stash <span class="comment">#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</span></span><br><span class="line">git reset --hard HASH <span class="comment">#返回到HASH点，不保留修改。</span></span><br><span class="line">git reset --soft HASH <span class="comment">#同上，保留修改。HASH 是节点号，z.B. 7d593c5</span></span><br><span class="line"></span><br><span class="line">git clean -df <span class="comment">#返回到某个节点</span></span><br><span class="line">git clean 参数</span><br><span class="line">    -n 显示 将要 删除的 文件 和  目录</span><br><span class="line">    -f 删除 文件</span><br><span class="line">    -df 删除 文件 和 目录</span><br><span class="line">--------------------- </span><br><span class="line">git describe --always <span class="comment"># 查看当前节点号</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment"># 查看所有HEAD号和Commit描述</span></span><br></pre></td></tr></table></figure>
 <p>更加暴力的方式是</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">it checkout . &amp;&amp; git clean -xdf</span><br></pre></td></tr></table></figure>
-<h4 id="清除历史记录"><a class="markdownIt-Anchor" href="#清除历史记录"></a> 清除历史记录</h4>
+<h4 id="清除历史记录">清除历史记录</h4>
 <div><div class="fold_hider"><div class="close hider_title">代码</div></div><div class="fold">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1. Checkout</span><br><span class="line">   git checkout --orphan latest_branch</span><br><span class="line"></span><br><span class="line">2. Add all the files</span><br><span class="line">   git add -A</span><br><span class="line"></span><br><span class="line">3. Commit the changes</span><br><span class="line">   git commit -am &quot;commit message&quot;</span><br><span class="line"></span><br><span class="line">4. Delete the branch</span><br><span class="line">   git branch -D master</span><br><span class="line"></span><br><span class="line">5. Rename the current branch to master</span><br><span class="line">   git branch -m master</span><br><span class="line"></span><br><span class="line">6. Finally, force update your repository</span><br><span class="line"></span><br><span class="line">   git push -f origin master</span><br></pre></td></tr></table></figure>
 
 </div></div>
-<h3 id="私人仓库"><a class="markdownIt-Anchor" href="#私人仓库"></a> 私人仓库</h3>
-<p>作为个人笔记，不应该设为public，这样别人可以浏览。<mark>2019</mark> 年Github更新了<a href="https://www.infoq.cn/article/aKm94Aw1RmDL_9Gysm8D" target="_blank" rel="noopener">新的政策</a>：</p>
+<h3 id="私人仓库">私人仓库</h3>
+<p>作为个人笔记，不应该设为public，这样别人可以浏览。==2019== 年Github更新了<a href="https://www.infoq.cn/article/aKm94Aw1RmDL_9Gysm8D" target="_blank" rel="noopener">新的政策</a>：</p>
 <blockquote>
 <p>GitHub Free：包含无限制的私人存储库。有了 GitHub Free，开发人员可以将 GitHub 用于私有项目，每个存储库最多可以有三个协作者。许多开发人员希望使用私人仓库申请工作，做一些 side project，或者在公开发布之前先私下尝试一些东西。从今天开始，这些场景在 GitHub 上可以免费实现（未来可能有更多场景）。 公共存储库仍然是免费的，并包括无限合作者。</p>
 </blockquote>
@@ -508,7 +508,7 @@
 <li>点击右上角的 <code>Settings</code></li>
 <li>滚动到最下面 <code>Done Zone</code>， 选择 <code>Make this repository private</code>。</li>
 </ol>
-<h2 id="文摘资源"><a class="markdownIt-Anchor" href="#文摘资源"></a> 文摘资源</h2>
+<h2 id="文摘资源">文摘资源</h2>
 <p><a href="https://www.jianshu.com/p/9000cd49822c" target="_blank" rel="noopener">Git submodule 子模块的管理和使用</a></p>
 
       
@@ -723,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#部署以及更新"><span class="nav-number">1.</span> <span class="nav-text"> 部署以及更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细指令"><span class="nav-number">1.1.</span> <span class="nav-text"> 详细指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置git身份信息"><span class="nav-number">2.</span> <span class="nav-text"> 设置git身份信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码和凭证"><span class="nav-number">3.</span> <span class="nav-text"> 密码和凭证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保存-github-用户名和密码"><span class="nav-number">3.1.</span> <span class="nav-text"> 保存 Github 用户名和密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh-key-凭证"><span class="nav-number">3.2.</span> <span class="nav-text"> SSH Key 凭证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除仓库"><span class="nav-number">4.</span> <span class="nav-text"> 删除仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复所有修改"><span class="nav-number">5.</span> <span class="nav-text"> 恢复所有修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清除历史记录"><span class="nav-number">5.1.</span> <span class="nav-text"> 清除历史记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私人仓库"><span class="nav-number">6.</span> <span class="nav-text"> 私人仓库</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#文摘资源"><span class="nav-number"></span> <span class="nav-text"> 文摘资源</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#部署以及更新"><span class="nav-number">1.</span> <span class="nav-text">部署以及更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细指令"><span class="nav-number">1.1.</span> <span class="nav-text">详细指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置git身份信息"><span class="nav-number">2.</span> <span class="nav-text">设置git身份信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码和凭证"><span class="nav-number">3.</span> <span class="nav-text">密码和凭证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保存-Github-用户名和密码"><span class="nav-number">3.1.</span> <span class="nav-text">保存 Github 用户名和密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH-Key-凭证"><span class="nav-number">3.2.</span> <span class="nav-text">SSH Key 凭证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除仓库"><span class="nav-number">4.</span> <span class="nav-text">删除仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复所有修改"><span class="nav-number">5.</span> <span class="nav-text">恢复所有修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清除历史记录"><span class="nav-number">5.1.</span> <span class="nav-text">清除历史记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私人仓库"><span class="nav-number">6.</span> <span class="nav-text">私人仓库</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#文摘资源"><span class="nav-number"></span> <span class="nav-text">文摘资源</span></a></li></div>
             
 
           </div>

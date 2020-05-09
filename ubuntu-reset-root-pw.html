@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="重设密码 原理上参考这份中文指引就好。由于我的服务器是IONOS公司的，这里主要记录IONOS的官方指引。（严格按照步骤） 12网址 www.ionos.de/hilfe# 选择 Server &amp;amp; Cloud Infrastructure  打开 KVM-Konsole 在用户管理平台软重启系统 Soft-Restart 在 KVM-Konsole 这边按 ESC 键 当出现类似一下界面">
+<meta name="description" content="重设密码 原理上参考这份中文指引就好。由于我的服务器是IONOS公司的，这里主要记录IONOS的官方指引。（严格按照步骤） 12网址 www.ionos.de/hilfe# 选择 Server &amp;amp; Cloud Infrastructure  打开 KVM-Konsole 在用户管理平台软重启系统 Soft-Restart 在 KVM-Konsole 这边按 ESC 键 当出现类似一下界面，">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu重设root用户密码">
 <meta property="og:url" content="http://maiernte.github.io/ubuntu-reset-root-pw.html">
 <meta property="og:site_name" content="天涯的知府">
-<meta property="og:description" content="重设密码 原理上参考这份中文指引就好。由于我的服务器是IONOS公司的，这里主要记录IONOS的官方指引。（严格按照步骤） 12网址 www.ionos.de/hilfe# 选择 Server &amp;amp; Cloud Infrastructure  打开 KVM-Konsole 在用户管理平台软重启系统 Soft-Restart 在 KVM-Konsole 这边按 ESC 键 当出现类似一下界面">
+<meta property="og:description" content="重设密码 原理上参考这份中文指引就好。由于我的服务器是IONOS公司的，这里主要记录IONOS的官方指引。（严格按照步骤） 12网址 www.ionos.de/hilfe# 选择 Server &amp;amp; Cloud Infrastructure  打开 KVM-Konsole 在用户管理平台软重启系统 Soft-Restart 在 KVM-Konsole 这边按 ESC 键 当出现类似一下界面，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/maiernte/img/raw/master/Tech/ubuntu-reset-root-1.png">
 <meta property="og:image" content="https://github.com/maiernte/img/raw/master/Tech/ubuntu-reset-root-2.png">
@@ -93,7 +93,7 @@
 <meta property="og:updated_time" content="2019-08-14T06:34:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu重设root用户密码">
-<meta name="twitter:description" content="重设密码 原理上参考这份中文指引就好。由于我的服务器是IONOS公司的，这里主要记录IONOS的官方指引。（严格按照步骤） 12网址 www.ionos.de/hilfe# 选择 Server &amp;amp; Cloud Infrastructure  打开 KVM-Konsole 在用户管理平台软重启系统 Soft-Restart 在 KVM-Konsole 这边按 ESC 键 当出现类似一下界面">
+<meta name="twitter:description" content="重设密码 原理上参考这份中文指引就好。由于我的服务器是IONOS公司的，这里主要记录IONOS的官方指引。（严格按照步骤） 12网址 www.ionos.de/hilfe# 选择 Server &amp;amp; Cloud Infrastructure  打开 KVM-Konsole 在用户管理平台软重启系统 Soft-Restart 在 KVM-Konsole 这边按 ESC 键 当出现类似一下界面，">
 <meta name="twitter:image" content="https://github.com/maiernte/img/raw/master/Tech/ubuntu-reset-root-1.png">
 
 
@@ -279,8 +279,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -431,7 +431,7 @@
       
 
       
-        <h1 id="重设密码"><a class="markdownIt-Anchor" href="#重设密码"></a> 重设密码</h1>
+        <h1>重设密码</h1>
 <p>原理上参考这份<a href="https://ifmx.cc/linux/398.html" title="中文指引" target="_blank" rel="noopener">中文指引</a>就好。由于我的服务器是IONOS公司的，这里主要记录<a href="https://www.ionos.de/hilfe/server-cloud-infrastructure/erste-schritte/root-passwort-zuruecksetzen/root-passwort-zuruecksetzen-ubuntu/" title="IONOS官方指引" target="_blank" rel="noopener">IONOS</a>的官方指引。（严格按照步骤）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">网址 www.ionos.de/hilfe</span><br><span class="line"><span class="comment"># 选择 Server &amp; Cloud Infrastructure</span></span><br></pre></td></tr></table></figure>
 <ol>
@@ -463,7 +463,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot -f</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h1 id="设置公共ssh"><a class="markdownIt-Anchor" href="#设置公共ssh"></a> 设置公共SSH</h1>
+<h1>设置公共SSH</h1>
 <p>在配置 github 的时候已经生成了 ssh-key ，可以用以下方法。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br><span class="line">cp id_rsa.pub authorized_keys</span><br><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub root@217.160.61.19 <span class="comment"># 我的用户名和服务器地址，默认端口 22</span></span><br><span class="line"><span class="comment"># 指定端口号为2212：ssh-copy-id -i ~/.ssh/id_rsa.pub -p 2212 user@ip</span></span><br><span class="line"></span><br><span class="line">ssh root@217.160.61.19 <span class="comment"># 登录并输入密码，第二次就不再需要密码了。</span></span><br></pre></td></tr></table></figure>
 <hr>
@@ -680,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#重设密码"><span class="nav-number">1.</span> <span class="nav-text"> 重设密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置公共ssh"><span class="nav-number">2.</span> <span class="nav-text"> 设置公共SSH</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">重设密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">设置公共SSH</span></a></li></ol></div>
             
 
           </div>

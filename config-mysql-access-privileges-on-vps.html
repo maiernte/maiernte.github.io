@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta name="description" content="文章 问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf  找">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置服务器端MySQL">
 <meta property="og:url" content="http://maiernte.github.io/config-mysql-access-privileges-on-vps.html">
 <meta property="og:site_name" content="天涯的知府">
-<meta property="og:description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta property="og:description" content="文章 问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf  找">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-14T13:10:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置服务器端MySQL">
-<meta name="twitter:description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta name="twitter:description" content="文章 问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf  找">
 
 
 
@@ -275,8 +275,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
 
 
-<script src="https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"></script>
-<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
 
 
 
@@ -428,7 +428,7 @@
 
       
         <p><a href="https://blog.csdn.net/bird3014/article/details/78481104" target="_blank" rel="noopener">文章</a></p>
-<h6 id="问题一端口状态"><a class="markdownIt-Anchor" href="#问题一端口状态"></a> 问题一：端口状态</h6>
+<h6 id="问题一：端口状态">问题一：端口状态</h6>
 <ol>
 <li>查看 3306 端口状态 <code>sudo netstat -an | grep 3306</code></li>
 </ol>
@@ -454,7 +454,7 @@
 <p><code>sudo netstat -an | grep 3306</code></p>
 </blockquote>
 <hr>
-<h6 id="问题二用户权限"><a class="markdownIt-Anchor" href="#问题二用户权限"></a> 问题二：用户权限</h6>
+<h6 id="问题二：用户权限">问题二：用户权限</h6>
 <p>查看用户权限</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -uroot -p[你的密码]</span><br><span class="line">use mysql</span><br><span class="line">select user,host from user</span><br></pre></td></tr></table></figure>
 <p>当显示如下，表示用户root只允许内网访问</p>
@@ -463,14 +463,14 @@
 </blockquote>
 <p>给用户授权</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;[允许的ip]&apos; identified by &apos;[密码]&apos; with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-<p>其中*<code>[允许的ip]</code><em>如果设置为</em>*%**的话则表示所有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ip</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">p</span></span></span></span>都可以访问，*<code>[密码]</code>*表示外网访问的密码是什么。比如我设置成所有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ip</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">p</span></span></span></span>都可访问，密码是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>o</mi><mi>o</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">root</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span></span></span></span>，则命令如下：</p>
+<p>其中*<code>[允许的ip]</code><em>如果设置为</em>*%**的话则表示所有$ip$都可以访问，*<code>[密码]</code>*表示外网访问的密码是什么。比如我设置成所有$ip$都可访问，密码是$root$，则命令如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;</span><br><span class="line">flush privileges;</span><br><span class="line">select user,host from user;</span><br></pre></td></tr></table></figure>
 <p>重新查看，会显示</p>
 <blockquote>
 <p>root %</p>
 <p>root localhost</p>
 </blockquote>
-<h6 id="安装-phpmyadmin"><a class="markdownIt-Anchor" href="#安装-phpmyadmin"></a> 安装 phpMyAdmin</h6>
+<h6 id="安装-phpMyAdmin">安装 phpMyAdmin</h6>
 
       
     </div>
@@ -684,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#问题一端口状态"><span class="nav-number">1.</span> <span class="nav-text"> 问题一：端口状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#问题二用户权限"><span class="nav-number">2.</span> <span class="nav-text"> 问题二：用户权限</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#安装-phpmyadmin"><span class="nav-number">3.</span> <span class="nav-text"> 安装 phpMyAdmin</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#问题一：端口状态"><span class="nav-number">1.</span> <span class="nav-text">问题一：端口状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#问题二：用户权限"><span class="nav-number">2.</span> <span class="nav-text">问题二：用户权限</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#安装-phpMyAdmin"><span class="nav-number">3.</span> <span class="nav-text">安装 phpMyAdmin</span></a></li></ol></div>
             
 
           </div>
