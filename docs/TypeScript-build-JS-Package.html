@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128-m.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32-m.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16-m.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工具," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用TypeScript编写JS函数库">
+<meta property="og:url" content="http://maiernte.github.io/TypeScript-build-JS-Package.html">
+<meta property="og:site_name" content="天涯的知府">
+<meta property="og:description" content="本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖  TypeScript第一步 如何使用Gulp构建TypeScript 从Javascript迁移到Typescript 只看相关的那一章就可以">
+<meta property="article:published_time" content="2019-08-16T20:15:28.000Z">
+<meta property="article:modified_time" content="2019-08-24T11:30:40.000Z">
+<meta property="article:author" content="鎏金天涯">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maiernte.github.io/TypeScript-build-JS-Package.html"/>
+
+
+
+
+
+  <title>用TypeScript编写JS函数库 | 天涯的知府</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天涯的知府</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">竹影扫阶尘不动 雁过寒潭水无痕<br> 达摩九载面孤壁 起行归去影留存</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" >
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" ></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5e5fa370"
+    });
+  daovoice('update');
+  </script>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maiernte.github.io/TypeScript-build-JS-Package.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鎏金天涯">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/tianya.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天涯的知府">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用TypeScript编写JS函数库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-16T22:15:28+02:00">
+                2019-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/skill/" itemprop="url" rel="index">
+                    <span itemprop="name">skill</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/TypeScript-build-JS-Package.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="TypeScript-build-JS-Package.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文具体介绍如何用TypeScript编写JavaScript库文件，以及制作npm工具包。主要参考下面两篇文章。我也省却一步步解释，只罗列相关的代码和我遇到的坑。想知道代码含义的请参阅原帖</p>
+<ul>
+<li><a href="http://imzc.me/dev/2016/11/22/getting-start-with-typescript/" target="_blank" rel="noopener">TypeScript第一步</a></li>
+<li><a href="https://www.gowhich.com/blog/869" target="_blank" rel="noopener">如何使用Gulp构建TypeScript</a></li>
+<li><a href="https://zhongsp.gitbooks.io/typescript-handbook/doc/handbook/tutorials/Migrating%20from%20JavaScript.html" target="_blank" rel="noopener">从Javascript迁移到Typescript</a> <em>只看相关的那一章就可以</em></li>
+</ul>
+<a id="more"></a>
+<h1>安装 TypeScript</h1>
+<p>终端执行 <code>npm install typescript -g</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tsc --version</span><br><span class="line">Version 3.5.3</span><br></pre></td></tr></table></figure>
+<h1>创建工程</h1>
+<ol>
+<li>初始化项目</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir typescript_demo &amp;&amp; <span class="built_in">cd</span> typescript_demo</span><br><span class="line">npm init -y <span class="comment"># 初始化项目，会生成 package.json 文件</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装Gulp， 并在项目根目录下新建 <code>gulpfile.js</code> 文件</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-cli gulp typescript gulp-typescript --save-dev</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>
+<p>在命令行中执行 <code>tsc --init</code> 可以在当前目录中快速创建一个 tsconfig.json 文件。</p>
+</li>
+<li>
+<p>安装 Browserify ：目的是把所有<strong>ts</strong>文件打包成一个单一的<strong>js</strong>文件。</p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install browserify tsify vinyl-source-stream --save-dev</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>Watchify、Babel和Uglify ：目的是让编译器保持运行，无需每次修改手动编译。</li>
+</ol>
+<p>npm install watchify gulp-util --save-dev</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install watchify gulp-util --save-dev</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>安装 Uglify ： 将输出文件 bundle.js 压缩</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-uglify vinyl-buffer gulp-sourcemaps --save-dev</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>Babel ：允许按新标准<strong>ES6</strong>编写代码，而最终会编译<strong>es05</strong>标准，兼容低版本浏览器。</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babelify babel-core babel-preset-env vinyl-buffer gulp-sourcemaps --save-dev</span><br></pre></td></tr></table></figure>
+<p>:bangbang: 安装中出现了错误, 显示babelify 版本太低. 将命令改为 <code>npm install babelify@8</code> 就能顺利进行下去了.</p>
+<ol start="8">
+<li>
+<p>编写主文件 <code>src/main.ts</code> (<em>名字随便起</em>)，在 <code>package.json</code> 中改为 $ “main”: “./dist/main.js”, $。创建两文件夹 <code>src</code> 和 <code>dist</code>，分别放置原文件和编译后的文件。为演示调用，再新建一个 <code>src/greet.ts</code> 文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># src/greet.ts</span><br><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path: <span class="built_in">string</span></span>): <span class="title">any</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">name: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ln)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hallo von <span class="subst">$&#123;name&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># src/main.ts</span><br><span class="line"><span class="keyword">import</span> &#123; sayHello &#125; <span class="keyword">from</span> <span class="string">"./greet"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showHello</span>(<span class="params">idName: <span class="built_in">string</span>, name: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> elt = <span class="built_in">document</span>.getElementById(idName);</span><br><span class="line">    elt.innerText = sayHello(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showHello(<span class="string">"greeting"</span>, <span class="string">"TypeScript"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 <code>src/index.html</code></p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"greeting"</span>&gt;</span>Loading ...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>修改 <code>gulpfile.js</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</span><br><span class="line"><span class="keyword">const</span> browserify = <span class="built_in">require</span>(<span class="string">"browserify"</span>);</span><br><span class="line"><span class="keyword">const</span> source = <span class="built_in">require</span>(<span class="string">'vinyl-source-stream'</span>);</span><br><span class="line"><span class="keyword">const</span> tsify = <span class="built_in">require</span>(<span class="string">"tsify"</span>);</span><br><span class="line"><span class="keyword">const</span> watchify = <span class="built_in">require</span>(<span class="string">"watchify"</span>);</span><br><span class="line"><span class="keyword">const</span> gutil = <span class="built_in">require</span>(<span class="string">"gulp-util"</span>);</span><br><span class="line"><span class="keyword">const</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"><span class="keyword">const</span> sourcemaps = <span class="built_in">require</span>(<span class="string">'gulp-sourcemaps'</span>);</span><br><span class="line"><span class="keyword">const</span> buffer = <span class="built_in">require</span>(<span class="string">'vinyl-buffer'</span>);</span><br><span class="line"><span class="keyword">const</span> paths = &#123;</span><br><span class="line">  pages: [<span class="string">'src/*.html'</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> watchedBrowserify = watchify(browserify(&#123;</span><br><span class="line">  basedir: <span class="string">'.'</span>,</span><br><span class="line">  debug: <span class="literal">true</span>,</span><br><span class="line">  entries: [<span class="string">'src/main.ts'</span>],</span><br><span class="line">  cache: &#123;&#125;,</span><br><span class="line">  packageCache: &#123;&#125;</span><br><span class="line">&#125;).plugin(tsify));</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"copy-html"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(paths.pages)</span><br><span class="line">    .pipe(gulp.dest(<span class="string">"dist"</span>));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">browserifyBundle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> watchedBrowserify</span><br><span class="line">    .transform(<span class="string">'babelify'</span>, &#123;</span><br><span class="line">      presets: [<span class="string">'env'</span>],</span><br><span class="line">      extensions: [<span class="string">'.ts'</span>]</span><br><span class="line">    &#125;)</span><br><span class="line">    .bundle()</span><br><span class="line">    .pipe(source(<span class="string">'bundle.js'</span>))</span><br><span class="line">    .pipe(buffer())</span><br><span class="line">    .pipe(sourcemaps.init(&#123;</span><br><span class="line">      loadMaps: <span class="literal">true</span></span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(sourcemaps.write(<span class="string">'./'</span>))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">"dist"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"browserify"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> browserifyBundle();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"default"</span>, gulp.series(<span class="string">'copy-html'</span>, <span class="string">'browserify'</span>));</span><br><span class="line">watchedBrowserify.on(<span class="string">"update"</span>, browserifyBundle);</span><br><span class="line">watchedBrowserify.on(<span class="string">"log"</span>, gutil.log);</span><br></pre></td></tr></table></figure>
+<ol start="11">
+<li>
+<p>修改 tsconfig.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"files"</span>: [</span><br><span class="line">        <span class="string">"src/*.ts"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">        <span class="attr">"noImplicitAny"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"target"</span>: <span class="string">"es2015"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编译并在浏览器打开 <code>dist/index.html</code></p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过gulp编译代码</span></span><br><span class="line">npx gulp</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>显示器中会显示 “Hello from TypeScript” 字样。</p>
+</blockquote>
+<p>我们看到 main.ts 调用了 greet.ts 的函数, 并生成一个 bundle.js 文件, 在 index.html 中被加载使用.</p>
+<h1>调用JavaScript文件</h1>
+<p>为了使用以前已经存在的JavaScript库文件, 在 src 下新建一个文件夹 libs 用来存放第三方JavaScript.</p>
+<blockquote>
+<p>projectRoot<br>
+├── src/<br>
+│     ├── libs/<br>
+│     │       ├── lunar.js<br>
+│     ├── main.ts<br>
+│     └── greet.ts<br>
+│<br>
+├── dist/<br>
+└── tsconfig.json</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># src/libs/lunar.js</span><br><span class="line"></span><br><span class="line">Lunar = &#123;</span><br><span class="line">    Name: <span class="string">"Dick"</span>,</span><br><span class="line">    sayHallo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'i am Lunar'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ab</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">Ab.prototype.seta = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = num</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">Ab.prototype.geta = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">exports.Ab = Ab</span><br><span class="line">exports.Lunar = Lunar;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>greet.ts</code> 文件, 调用 <code>src/libs/lunar.js</code> 中的函数和对象</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path: <span class="built_in">string</span></span>): <span class="title">any</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ln = <span class="built_in">require</span>(<span class="string">"./libs/lunar"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">name: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">  	ln.Ab = <span class="number">10</span></span><br><span class="line">    <span class="built_in">console</span>.log(ln.Ab)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hallo von <span class="subst">$&#123;name&#125;</span>, <span class="subst">$&#123;ln.Lunar.Name&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>TypeScript使用<code>tsconfig.json</code>文件管理工程配置，例如想包含哪些文件和进行哪些检查。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">     		<span class="attr">"noImplicitAny"</span>: <span class="literal">true</span>,  </span><br><span class="line">        //"outDir": "./dist", //不需要. gulpfile.js 已经处理过了</span><br><span class="line">        "allowJs": true,</span><br><span class="line">        "target": "es2015",</span><br><span class="line">        "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */</span><br><span class="line">    &#125;,</span><br><span class="line">   "files": [</span><br><span class="line">        <span class="string">"src/*.ts"</span></span><br><span class="line">    ],</span><br><span class="line">    "include": [</span><br><span class="line">        <span class="string">"./src/**/*.js"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们看到网页显示 <em>Hallo von TypeScript, Dick</em>,  打开chrome的开发者工具, 看到console 中写出 <code>10</code>.</p>
+<h1>Unit-Test</h1>
+<p><a href="https://journal.artfuldev.com/unit-testing-node-applications-with-typescript-using-mocha-and-chai-384ef05f32b2" target="_blank" rel="noopener">参考：Unit testing node applications with Typescript – using nocha and chai</a></p>
+<ol>
+<li>安装测试包文件</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install chai mocha ts-node @types/chai @types/mocha --save-dev</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>新建一个test目录专门存放测试文件，并新建一个测试文件 <code>test/ganzhi.spec.ts</code></li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; expect &#125; <span class="keyword">from</span> <span class="string">'chai'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'mocha'</span>;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'干支 function'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    it(<span class="string">'should return hello world'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> result = <span class="string">'Hello world!'</span>;</span><br><span class="line">      expect(result).to.equal(<span class="string">'Hello world!'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  </span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在 <code>package.json</code> 文件中配置测试参数和路径</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"mocha -r ts-node/register test/**/*.spec.ts"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>运行测试</li>
+</ol>
+<blockquote>
+<p>$ npm run test</p>
+<p>&gt; huahets@1.0.0 test /Users/mai/Projects/huahets</p>
+<p>&gt; mocha -r ts-node/register test/**/*.spec.ts</p>
+<p>干支 function</p>
+<p>​    ✓ should return hello world</p>
+<p>1 passing (19ms)</p>
+</blockquote>
+<h2 id="错误处理">错误处理</h2>
+<p>假设有以下函数调用中<code>LandMaps.FindCity</code>会给出一个异常。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = LandMaps.FindCity(<span class="string">"xx省"</span>, <span class="string">"xx市"</span>);</span><br><span class="line">expect(LandMaps.FindCity.bind(LandMaps, <span class="string">"err"</span>, <span class="string">""</span>)).throw(<span class="string">"Error Message"</span>) # 或者</span><br><span class="line">expect(LandMaps.FindCity.bind(LandMaps, <span class="string">"err"</span>, <span class="string">""</span>)).throw(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Error Message"</span>))</span><br></pre></td></tr></table></figure>
+<h1>打包</h1>
+<p><a href="https://www.xuejiayuan.net/blog/27db473912f642d8a5fa0e32af3bb600" target="_blank" rel="noopener">用 TypeScript 编写函数库</a></p>
+<p><a href="https://requirejs.org/docs/start.html" target="_blank" rel="noopener">require.js 官方文档</a></p>
+<p>通过上述方式生成的 bundle.js 文件不能被浏览器直接使用。参考上面两个网页提供的方式，可以生成给浏览器用的单一js文件。</p>
+<ol>
+<li>新建一个入口文件，将所有接口都连接起来，并统一导出</li>
+</ol>
+ <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># yixue.ts</span><br><span class="line"><span class="keyword">import</span> &#123;TYDate, TYLunar&#125; <span class="keyword">from</span> <span class="string">"./tylunar"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;GanZhi&#125; <span class="keyword">from</span> <span class="string">"./ganzhi"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;ShenSha&#125; <span class="keyword">from</span> <span class="string">"./shensha"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;WuXing, FetchWuXing&#125; <span class="keyword">from</span> <span class="string">"./wuxing"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Gua&#125; <span class="keyword">from</span> <span class="string">'./gua'</span></span><br><span class="line"><span class="keyword">import</span> &#123;LandMaps&#125; <span class="keyword">from</span> <span class="string">"./landmaps"</span></span><br><span class="line"></span><br><span class="line">exports.GanZhi = GanZhi</span><br><span class="line">exports.TYDate = TYDate</span><br><span class="line">exports.Gua = Gua</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>设置<code>tsconfig.json</code>让编译后的文件导出到<code>dist/cmjs</code>目录</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="attr">"target"</span>: <span class="string">"es5"</span>,</span><br><span class="line">    <span class="attr">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">    <span class="attr">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">    <span class="attr">"outDir"</span>: <span class="string">"dist/cmjs"</span>,</span><br><span class="line">    <span class="attr">"rootDir"</span>: <span class="string">"./src"</span>,</span><br><span class="line">    <span class="attr">"declaration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"sourceMap"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"lib"</span>: [<span class="string">"dom"</span>, <span class="string">"es6"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>通过命令 tsc 编译</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc -P tsconfig.json</span><br></pre></td></tr></table></figure>
+<p>也可以在 package.json 中设定，然后运行 <code>npm run build:cmjs</code> 编译。编译后的 yixue.js 文件就是统一入口。</p>
+<ol start="4">
+<li>yi xue.js 实际就是个目录，我需要将其打包成一个单一文件。 安装 browserify ,</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browserify dist/cmjs/base/yixue.js --standalone huahejs -o dist/web/yixue.js</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>下载 <a href="https://requirejs.org/docs/start.html" target="_blank" rel="noopener">require.js</a>， 并放到项目目录中。以下方式将 yixue.js 中的 <code>class GanZhi</code> 设为当前网页的一个全局函数。其它函数就可以调用。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>易学包<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">src</span>=<span class="string">"libs/require.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"greeting"</span>&gt;</span>易学包测试<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">var</span> newGanZhi</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">            requirejs([<span class="string">"web/yixue"</span>], <span class="function"><span class="keyword">function</span><span class="params">(yixue)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(yixue)</span></span><br><span class="line"><span class="actionscript">                newGanZhi = <span class="function"><span class="keyword">function</span><span class="params">(arg)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">return</span> <span class="keyword">new</span> yixue.GanZhi(arg)</span></span><br><span class="line">                &#125; </span><br><span class="line">  </span><br><span class="line">                init()</span><br><span class="line">            &#125;);</span><br><span class="line">              </span><br><span class="line"><span class="actionscript">            <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">"init will be called"</span>)</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> ele = <span class="built_in">document</span>.getElementById(<span class="string">"gz1"</span>)</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> gz = newGanZhi(<span class="number">1</span>)</span></span><br><span class="line">                ele.innerText = gz.Name</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gz1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">name</span>=<span class="string">"gua"</span>&gt;</span>gua<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>
+<p>在 Node.js 中调用更简单</p>
+</li>
+<li>
+<pre><code class="language-javascript">const {Gua, GanZhi, TYDate} = require(&quot;./web/yixue&quot;)
+</code></pre>
+</li>
+</ol>
+<p>需要更详细代码请下载项目：</p>
+<p><a href="https://gitee.com/maiernte/typescript-build-js-package" target="_blank" rel="noopener">演示项目地址</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    <div>
+        
+        <div style="text-align:center;color: #ccc;font-size:14px;">-----------------------<span style="margin: 0 10px;">本文结束</span><i class="fa fa-paw"></i><span style="margin: 0 10px;">感谢您的阅读</span>-----------------------</div>
+        
+    </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/still-using-qiniu.html" rel="next" title="还在用七牛?">
+                <i class="fa fa-chevron-left"></i> 还在用七牛?
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/mathjax-yixue-usage.html" rel="prev" title="MathJax用于易学领域">
+                MathJax用于易学领域 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/tianya.png"
+                alt="鎏金天涯" />
+            
+              <p class="site-author-name" itemprop="name">鎏金天涯</p>
+              <p class="site-description motion-element" itemprop="description">鎏金天涯的私房笔记。<br>看，或者不看，它都在这里。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://maiernte.github.io/wiki" title="天涯的维基" target="_blank">天涯的维基</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">安装 TypeScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">创建工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">调用JavaScript文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">4.</span> <span class="nav-text">Unit-Test</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#错误处理"><span class="nav-number">4.1.</span> <span class="nav-text">错误处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text">打包</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鎏金天涯</span>
+
+  
+</div>
+
+
+  <div class="powered-by">相随心转</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">万法唯心</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://tian-ya-de-zhi-fu.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://maiernte.github.io/TypeScript-build-JS-Package.html';
+          this.page.identifier = 'TypeScript-build-JS-Package.html';
+          this.page.title = '用TypeScript编写JS函数库';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tian-ya-de-zhi-fu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

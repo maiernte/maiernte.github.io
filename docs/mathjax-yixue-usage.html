@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128-m.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32-m.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16-m.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工具," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MathJax用于易学领域">
+<meta property="og:url" content="http://maiernte.github.io/mathjax-yixue-usage.html">
+<meta property="og:site_name" content="天涯的知府">
+<meta property="og:description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
+<meta property="article:published_time" content="2019-08-30T08:15:28.000Z">
+<meta property="article:modified_time" content="2020-05-08T09:38:08.489Z">
+<meta property="article:author" content="鎏金天涯">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maiernte.github.io/mathjax-yixue-usage.html"/>
+
+
+
+
+
+  <title>MathJax用于易学领域 | 天涯的知府</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天涯的知府</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">竹影扫阶尘不动 雁过寒潭水无痕<br> 达摩九载面孤壁 起行归去影留存</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" >
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" ></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5e5fa370"
+    });
+  daovoice('update');
+  </script>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maiernte.github.io/mathjax-yixue-usage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鎏金天涯">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/tianya.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天涯的知府">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MathJax用于易学领域</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-30T10:15:28+02:00">
+                2019-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/skill/" itemprop="url" rel="index">
+                    <span itemprop="name">skill</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/mathjax-yixue-usage.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="mathjax-yixue-usage.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>关于利用 <code>MathJax</code> 和 <code>Katex</code> 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。</p>
+<a id="more"></a>
+<h3 id="效果与演示">效果与演示</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1bSesbpk23w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+无法观看油管的朋友请移步B站：[使用MathJax渲染六爻和八字盘](https://www.bilibili.com/video/av66317810/)
+<h3 id="a-name-install-安装和使用-a"><a name="install">安装和使用</a></h3>
+<p>首先，你需要一个支持 Markdown (简称MD) 语言格式的文本编辑器。如果不知道什么是MD的话，请参阅以下介绍：</p>
+<ul>
+<li>
+<p><a href="https://www.jianshu.com/p/7771794c88a1" target="_blank" rel="noopener">Markdown介绍及使用教程</a></p>
+</li>
+<li>
+<p><a href="https://wizardforcel.gitbooks.io/markdown-simple-world/index.html" target="_blank" rel="noopener">Markdown - 简单的世界</a></p>
+</li>
+<li>
+<p><a href="https://sspai.com/post/25137" target="_blank" rel="noopener">认识与入门 Markdown</a></p>
+</li>
+</ul>
+<p>Markdown 语言<strong>简约而优美</strong>，可以自由转换成pdf、word、Html 等等各种其它格式的文本。可以推送到博客、微信公众号等等。虽然算卦是一个传统的行业，我们仍然不宜<strong>固步自封</strong>。MD语言支持MathJax和Katex书写Latex数学公式，可以写出非常漂亮的数学、物理、化学方面的公式。正式的科技刊物都要求用Latex格式。</p>
+<p>这个易学解决方案是对 MathJax 进行扩展，加入指定的易学公式，让 MathJax 解释器去完成公式渲染。它并不是一个独立的程序。需要构建在已有的MD文本编辑器之上。我使用一个文件夹存放所有的关于易学方面的MD文件，并将这个文件夹同步到 <a href="https://www.jianguoyun.com/#/" target="_blank" rel="noopener">坚果云</a>，这样就可以实现多台电脑和移动端之间的同步，而不太需要一个独立的易学软件。甚至可以将MD文件导出为HTML文件，放到我的HEXO博客上(您正在阅读的这篇博文即是例子)。</p>
+<p>理论上所有支持Markdown语言和MathJax的文本编辑器，都可以改装。改装过程需要两段代码和一个库文件。</p>
+<h4 id="文本编辑器">文本编辑器</h4>
+<h5 id="Typora">Typora</h5>
+<p>Typora 是我个人最钟爱的MD编辑器，因此这里着重介绍。如果你喜欢用别的MD编辑器，比如iAWrte等，理论上可以用同样的方式改装。(无法百分百保证) 有需要的朋友可以私下联系我。</p>
+<p>最新的安装教程请参考<a href="https://maiernte.gitee.io/huahedocument/chapter6/libinstall.html" target="_blank" rel="noopener">华鹤易学平台文档</a></p>
+<h5 id="VSCode">VSCode</h5>
+<p>同样请移步<a href="https://maiernte.gitee.io/huahedocument/chapter6/libinstall.html" target="_blank" rel="noopener">华鹤易学平台文档</a>。那里有详细描述。</p>
+<h4 id="Hexo博客">Hexo博客</h4>
+<p>🔔 注意：首先要检查自己的 Hexo 博客使用的渲染器是否默认开启了Katex或者MathJax数学插件。如果有的话需要卸载或者禁用数学插件，如果不能禁用，就必须更换Markdown渲染器。</p>
+<blockquote>
+<p>因为系统使用的数学插件会在网页生成之前就改动数学表达，这样无法使用我提供给的函数库。我提供给博客的方案是在浏览网页的时候，即时渲染易学公式。</p>
+</blockquote>
+<p>比如我之前用了 “hexo-renderer-markdown-it-plus” 渲染器就是强制使用 Katex 数学渲染的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-renderer-markdown-it-plus --save // 卸载</span><br><span class="line">npm i  hexo-renderer-markdown-it      --save // 更换</span><br></pre></td></tr></table></figure>
+<p>然后将下列代码添加到文件模版就可以了。使用 swig 模版的是在 <code>&lt;your thems&gt;/layout/_custom/header.swig</code> 或者 <code>&lt;your thems&gt;/layout/index.swig</code> 。而使用 ejs 模版的是文件 <code>&lt;your thems&gt;/layout/layout.ejs</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--前三行最好添加到 &lt;header&gt;&lt;/header&gt; 头区块中--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css"</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js"</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://raw.githack.com/maiernte/img/master/libs/katexYixue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://raw.githack.com/maiernte/img/master/libs/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意搜索 _config.yml 文件，“math”, “katex”, “mathjax” 等字样，发现有的话把他们禁用。</p>
+</blockquote>
+<h4 id="Gitbook">Gitbook</h4>
+<p>最新的安装教程请参考<a href="https://maiernte.gitee.io/huahedocument/chapter6/libinstall.html" target="_blank" rel="noopener">华鹤易学平台文档</a></p>
+<h3 id="API-参数">API 参数</h3>
+<p>使用易学函数库非常简单，在经过改装的Markdown编辑器中，输入易学公式，并用两个 <code>$</code> 符号将公式前后围起来即可。MD语言一般默认两个 <code>$</code> 符号之间的文本是数学公式，它会调用MathJax对公式进行渲染。否则，它会认为这是普通文本，而不会做任何动作。</p>
+<h4 id="易学通用">易学通用</h4>
+<p><a name="nayin"><strong>命令：纳音</strong></a> <code>\nayin{干支名称}</code></p>
+<p>【干支名称】 ：就是甲子、己卯等六十甲子。</p>
+<p>例子1：<code>\nayin{戊午}</code> --&gt; $\nayin{戊午}$</p>
+<p><a name="nayin"><strong>命令：干支日历</strong></a> <code>\timegz{时间参数}{年月日}</code></p>
+<p>【时间参数】 ：例如 2020-02-21。</p>
+<p>【年月日】 ：省略时默认为<code>111</code>，即显示年月日。<code>0</code>表示不显示，<code>1</code>表示显示。</p>
+<p>例子1：<code>\timegz{2020-02-21}</code> --&gt; $\timegz{2020-02-21}$</p>
+<p>例子2：<code>\timegz{2020-02-21}{011}</code> --&gt; $\timegz{2020-02-21}{011}$</p>
+<h4 id="六爻">六爻</h4>
+<p><a name="yao"><strong>命令：爻符</strong></a> <code>\yao{爻名}</code></p>
+<p>【爻名】：laoyin， laoyang，shaoyin，shaoyang， x， o， =， -， 交，重，阴，阳，0，1，2，3</p>
+<p>例子2：<code>\yao{x}</code>  --&gt; $\yao{x}$</p>
+<p>例子3：<code>\yao{shaoyin}</code> --&gt; $\yao{shaoyin}$</p>
+<p>例子4：<code>\yao{重}</code> --&gt; $\yao{重}$</p>
+<p><a name="paigua"> <strong>命令：六爻排盘</strong></a> <code>\paigua{时令}{卦辞}{标识}</code></p>
+<p>其中 【时令】、【卦辞】这两个参数是必须的，**【标识】**参数可以省略。</p>
+<p>【时令】允许的格式为：“1980-1-3 08:15”、“2019年3月4日”、“申月戊寅日”</p>
+<p>【卦辞】允许的格式为：“解之师”、“离为火”、“–==x-”、“0121100”、“阴阳阴交阴阳”</p>
+<p>【标识】由三部分组成：ID号、简排、字符大小。格式为：<code>guadi/s/5</code></p>
+<ul>
+<li>「ID号」：随便一串字符，空白则默认为“gua1”。:x:不允许只有数字，因为会与参数「字符大小」混淆。如果一个文本出现多个六爻卦，则每个卦都需要指定一个ID号。否则下面的命令<a href="#guayao">卦爻细节</a>不知道具体指向哪一个卦本。</li>
+<li>「简排」：只允许<code>s</code> 和 <code>l</code>两个英文字符的其中一个。<code>s</code> 表示只显示短名，如“妻财”显示为“财”，“青龙”显示为“龙”。<code>l</code> 则显示完整名称。留白则按照用户全局设定来显示。（参阅<a href="#code2">用户设定</a>）</li>
+<li>「字符大小」：允许 0 - 9 档。数字越大文字越大。默认大小为<code>5</code>或者用户的<a href="#code2">全局设定</a>。</li>
+</ul>
+<p>例子5： <code>$\paigua{1978年7月1日}{101201}{gua1}$</code> 效果<br>
+$$\paigua{1978年7月1日}{101201}{gua1}$$</p>
+<p>:pencil2: 如果文章很长，需要在指定位置重新显示一遍卦本，则可以使用重排命令。即让【时令】和【卦辞】两个参数留白，只给出【ID号】。如 <code>\paigua{}{}{gua1}</code> 。留白的参数，仍然需要用大括号括起来，否则解释器会出错。</p>
+<p><a name="guayao"> <strong>命令：卦爻细节</strong></a> <code>\guayao{标识}{位置}</code></p>
+<p>使用前提：当前文本中已经排出至少一支六爻卦。</p>
+<p>【标识】：与排盘命令的「标识」参数等同。由ID号、简排、字符大小三个部分组成。其中「ID号」标识已经存在的六爻盘。</p>
+<p>【位置】：格式为 “ben1”、“fu3”、“bian5” 等，分别表示「本卦初爻」、「伏卦3爻」、「变卦5爻」</p>
+<p>例子6：<code>\guayao{gua1}{ben4}</code> --&gt; $\guayao{gua1}{ben4}$</p>
+<blockquote>
+<p>例子6 中给出的「ID号」为例子5中指定的ID号 “gua1”，并要求显示本卦4爻的具体信息。</p>
+</blockquote>
+<h4 id="八字">八字</h4>
+<p><a name="paibazi"> <strong>命令：八字排盘</strong></a> <code>\paibazi{时间}{性别}{标识}[细节]</code></p>
+<p>【时间】和【性别】参数必填，【标识】和【细节】参数可选。(如果要第二次显示已有的八字盘，则【时间】和【性别】参数可留白，只给定【标识】参数中的「ID号」)</p>
+<p>【时间】：允许格式 “1980-1-3 08:15”、“2019年3月4日 6时3分”</p>
+<p>【性别】：允许格式 “m”、“f”、“男”、“女”、“乾”、“坤”、</p>
+<p>【标识】：与排盘命令的「标识」参数等同。由ID号、简排、字符大小三个部分组成。</p>
+<p>【细节】：允许“藏干”、“长生”、“纳音”这三个中的一个或者多个，也可以留白。格式为 <code>藏干/纳音/长生</code></p>
+<p>例子7：<code>\paibazi{1990年5月1日 6:45}{男}{小明/s/5}</code></p>
+<p>$\paibazi{1990年5月1日 6:45}{男}{小明/5}$</p>
+<p>例子8：重排例子7的八字盘 <code>\paibazi{}{}{小明/s/5}[纳音/藏干/长生]</code> ，并要求显示藏干和纳音等信息。</p>
+<p>$\paibazi{}{}{小明/s/5}[纳音/藏干/长生]$</p>
+<p><a name="bazi"> <strong>命令：八字细节</strong></a> <code>\bazi{标识}{类别}[细节]</code></p>
+<p>使用前提：当前文本中已经排出至少一个八字盘。</p>
+<p>【标识】：与排盘命令的「标识」参数等同。由ID号、简排、字符大小三个部分组成。其中「ID号」标识已经存在的八字命盘。</p>
+<p>【类别】：支持 “神煞”、“大运”、“流年”、“小运” 四个选项。</p>
+<p>【细节】：具体含义视【类别】而定。</p>
+<ul>
+<li>类别为「神煞」时：「细节」为 1～ 9 的数字，表示每行列数。</li>
+<li>类别为「大运」时：<code> 1-9 纳音/藏干/长生/神煞</code> 前面的数字表示第几步大运，限定 1 到 10</li>
+<li>类别为「流年」和「小运」时： <code>2015 - 2019 纳音/藏干/长生/神煞</code> 前面的数字表示年份，注意不要超过命盘的生命周期，否则会出错。「纳音/藏干/长生/神煞」可以留白，也可只显示一两项。</li>
+</ul>
+<p>例子9:  <code>\bazi{小明}{神煞}[6]</code> 显示小明命盘的神煞，每行6列。</p>
+<p>$\bazi{小明}{神煞}[6]$</p>
+<p>例子10: <code>\bazi{小明}{大运}[2-3 ]</code> 显示小明的第二到第三步大运</p>
+<p>$\bazi{小明}{大运}[2-3]$</p>
+<p>例子11:  <code>\bazi{小明}{流年}[2017-2019 纳音/藏干/长生/神煞]</code> 显示小明的2017到2019年的流年信息。</p>
+<p>$\bazi{小明}{流年}[2017-2019 纳音/藏干/长生/神煞]$</p>
+<h3 id="未来与展望">未来与展望</h3>
+<p>我知道这篇文章介绍的工具，并非所有人都能使用。所以在不久的将来，还是要制作一个独立易学软件，以便易友在PC端和移动端都能按照传统的方式使用。但由于时间和精力原因，我无法保证完成时间。</p>
+<p>不断完善易学函数，提供更丰富的应用细节。在用户更为广泛的MD编辑器中实现此方式。比如有道云笔记、为知笔记、印象笔记等。并争取介绍移动端(Android &amp; iOS)实现此方式。也希望在Gitbook中实现。</p>
+<p>希望能将师父的六爻和八字讲义，『增删卜易』等著作制作成Gitbook，将精彩的卦例和名人八字建成易学数据库。这样就可以通过我的易学函数直接获取， 比如 <code>\paibazi{蒋介石}</code>。</p>
+<h3 id="附录">附录:</h3>
+<h4 id="命令列表">命令列表</h4>
+<p><a href="#nayin">纳音</a></p>
+<p><a href="#yao">爻符</a></p>
+<p><a href="#paigua">排卦</a></p>
+<p><a href="#guayao">卦爻细节</a></p>
+<p><a href="#paibazi">排八字</a></p>
+<p><a href="#bazi">八字细节</a></p>
+<h4 id="发布">发布</h4>
+<p>脚本文件的<a href="https://github.com/maiernte/img/raw/master/libs/bundle.js" target="_blank" rel="noopener">原始路径</a>是<code>https://github.com/maiernte/img/raw/master/libs/bundle.js</code>。因为涉及到跨域问题，要通过 <a href="https://raw.githack.com/" target="_blank" rel="noopener">Gitkack</a> 重链接，把上述路径输入到 Githack 的地址框，会得到「应用地址」和「开发地址」。</p>
+<p><a href="https://rawcdn.githack.com/maiernte/img/bb3c42dc26b0866a142bb905d1753ac483e0a474/libs/bundle.js" target="_blank" rel="noopener">应用地址</a>：</p>
+<p><code>https://rawcdn.githack.com/maiernte/img/11a1bb572a6875dbf434a7fc457ea2fdd329f7db/libs/bundle.js</code></p>
+<p><a href="https://raw.githack.com/maiernte/img/master/libs/bundle.js" target="_blank" rel="noopener">开发地址</a>：</p>
+<p><code>https://raw.githack.com/maiernte/img/master/libs/bundle.js</code></p>
+<h4 id="查看当前易学函数库版本">查看当前易学函数库版本</h4>
+<p>在 chrome 浏览其中打开此博文，Mac 系统中按 <code>⌘+⌥+I</code> ，Windows 系统 <code>Ctr+⇧+I</code>，或者 Chrome 菜单栏调出 “开发者工具”，选择 Console 页面，即可显示当前易学库版本和时间。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    <div>
+        
+        <div style="text-align:center;color: #ccc;font-size:14px;">-----------------------<span style="margin: 0 10px;">本文结束</span><i class="fa fa-paw"></i><span style="margin: 0 10px;">感谢您的阅读</span>-----------------------</div>
+        
+    </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/TypeScript-build-JS-Package.html" rel="next" title="用TypeScript编写JS函数库">
+                <i class="fa fa-chevron-left"></i> 用TypeScript编写JS函数库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/javascript-typescript-skills.html" rel="prev" title="JavaScript & Typescript技术摘要">
+                JavaScript & Typescript技术摘要 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/tianya.png"
+                alt="鎏金天涯" />
+            
+              <p class="site-author-name" itemprop="name">鎏金天涯</p>
+              <p class="site-description motion-element" itemprop="description">鎏金天涯的私房笔记。<br>看，或者不看，它都在这里。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://maiernte.github.io/wiki" title="天涯的维基" target="_blank">天涯的维基</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果与演示"><span class="nav-number">1.</span> <span class="nav-text">效果与演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-name-install-安装和使用-a"><span class="nav-number">2.</span> <span class="nav-text">安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本编辑器"><span class="nav-number">2.1.</span> <span class="nav-text">文本编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Typora"><span class="nav-number">2.1.1.</span> <span class="nav-text">Typora</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#VSCode"><span class="nav-number">2.1.2.</span> <span class="nav-text">VSCode</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexo博客"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitbook"><span class="nav-number">2.3.</span> <span class="nav-text">Gitbook</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-参数"><span class="nav-number">3.</span> <span class="nav-text">API 参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#易学通用"><span class="nav-number">3.1.</span> <span class="nav-text">易学通用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六爻"><span class="nav-number">3.2.</span> <span class="nav-text">六爻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八字"><span class="nav-number">3.3.</span> <span class="nav-text">八字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未来与展望"><span class="nav-number">4.</span> <span class="nav-text">未来与展望</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text">附录:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令列表"><span class="nav-number">5.1.</span> <span class="nav-text">命令列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布"><span class="nav-number">5.2.</span> <span class="nav-text">发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前易学函数库版本"><span class="nav-number">5.3.</span> <span class="nav-text">查看当前易学函数库版本</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鎏金天涯</span>
+
+  
+</div>
+
+
+  <div class="powered-by">相随心转</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">万法唯心</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://tian-ya-de-zhi-fu.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://maiernte.github.io/mathjax-yixue-usage.html';
+          this.page.identifier = 'mathjax-yixue-usage.html';
+          this.page.title = 'MathJax用于易学领域';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tian-ya-de-zhi-fu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
