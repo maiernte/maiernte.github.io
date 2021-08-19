@@ -43,19 +43,19 @@
     <link href="http://maiernte.github.io/undefined.html"/>
     <id>http://maiernte.github.io/undefined.html</id>
     <published>2021-07-18T20:16:49.000Z</published>
-    <updated>2021-07-18T20:18:19.686Z</updated>
+    <updated>2021-08-19T15:48:44.742Z</updated>
     
-    <content type="html"><![CDATA[<p>这个其实已经很好，只是分类有点麻烦。</p>]]></content>
+    <content type="html"><![CDATA[<p>研究了一些方案，以实现在线编辑 Hexo 博客的目的。</p><a id="more"></a><p>自从开始使用 Dokuwiki 作为主力的维基百科以后，Hexo博客的在线编辑需求本身变得不重要了。在线编辑的目的，就是随时记录，满足非常小的知识「粒度」。Dokuwiki 的框架比 Hexo 要强太多。</p><p>作为纯粹的博客平台，更新密度其实不需要太高。因此也没有太强烈的在线编辑的需求，这个项目就此结束吧。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;这个其实已经很好，只是分类有点麻烦。&lt;/p&gt;
-
-      
+      &lt;p&gt;研究了一些方案，以实现在线编辑 Hexo 博客的目的。&lt;/p&gt;
     
     </summary>
+    
+      <category term="IT" scheme="http://maiernte.github.io/categories/IT/"/>
+    
+      <category term="Web" scheme="http://maiernte.github.io/categories/IT/Web/"/>
     
     
   </entry>
