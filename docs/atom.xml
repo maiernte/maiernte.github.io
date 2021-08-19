@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>天涯的知府</title>
+  <title>鎏金天涯</title>
   
   <subtitle>竹影扫阶尘不动 雁过寒潭水无痕&lt;br&gt; 达摩九载面孤壁 起行归去影留存</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maiernte.github.io/"/>
-  <updated>2021-08-19T15:06:44.087Z</updated>
+  <updated>2021-08-19T15:38:56.014Z</updated>
   <id>http://maiernte.github.io/</id>
   
   <author>
@@ -21,17 +21,13 @@
     <link href="http://maiernte.github.io/ich_bin_wiederda.html"/>
     <id>http://maiernte.github.io/ich_bin_wiederda.html</id>
     <published>2021-08-18T14:42:03.000Z</published>
-    <updated>2021-08-19T15:06:44.087Z</updated>
+    <updated>2021-08-19T15:38:56.014Z</updated>
     
-    <content type="html"><![CDATA[<p>这个博客有停更两年多了。中间发生了很多变化。有很长一段时间转成使用docify当成主力笔记。因为缺乏在线编辑的功能，最近一段时间开始使用Dokuwiki框架。虽然对其非常满意，但只适合用来做个人的维基网站。至于博客，也许还是要使用Hexo或者Wordpress。</p><p>好长时间没有使用，很多命令生疏了，这里复习一下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动本地服务</span></span><br><span class="line">hexo serve</span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure><p>将来的个人网站布局大概为</p><ul><li><a href="http://wiki.simperator.com" target="_blank" rel="noopener">wiki.simperator.com</a> 部署在 Ionos 服务器上，作为个人维基百科、日记、交易笔记等。</li><li><a href="http://blog.simperator.com" target="_blank" rel="noopener">blog.simperator.com</a> 使用 Hexo 静态框架，部署在 Github Pages 上。</li><li><a href="http://fin.simperator.com" target="_blank" rel="noopener">fin.simperator.com</a> 金融网站，处理证劵交易的追踪、分析、学习等等。</li><li><a href="http://simperator.com" target="_blank" rel="noopener">simperator.com</a> 使用 Wordpress 打造电子商务系统。</li></ul><p>封闭的项目以及电子书可以使用Gitbook形式发布，以及其它的流媒体，如Plex、Jellyfin等等使用别的二级域名：<a href="http://xxx.simperator.com" target="_blank" rel="noopener">xxx.simperator.com</a></p>]]></content>
+    <content type="html"><![CDATA[<p>好长时间没有使用，很多命令生疏了，这里复习一下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动本地服务</span></span><br><span class="line">hexo serve</span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure><p>将来的个人网站布局大概为</p><ul><li><a href="http://wiki.simperator.com" target="_blank" rel="noopener">wiki.simperator.com</a> 部署在 Ionos 服务器上，作为个人维基百科、日记、交易笔记等。</li><li><a href="http://blog.simperator.com" target="_blank" rel="noopener">blog.simperator.com</a> 使用 Hexo 静态框架，部署在 Github Pages 上。</li><li><a href="http://fin.simperator.com" target="_blank" rel="noopener">fin.simperator.com</a> 金融网站，处理证劵交易的追踪、分析、学习等等。</li><li><a href="http://simperator.com" target="_blank" rel="noopener">simperator.com</a> 使用 Wordpress 打造电子商务系统。</li></ul><p>封闭的项目以及电子书可以使用Gitbook形式发布，以及其它的流媒体，如Plex、Jellyfin等等使用别的二级域名：<a href="http://xxx.simperator.com" target="_blank" rel="noopener">xxx.simperator.com</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;这个博客有停更两年多了。中间发生了很多变化。有很长一段时间转成使用docify当成主力笔记。因为缺乏在线编辑的功能，最近一段时间开始使用Dokuwiki框架。虽然对其非常满意，但只适合用来做个人的维基网站。至于博客，也许还是要使用Hexo或者Wordpress。&lt;/p&gt;
-&lt;
-      
+      &lt;p&gt;这个博客有停更两年多了。中间发生了很多变化。有很长一段时间转成使用docify当成主力笔记。因为缺乏在线编辑的功能，最近一段时间开始使用Dokuwiki框架。虽然对其非常满意，但一段时间使用后发现，只适合用来做个人的维基网站。至于博客，也许还是要使用Hexo或者Wordpress。&lt;/p&gt;
     
     </summary>
     
