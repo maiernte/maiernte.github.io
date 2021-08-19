@@ -92,7 +92,7 @@ markdown_it_plus:
     quotes: “”‘’
     plugins: #nichts
 
-onlineConfigPath: ../config.json
+onlineConfigPath: config.json
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

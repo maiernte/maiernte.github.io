@@ -562,7 +562,7 @@
         "node_modules/json-stable-stringify": 1267, 
         "node_modules/crypto-js": 1111, 
         "node_modules/mv": 1319, 
-        "public": 2, 
+        "docs": 2, 
         "node_modules/ms": 1318, 
         "node_modules/boom": 1048, 
         "node_modules/unpipe": 1465, 

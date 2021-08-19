@@ -1,0 +1,13 @@
+{
+  "indexPath": "/", 
+  "port": 4001, 
+  "wsPort": 4002, 
+  "secret": "love",
+  "user": "admin", 
+  "passwordHash": "$2a$10$reUNl93FgpeBJFJ6aaQJkOjh64mI7B65nxnAdtoSh8nPF9kvTuFMO",
+  "autoSave": 300000, 
+  "noticeUrl": "",
+  "pull": ["git pull"], 
+  "push": ["git add --all .","git commit -m 'update'","git push"], 
+  "ssl": false 
+}
